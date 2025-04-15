@@ -1,8 +1,7 @@
 # Ignorer les fichiers de base de données
 *.lo1
 *.loo
-*.sql
-
+company.sql
 # Ignorer les fichiers de configuration sensibles
 .env
 config.php
