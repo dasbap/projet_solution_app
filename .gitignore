@@ -1,6 +1,4 @@
 # Ignorer les fichiers de base de données
-*.lo1
-*.loo
 company.sql
 # Ignorer les fichiers de configuration sensibles
 .env
