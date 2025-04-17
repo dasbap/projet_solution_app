@@ -113,9 +113,8 @@ Connexion PDO à la base MySQL via les variables du fichier `.env`.
 ## ✅ À faire
 
 - Ajout de rôles supplémentaires (admin, RH, etc.)
-- Création d’un panneau d’administration (`ADMIN/`)
 - Sauvegarde automatique des réponses des formulaires
-- Sécurité renforcée CSRF/tokenisation
+- Création des HTML et css pour le projet
 
 ---
 
