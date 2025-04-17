@@ -7,114 +7,13 @@
 #submitBtn {
     display: none;  
 }
-
-/* -------------------- */
-/* 🌐 Fontes & Variables */
-/* -------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-:root {
-  --couleur-primaire: #5E2BFF;
-  --couleur-secondaire: #06A77D;
-  --couleur-tertiaire: #FFFC31;
-  --blanc: #F7F9F5;
-  --noir: #080808;
-
-  --font-principale: 'Manrope', sans-serif;
-  --font-secondaire: 'Inter', sans-serif;
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 2rem; /* Assurez-vous que le footer ne se chevauche pas avec le contenu */
 }
-
-/* -------------------- */
-/* 🌍 Base générale      */
-/* -------------------- */
-body {
-  font-family: var(--font-principale);
-  background-color: var(--blanc);
-  color: var(--noir);
-  margin: 0;
-  padding: 2rem;
-}
-
-h1 {
-  color: var(--couleur-primaire);
-  text-align: center;
-  font-family: var(--font-secondaire);
-  font-weight: 700;
-  font-size: 2rem;
-}
-
-/* -------------------- */
-/* 📝 Formulaire        */
-/* -------------------- */
-form {
-  max-width: 700px;
-  margin: 2rem auto;
-  background-color: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Chaque bloc de question */
-.question {
-  display: none;
-  margin-bottom: 1.5rem;
-}
-
-/* Affichage conditionnel */
-.question.active {
-  display: block;
-}
-
-/* -------------------- */
-/* 🏷️ Champs & libellés */
-/* -------------------- */
-label {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 0.5rem;
-  color: var(--noir);
-}
-
-input[type="number"],
-select {
-  width: 100%;
-  padding: 0.6rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: var(--blanc);
-  font-family: var(--font-secondaire);
-  box-sizing: border-box;
-}
-
-select:focus,
-input[type="number"]:focus {
-  border-color: var(--couleur-primaire);
-  outline: none;
-}
-
-/* -------------------- */
-/* 🚀 Bouton Envoi      */
-/* -------------------- */
-#submitBtn {
-  background-color: var(--couleur-secondaire);
-  color: var(--blanc);
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  display: inline-block;
-  margin-top: 1rem;
-  transition: background-color 0.3s;
-}
-
-#submitBtn:hover {
-  background-color: #059e73;
-}
-
-
-

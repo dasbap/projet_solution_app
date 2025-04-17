@@ -9,7 +9,11 @@ body {
     margin: 0;
 }
 
-
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
 
   .header {
     display: flex;
@@ -138,7 +142,7 @@ h1 {
   .start-btn {
     padding: 12px 24px;
     font-size: 16px;
-    background-color: #06A77D;
+    background-color: #4CAF50;
     border: none;
     color: white;
     border-radius: 6px;
@@ -155,7 +159,7 @@ h1 {
   }
   
   .arrow-box {
-    background-color: #F7F9F5;
+    background-color: #4CAF50;
     width: 100px;
     height: 100px;
     border-radius: 12px;
@@ -170,7 +174,7 @@ h1 {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #06A77D;
+    background-color: #4CAF50;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -178,7 +182,7 @@ h1 {
     font-weight: bold;
     font-size: 20px;
   }
-
+  
 .form-group {
     margin-bottom: 15px;
 }
@@ -208,3 +212,10 @@ h1 {
     display: none; /* Caché par défaut */
     margin-top: 15px;
 }
+/* Carousel Image */
+.carousel-inner img {
+  width: 100%;
+  height: auto; /* Ensures the aspect ratio is maintained */
+  object-fit: cover; /* Ensures the image fills the container properly */
+}
+
