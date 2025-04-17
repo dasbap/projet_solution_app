@@ -1,13 +1,3 @@
-.question {
-    display: none;
-}
-.question.active {
-    display: block;
-}
-#submitBtn {
-    display: none;  
-}
-
 /* -------------------- */
 /* 🌐 Fontes & Variables */
 /* -------------------- */
@@ -34,87 +24,99 @@ body {
   color: var(--noir);
   margin: 0;
   padding: 2rem;
-}
-
-h1 {
-  color: var(--couleur-primaire);
-  text-align: center;
-  font-family: var(--font-secondaire);
-  font-weight: 700;
-  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
 /* -------------------- */
-/* 📝 Formulaire        */
+/* 📦 Container         */
 /* -------------------- */
-form {
-  max-width: 700px;
-  margin: 2rem auto;
+.container {
   background-color: white;
-  padding: 2rem;
+  padding: 2rem 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
 }
 
-/* Chaque bloc de question */
-.question {
-  display: none;
+/* -------------------- */
+/* 📝 Titres            */
+/* -------------------- */
+h1 {
+  text-align: center;
+  color: var(--couleur-primaire);
+  font-family: var(--font-secondaire);
+  margin-bottom: 2rem;
+}
+
+/* -------------------- */
+/* 🧩 Groupes de champs */
+/* -------------------- */
+.form-group {
   margin-bottom: 1.5rem;
 }
 
-/* Affichage conditionnel */
-.question.active {
-  display: block;
-}
-
-/* -------------------- */
-/* 🏷️ Champs & libellés */
-/* -------------------- */
 label {
-  font-weight: 600;
   display: block;
+  font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--noir);
 }
 
-input[type="number"],
-select {
+input[type="email"],
+input[type="password"] {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.7rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: var(--blanc);
-  font-family: var(--font-secondaire);
   box-sizing: border-box;
+  font-family: var(--font-secondaire);
 }
 
-select:focus,
-input[type="number"]:focus {
+input:focus {
   border-color: var(--couleur-primaire);
   outline: none;
 }
 
 /* -------------------- */
-/* 🚀 Bouton Envoi      */
+/* 🚀 Bouton            */
 /* -------------------- */
-#submitBtn {
+.btn-submit {
+  width: 100%;
   background-color: var(--couleur-secondaire);
   color: var(--blanc);
-  padding: 0.8rem 1.5rem;
+  padding: 0.9rem;
   font-size: 1rem;
   font-weight: 600;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  display: inline-block;
-  margin-top: 1rem;
   transition: background-color 0.3s;
 }
 
-#submitBtn:hover {
+.btn-submit:hover {
   background-color: #059e73;
 }
 
-
-
+/* -------------------- */
+/* 🔗 Liens oubliés     */
+/* -------------------- */
+.forgot-link {
+    display: inline-block;
+    margin-top: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--couleur-primaire);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .forgot-link:hover {
+    text-decoration: underline;
+    color: var(--couleur-secondaire);
+  }
+  

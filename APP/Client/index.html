@@ -1,30 +1,56 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
-    
+  <meta charset="UTF-8">
+  <title>EcoTrack</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- pour les icônes -->
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="quizz.html">Quizz</a></li>
-            <li><a href="connexion.html">Contact</a></li>
-            
-        </ul>
+  <header class="header">
+    <div class="logo">EcoTrack</div>
+    <nav class="main-menu">
+      <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Quizz</a></li>
+        <li><a href="#">Contact</a></li>
+        <li class="profile">
+          <i class="fas fa-user-circle"></i>
+          <ul class="dropdown">
+            <li><a href="#">Se connecter</a></li>
+            <li><a href="#">Se déconnecter</a></li>
+          </ul>
+        </li>
+      </ul>
     </nav>
+  </header>
 
-    <h1>RÉDUISEZ VOTRE EMPREINTE CARBONE</h1><br>
-    <h2>Un outil ludique pour agir au quotidien</h2><br>
-    <button>COMMENCER LE QUIZZ</button>
+  <div class="container">
+    <aside class="side-menu">
+      <ul>
+        <li><a href="#">STAT PERSO</a></li>
+        <li><a href="#">STAT ENTREPR</a></li>
+        <li><a href="#">ACTUALITÉS EO</a></li>
+        <li><a href="#">RÉCOMPENSES</a></li>
+      </ul>
+    </aside>
 
-    
+    <main class="content">
+      <h1>RÉDUISEZ VOTRE EMPREINTE CARBONE</h1>
+      <h2>Un outil ludique pour agir au quotidien</h2>
+      <button class="start-btn">Commencer le quizz</button>
+
+      <div class="info-block">
+        <div class="arrow-box">
+          <i class="fas fa-arrow-up"></i>
+        </div>
+        <div class="badge-box">
+          <span>1st</span>
+        </div>
+      </div>
+
+      <h3>CAROUSEL POUR PRÉSENTER LA WEB APP</h3>
+    </main>
+  </div>
 </body>
 </html>

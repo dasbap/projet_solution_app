@@ -3,39 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Connexion</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="connexion.css"> <!-- Facultatif : pour la mise en style -->
 </head>
 <body>
-    <div class="form-container">
-        <h2>Connexion</h2>
-
-        <!-- Formulaire de connexion -->
-        <form id="loginForm" action="../Serveur/login.php" method="POST" onsubmit="return validateForm()">
-            <!-- Champ pour l'email -->
+    <div class="container">
+        <h1>Page De Connexion</h1>
+        <form action="../Serveur/login.php" method="POST">
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <label for="email_user">Email de l'utilisateur :</label>
+                <input type="email" id="email_user" name="email_user" required placeholder="Exemple: stagiaire1@entreprise-publique.com">
+                <a href="#" class="forgot-link">Adresse mail oublié ?</a>
             </div>
 
-            <!-- Champ pour le mot de passe -->
             <div class="form-group">
-                <label for="password">Mot de passe</label>
-                <input type="password" id="password" name="password" required>
+                <label for="user_password">Mot de passe :</label>
+                <input type="password" id="user_password" name="user_password" required placeholder="Votre mot de passe">
+                <a href="motdepasse-oublie.html" class="forgot-link">Mot de passe oublié ?</a>
             </div>
 
-            <!-- Bouton de soumission -->
             <div class="form-group">
-                <input type="submit" value="Se connecter">
+                <button type="submit" class="btn-submit">Se Connecter</button>
             </div>
         </form>
-
-        <!-- Message d'erreur -->
-        <div class="error-message" id="errorMessage" style="display: none;">
-            Identifiants invalides. Veuillez réessayer.
-        </div>
     </div>
-
-    <script src="connexion.js"></script>
+<script src="connexion.js"></script>
 </body>
 </html>

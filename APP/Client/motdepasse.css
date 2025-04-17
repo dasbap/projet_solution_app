@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+:root {
+  --couleur-primaire: #5E2BFF;
+  --couleur-secondaire: #06A77D;
+  --blanc: #F7F9F5;
+  --noir: #080808;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: var(--blanc);
+  color: var(--noir);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  color: var(--couleur-primaire);
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input[type="email"] {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+a.btn-primary,
+a.btn-secondary {
+  display: inline-block;
+  text-align: center;
+  flex: 1;
+  padding: 0.8rem 0;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+a.btn-primary {
+  background-color: var(--couleur-primaire);
+  color: var(--blanc);
+}
+
+a.btn-primary:hover {
+  background-color: #4a21d6;
+}
+
+a.btn-secondary {
+  background-color: var(--couleur-secondaire);
+  color: var(--blanc);
+}
+
+a.btn-secondary:hover {
+  background-color: #059e73;
+}
