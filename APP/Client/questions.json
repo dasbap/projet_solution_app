@@ -10,14 +10,34 @@
         "id": "transport",
         "text": "Quel est votre mode de transport principal ?",
         "type": "select",
-        "options": ["Voiture", "Transports publics", "Vélo", "Marche"],
+        "options": ["Voiture", "Transports publics", "Vélo", "Marche", "Covoiturage"],
         "showIf": { "id": "travail", "value": "Sur site" }
     },
     {
         "id": "distance",
         "text": "Quelle est la distance moyenne parcourue chaque jour ? (en km)",
         "type": "number",
-        "showIf": { "id": "transport", "value": ["Voiture", "Transports publics"] }
+        "showIf": { "id": "transport", "value": ["Voiture", "Transports publics", "Covoiturage"] }
+    },
+    {
+        "id": "carburant",
+        "text": "Quel type de carburant utilisez-vous ?",
+        "type": "select",
+        "options": ["Essence", "Diesel", "Électrique", "Hybride"],
+        "showIf": { "id": "transport", "value": "Voiture" }
+    },
+    {
+        "id": "frequence_voiture",
+        "text": "Combien de jours par semaine utilisez-vous votre voiture ?",
+        "type": "number",
+        "showIf": { "id": "transport", "value": "Voiture" }
+    },
+    {
+        "id": "stationnement",
+        "text": "Disposez-vous d'une place de stationnement réservée ?",
+        "type": "select",
+        "options": ["Oui", "Non"],
+        "showIf": { "id": "transport", "value": "Voiture" }
     },
     {
         "id": "repas",
@@ -26,10 +46,94 @@
         "showIf": null
     },
     {
+        "id": "bio",
+        "text": "Achetez-vous des produits bio pour vos repas au travail ?",
+        "type": "select",
+        "options": ["Oui", "Non"],
+        "showIf": null
+    },
+    {
+        "id": "produits_emballes",
+        "text": "Consommez-vous des produits emballés individuellement ?",
+        "type": "select",
+        "options": ["Oui", "Non", "Parfois"],
+        "showIf": { "id": "bio", "value": "Non" }
+    },
+    {
+        "id": "local",
+        "text": "Consommez-vous des produits locaux au travail ?",
+        "type": "select",
+        "options": ["Oui", "Non", "Parfois"],
+        "showIf": null
+    },
+    {
         "id": "dechets",
         "text": "Triez-vous vos déchets au bureau ?",
         "type": "select",
         "options": ["Oui", "Non"],
+        "showIf": null
+    },
+    {
+        "id": "dechets_type",
+        "text": "Quels types de déchets triez-vous ?",
+        "type": "select",
+        "options": ["Papier", "Plastique", "Canettes", "Biodéchets"],
+        "showIf": { "id": "dechets", "value": "Oui" }
+    },
+    {
+        "id": "papier",
+        "text": "Utilisez-vous du papier recyclé ?",
+        "type": "select",
+        "options": ["Oui", "Non"],
+        "showIf": null
+    },
+    {
+        "id": "impression",
+        "text": "Imprimez-vous régulièrement des documents ?",
+        "type": "select",
+        "options": ["Oui", "Non", "Rarement"],
+        "showIf": null
+    },
+    {
+        "id": "impression_couleur",
+        "text": "Imprimez-vous en couleur ou en noir et blanc ?",
+        "type": "select",
+        "options": ["Couleur", "Noir et blanc"],
+        "showIf": { "id": "impression", "value": "Oui" }
+    },
+    {
+        "id": "appareils",
+        "text": "Éteignez-vous les appareils électroniques en quittant votre poste ?",
+        "type": "select",
+        "options": ["Toujours", "Parfois", "Jamais"],
+        "showIf": null
+    },
+    {
+        "id": "veille",
+        "text": "Utilisez-vous le mode veille de votre ordinateur ?",
+        "type": "select",
+        "options": ["Oui", "Non"],
+        "showIf": { "id": "appareils", "value": "Parfois" }
+    },
+    {
+        "id": "lumieres",
+        "text": "Éteignez-vous les lumières inutiles ?",
+        "type": "select",
+        "options": ["Toujours", "Parfois", "Jamais"],
+        "showIf": null
+    },
+    {
+        "id": "gobelets",
+        "text": "Utilisez-vous des gobelets réutilisables ?",
+        "type": "select",
+        "options": ["Oui", "Non"],
+        "showIf": null
+    },
+    {
+        "id": "initiatives",
+        "text": "Participez-vous à des initiatives écologiques dans l'entreprise ?",
+        "type": "select",
+        "options": ["Oui", "Non", "Je ne sais pas"],
         "showIf": null
     }
 ]

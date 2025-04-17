@@ -60,7 +60,6 @@ function genererFormulaire() {
             const div = document.getElementById(`q_${q.id}`);
             const input = document.getElementById(q.id);
     
-            // Si la question est active et la réponse est vide → invalide
             if (div.classList.contains("active") && (!input.value || input.value.trim() === "")) {
                 valide = false;
             }
@@ -68,19 +67,31 @@ function genererFormulaire() {
     
         if (!valide) {
             alert("Veuillez remplir toutes les questions affichées avant de soumettre.");
-            return; // On empêche l'envoi
+            return;
         }
     
-        // Si tout est rempli correctement, on continue
-        console.log("Réponses :", reponses);
-        alert("Merci pour vos réponses !");
-    
-        // Reset
-        form.reset();
-        Object.keys(reponses).forEach(k => delete reponses[k]);
-        document.querySelectorAll(".question").forEach(div => div.classList.remove("active"));
-        updateQuestions();
+        // Envoie des données au serveur PHP
+        fetch("../Serveur/formulaire.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(reponses),
+        })
+        .then(res => res.text())
+        .then(msg => {
+            alert("Formulaire envoyé avec succès !");
+            console.log("Réponse du serveur :", msg);
+            form.reset();
+            Object.keys(reponses).forEach(key => delete reponses[key]);
+            updateQuestions();
+        })
+        .catch(err => {
+            console.error("Erreur lors de l'envoi :", err);
+            alert("Une erreur est survenue lors de l'envoi.");
+        });
     });
+    
     
 }
 
