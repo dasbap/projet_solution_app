@@ -2,7 +2,6 @@
 company.sql
 # Ignorer les fichiers de configuration sensibles
 .env
-config.php
 
 # Ignorer les fichiers spécifiques à l'application
 LoopingImage.jpg
