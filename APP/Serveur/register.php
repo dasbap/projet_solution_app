@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         echo "Inscription réussie.";
+        header("Location: ../Client/connexion.html");
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
     }

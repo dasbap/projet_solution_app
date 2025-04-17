@@ -19,3 +19,8 @@ node_modules/
 # Ignorer les fichiers temporaires de l'éditeur
 *~
 *.swp
+*.php~
+
+# Fichiers système
+.DS_Store
+Thumbs.db
