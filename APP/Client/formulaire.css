@@ -1,0 +1,9 @@
+.question {
+    display: none;
+}
+.question.active {
+    display: block;
+}
+#submitBtn {
+    display: none;  
+}

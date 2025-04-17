@@ -1,0 +1,35 @@
+[
+    {
+        "id": "travail",
+        "text": "Travaillez-vous sur site ou en télétravail ?",
+        "type": "select",
+        "options": ["Sur site", "Télétravail"],
+        "showIf": null
+    },
+    {
+        "id": "transport",
+        "text": "Quel est votre mode de transport principal ?",
+        "type": "select",
+        "options": ["Voiture", "Transports publics", "Vélo", "Marche"],
+        "showIf": { "id": "travail", "value": "Sur site" }
+    },
+    {
+        "id": "distance",
+        "text": "Quelle est la distance moyenne parcourue chaque jour ? (en km)",
+        "type": "number",
+        "showIf": { "id": "transport", "value": ["Voiture", "Transports publics"] }
+    },
+    {
+        "id": "repas",
+        "text": "Combien de repas à base de viande consommez-vous par semaine ?",
+        "type": "number",
+        "showIf": null
+    },
+    {
+        "id": "dechets",
+        "text": "Triez-vous vos déchets au bureau ?",
+        "type": "select",
+        "options": ["Oui", "Non"],
+        "showIf": null
+    }
+]
