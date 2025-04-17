@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once '../APP/Serveur/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email_user'] ?? '';

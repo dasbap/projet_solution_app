@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION['user_id'] = $user['id_user'];
             $_SESSION['email_user'] = $user['email_user'];
-            header("Location: ..\client\index.php");
+            header("Location: ../Client/index.php");
             exit;
         } else {
             echo "Identifiants incorrects.";
