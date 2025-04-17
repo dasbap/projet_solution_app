@@ -1,5 +1,5 @@
 <?php
-require_once 'config.php';
+require_once '../APP/Serveur/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email_user'] ?? '';
@@ -40,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
 
         echo "Inscription réussie.";
-        header("Location: ../Client/connexion.html");
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
     }
