@@ -1,0 +1,146 @@
+/* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Pour occuper toute la hauteur de la fenêtre */
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 80px);
+  background-color: #fff;
+  border-right: 3px solid #28a745;
+  padding-top: 1rem;
+}
+
+.sidebar div {
+  padding: .75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.sidebar div:hover {
+  background: #e8f5e9;
+  color: #28a745;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #fff;
+  padding: 1rem;
+  border-bottom: 2px solid #28a745;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  color: #000000;
+}
+
+/* Main Content */
+main {
+  margin-top: 80px;
+  margin-left: 250px;
+  padding: 2rem;
+  flex-grow: 1; /* Pour occuper l'espace restant et pousser le footer en bas */
+}
+
+/* Footer */
+.footer {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Form Styles */
+.login-container {
+  margin-top: 80px;
+  padding: 1rem;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: .5rem;
+}
+
+.forgot-link {
+  display: block;
+  margin-top: .5rem;
+  font-size: .9rem;
+  color: #28a745;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    top: 80px;
+    left: -250px;
+    width: 250px;
+  }
+  .sidebar.active {
+    left: 0;
+  }
+
+  .login-container {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
+
+/* Style pour le logo */
+.logo-container {
+  text-align: center; /* Centrer le logo */
+  margin-bottom: 2rem; /* Espacement entre le logo et le titre */
+}
+
+.logo {
+  width: 150px; /* Ajuste la taille du logo selon tes besoins */
+  height: auto; /* Maintenir le ratio d'aspect */
+}

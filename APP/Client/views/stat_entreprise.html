@@ -21,7 +21,7 @@
     rel="stylesheet"/>
 
   <!-- Styles spécifiques Stat Entreprise -->
-  <link rel="stylesheet" href="statentreprise.css"/>
+  <link rel="stylesheet" href="../res/css/statentreprise.css"/>
 </head>
 <body>
 
@@ -31,12 +31,26 @@
       <a class="navbar-brand fw-bold" href="#">
         <i class="fas fa-leaf text-success me-2"></i>EcoTrack
       </a>
-      <div class="collapse navbar-collapse justify-content-end">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNav"
+        aria-controls="mainNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link fw-bold" href="#">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="connexion.html"><i class="fas fa-user-circle me-1"></i>Mon Compte</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="connexion.html">
+              <i class="fas fa-user-circle me-1"></i>Mon Compte
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -99,6 +113,6 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="stat_entreprise.js"></script> <!-- Include the JS file -->
+  <script src="../res/js/stat_entreprise.js"></script> <!-- Include the JS file -->
 </body>
 </html>
