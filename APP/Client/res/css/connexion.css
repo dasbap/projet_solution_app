@@ -1,122 +1,146 @@
-/* -------------------- */
-/* 🌐 Fontes & Variables */
-/* -------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-:root {
-  --couleur-primaire: #5E2BFF;
-  --couleur-secondaire: #06A77D;
-  --couleur-tertiaire: #FFFC31;
-  --blanc: #F7F9F5;
-  --noir: #080808;
-
-  --font-principale: 'Manrope', sans-serif;
-  --font-secondaire: 'Inter', sans-serif;
+/* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Pour occuper toute la hauteur de la fenêtre */
 }
 
-/* -------------------- */
-/* 🌍 Base générale      */
-/* -------------------- */
-body {
-  font-family: var(--font-principale);
-  background-color: var(--blanc);
-  color: var(--noir);
-  margin: 0;
-  padding: 2rem;
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 80px);
+  background-color: #fff;
+  border-right: 3px solid #28a745;
+  padding-top: 1rem;
+}
+
+.sidebar div {
+  padding: .75rem 1rem;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
+  font-weight: 500;
 }
 
-/* -------------------- */
-/* 📦 Container         */
-/* -------------------- */
-.container {
-  background-color: white;
-  padding: 2rem 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 450px;
+.sidebar div:hover {
+  background: #e8f5e9;
+  color: #28a745;
 }
 
-/* -------------------- */
-/* 📝 Titres            */
-/* -------------------- */
-h1 {
+/* Navbar */
+.navbar {
+  background-color: #fff;
+  padding: 1rem;
+  border-bottom: 2px solid #28a745;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  color: #000000;
+}
+
+/* Main Content */
+main {
+  margin-top: 80px;
+  margin-left: 250px;
+  padding: 2rem;
+  flex-grow: 1; /* Pour occuper l'espace restant et pousser le footer en bas */
+}
+
+/* Footer */
+.footer {
+  background-color: #343a40;
+  color: white;
   text-align: center;
-  color: var(--couleur-primaire);
-  font-family: var(--font-secondaire);
-  margin-bottom: 2rem;
+  padding: 1rem 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 
-/* -------------------- */
-/* 🧩 Groupes de champs */
-/* -------------------- */
+/* Form Styles */
+.login-container {
+  margin-top: 80px;
+  padding: 1rem;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
 .form-group {
   margin-bottom: 1.5rem;
 }
 
 label {
-  display: block;
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--noir);
 }
 
-input[type="email"],
-input[type="password"] {
+input {
   width: 100%;
-  padding: 0.7rem;
-  font-size: 1rem;
+  padding: 1rem;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: var(--blanc);
-  box-sizing: border-box;
-  font-family: var(--font-secondaire);
+  border-radius: 5px;
+  margin-top: .5rem;
 }
 
-input:focus {
-  border-color: var(--couleur-primaire);
-  outline: none;
-}
-
-/* -------------------- */
-/* 🚀 Bouton            */
-/* -------------------- */
-.btn-submit {
-  width: 100%;
-  background-color: var(--couleur-secondaire);
-  color: var(--blanc);
-  padding: 0.9rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.btn-submit:hover {
-  background-color: #059e73;
-}
-
-/* -------------------- */
-/* 🔗 Liens oubliés     */
-/* -------------------- */
 .forgot-link {
-    display: inline-block;
-    margin-top: 0.4rem;
-    font-size: 0.9rem;
-    color: var(--couleur-primaire);
-    text-decoration: none;
-    transition: color 0.2s;
+  display: block;
+  margin-top: .5rem;
+  font-size: .9rem;
+  color: #28a745;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    position: absolute;
+    top: 80px;
+    left: -250px;
+    width: 250px;
   }
-  
-  .forgot-link:hover {
-    text-decoration: underline;
-    color: var(--couleur-secondaire);
+  .sidebar.active {
+    left: 0;
   }
-  
+
+  .login-container {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
+
+/* Style pour le logo */
+.logo-container {
+  text-align: center; /* Centrer le logo */
+  margin-bottom: 2rem; /* Espacement entre le logo et le titre */
+}
+
+.logo {
+  width: 150px; /* Ajuste la taille du logo selon tes besoins */
+  height: auto; /* Maintenir le ratio d'aspect */
+}
