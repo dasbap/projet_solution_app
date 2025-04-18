@@ -2,7 +2,7 @@ const form = document.getElementById("carboneForm");
 const reponses = {};
 let questions = [];
 
-fetch("questions.json")
+fetch("../res/data/questions.json")
     .then(res => res.json())
     .then(data => {
     questions = data;
@@ -71,7 +71,7 @@ function genererFormulaire() {
         }
     
         // Envoie des données au serveur PHP
-        fetch("../Serveur/formulaire.php", {
+        fetch("../../Serveur/formulaire.php", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

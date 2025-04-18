@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mot de passe oublié</title>
-  <link rel="stylesheet" href="motdepasse.css" />
+  <link rel="stylesheet" href="../res/css/motdepasse.css" />
 </head>
 <body>
   <div class="container">
     <h1>Mot de passe oublié</h1>
     <p>Veuillez entrer votre adresse email pour réinitialiser votre mot de passe :</p>
 
-    <form action="..\Serveur\reset_password.php" method="POST">
+    <form action="../../Serveur/reset_password.php" method="POST">
       <div class="form-group">
         <label for="email">Adresse email :</label>
         <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com" />
