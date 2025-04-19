@@ -1,21 +1,76 @@
+/* -------------------- */
+/* 🌐 Fontes & Variables */
+/* -------------------- */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-  --couleur-primaire: #5E2BFF;
-  --couleur-secondaire: #06A77D;
-  --blanc: #F7F9F5;
-  --noir: #080808;
+    --couleur-primaire: #5E2BFF;
+    --couleur-secondaire: #06A77D;
+    --couleur-tertiaire: #FFFC31;
+    --blanc: #F7F9F5;
+    --noir: #080808;
+
+    --font-principale: 'Manrope', sans-serif;
+    --font-secondaire: 'Inter', sans-serif;
 }
 
+/* -------------------- */
+/* 🌍 Base générale      */
+/* -------------------- */
+/* Global Styles */
 body {
-  font-family: 'Manrope', sans-serif;
-  background-color: var(--blanc);
-  color: var(--noir);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: 'Inter', sans-serif;
   margin: 0;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Pour occuper toute la hauteur de la fenêtre */
+}
+
+
+h1 {
+    color: #5E2BFF;
+    text-align: center;
+    font-family: var(--font-secondaire);
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 80px);
+  background-color: #fff;
+  border-right: 3px solid #28a745;
+  padding-top: 1rem;
+}
+
+.sidebar div {
+  padding: .75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.sidebar div:hover {
+  background: #e8f5e9;
+  color: #28a745;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #fff;
+  padding: 1rem;
+  border-bottom: 2px solid #28a745;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  color: #000000;
 }
 
 .container {
@@ -92,4 +147,35 @@ a.btn-secondary {
 
 a.btn-secondary:hover {
   background-color: #059e73;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1221px) {
+  .sidebar {
+    position: absolute;
+    top: 80px;
+    left: -250px;
+    width: 250px;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
+
+  .login-container {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
+
+ /* Style pour le logo */
+ .logo-container {
+  text-align: center; /* Centrer le logo */
+  margin-bottom: 2rem; /* Espacement entre le logo et le titre */
+}
+
+.logo {
+  width: 150px; /* Ajuste la taille du logo selon tes besoins */
+  height: auto; /* Maintenir le ratio d'aspect */
 }
