@@ -5,44 +5,43 @@ let questions = [];
 fetch("../res/data/questions.json")
     .then(res => res.json())
     .then(data => {
-    questions = data;
-    genererFormulaire();
-    updateQuestions();
-    updateQuestions();
-});
+        questions = data;
+        genererFormulaire();
+        updateQuestions();
+    });
 
 function genererFormulaire() {
     questions.forEach(q => {
-    const div = document.createElement("div");
-    div.classList.add("question");
-    div.id = `q_${q.id}`;
+        const div = document.createElement("div");
+        div.classList.add("question");
+        div.id = `q_${q.id}`;
 
-    const label = document.createElement("label");
-    label.textContent = q.text;
-    div.appendChild(label);
-    div.appendChild(document.createElement("br"));
+        const label = document.createElement("label");
+        label.textContent = q.text;
+        div.appendChild(label);
+        div.appendChild(document.createElement("br"));
 
-    let input;
-    if (q.type === "select") {
-        input = document.createElement("select");
-        input.innerHTML = `<option value="">-- Choisissez --</option>`;
-        q.options.forEach(opt => {
-        const option = document.createElement("option");
-        option.value = opt;
-        option.textContent = opt;
-        input.appendChild(option);
-        });
-    } else if (q.type === "number") {
-        input = document.createElement("input");
-        input.type = "number";
-        input.min = "0";
-    }
+        let input;
+        if (q.type === "select") {
+            input = document.createElement("select");
+            input.innerHTML = `<option value="">-- Choisissez --</option>`;
+            q.options.forEach(opt => {
+                const option = document.createElement("option");
+                option.value = opt.value;
+                option.textContent = opt.label;
+                input.appendChild(option);
+            });
+        } else if (q.type === "number") {
+            input = document.createElement("input");
+            input.type = "number";
+            input.min = "0";
+        }
 
-    input.id = q.id;
-    input.addEventListener("change", handleChange);
-    div.appendChild(input);
-    form.appendChild(div);
-});
+        input.id = q.id;
+        input.addEventListener("change", handleChange);
+        div.appendChild(input);
+        form.appendChild(div);
+    });
 
     const submitBtn = document.createElement("button");
     submitBtn.textContent = "Envoyer";
@@ -53,24 +52,23 @@ function genererFormulaire() {
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
-    
+
         let valide = true;
-    
+
         questions.forEach(q => {
             const div = document.getElementById(`q_${q.id}`);
             const input = document.getElementById(q.id);
-    
+
             if (div.classList.contains("active") && (!input.value || input.value.trim() === "")) {
                 valide = false;
             }
         });
-    
+
         if (!valide) {
             alert("Veuillez remplir toutes les questions affichées avant de soumettre.");
             return;
         }
-    
-        // Envoie des données au serveur PHP
+
         fetch("../../Serveur/formulaire.php", {
             method: "POST",
             headers: {
@@ -91,14 +89,30 @@ function genererFormulaire() {
             alert("Une erreur est survenue lors de l'envoi.");
         });
     });
-    
-    
 }
 
 function handleChange(e) {
     const id = e.target.id;
     const value = e.target.value;
-    reponses[id] = value;
+    const question = questions.find(q => q.id === id);
+
+    if (!question) return;
+
+    let score = 0;
+
+    if (question.type === "select") {
+        const selected = question.options.find(o => o.value === value);
+        score = selected ? selected.score : 0;
+    } else if (question.type === "number") {
+        const numericValue = parseFloat(value);
+        score = isNaN(numericValue) ? 0 : (question.coef || 1) * numericValue;
+    }
+
+    reponses[id] = {
+        value: value,
+        score: score
+    };
+
     updateQuestions();
 }
 
@@ -119,7 +133,7 @@ function updateQuestions() {
         if (!condition) {
             doitAfficher = true;
         } else {
-            const val = reponses[condition.id];
+            const val = reponses[condition.id]?.value;
             if (val && (Array.isArray(condition.value) ? condition.value.includes(val) : val === condition.value)) {
                 doitAfficher = true;
             }
@@ -136,11 +150,5 @@ function updateQuestions() {
     });
 
     const submitBtn = document.getElementById("submitBtn");
-    if (totalQuestionsActives > 0 && totalQuestionsActives === totalQuestionsRemplies) {
-        submitBtn.style.display = "inline-block";
-    } else {
-        submitBtn.style.display = "none";
-    }
+    submitBtn.style.display = (totalQuestionsActives > 0 && totalQuestionsActives === totalQuestionsRemplies) ? "inline-block" : "none";
 }
-
-

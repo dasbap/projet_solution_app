@@ -3,137 +3,167 @@
         "id": "travail",
         "text": "Travaillez-vous sur site ou en télétravail ?",
         "type": "select",
-        "options": ["Sur site", "Télétravail"],
-        "showIf": null
+        "options": [
+            { "label": "Sur site", "score": 0 },
+            { "label": "Télétravail", "score": 10 }
+        ],
+        "coef": 1
     },
     {
         "id": "transport",
         "text": "Quel est votre mode de transport principal ?",
         "type": "select",
-        "options": ["Voiture", "Transports publics", "Vélo", "Marche", "Covoiturage"],
-        "showIf": { "id": "travail", "value": "Sur site" }
+        "options": [
+            { "label": "Voiture", "score": 0 },
+            { "label": "Transports publics", "score": 10 },
+            { "label": "Vélo", "score": 15 },
+            { "label": "Marche", "score": 20 },
+            { "label": "Covoiturage", "score": 5 }
+        ],
+        "showIf": { "id": "travail", "value": "Sur site" },
+        "coef": 1
     },
     {
         "id": "distance",
         "text": "Quelle est la distance moyenne parcourue chaque jour ? (en km)",
         "type": "number",
-        "showIf": { "id": "transport", "value": ["Voiture", "Transports publics", "Covoiturage"] }
+        "scorePerKm": 1,
+        "showIf": { "id": "transport", "value": ["Voiture", "Transports publics", "Covoiturage"] },
+        "coef": 2
     },
     {
         "id": "carburant",
         "text": "Quel type de carburant utilisez-vous ?",
         "type": "select",
-        "options": ["Essence", "Diesel", "Électrique", "Hybride"],
-        "showIf": { "id": "transport", "value": "Voiture" }
+        "options": [
+            { "label": "Essence", "score": 0 },
+            { "label": "Diesel", "score": 0 },
+            { "label": "Électrique", "score": 20 },
+            { "label": "Hybride", "score": 10 }
+        ],
+        "showIf": { "id": "transport", "value": "Voiture" },
+        "coef": 1
     },
     {
         "id": "frequence_voiture",
         "text": "Combien de jours par semaine utilisez-vous votre voiture ?",
         "type": "number",
-        "showIf": { "id": "transport", "value": "Voiture" }
+        "scorePerDay": -2,
+        "showIf": { "id": "transport", "value": "Voiture" },
+        "coef": 1
     },
     {
         "id": "stationnement",
         "text": "Disposez-vous d'une place de stationnement réservée ?",
         "type": "select",
-        "options": ["Oui", "Non"],
-        "showIf": { "id": "transport", "value": "Voiture" }
+        "options": [
+            { "label": "Oui", "score": 0 },
+            { "label": "Non", "score": 5 }
+        ],
+        "showIf": { "id": "transport", "value": "Voiture" },
+        "coef": 1
     },
     {
         "id": "repas",
         "text": "Combien de repas à base de viande consommez-vous par semaine ?",
         "type": "number",
-        "showIf": null
+        "scorePerMeal": -1,
+        "coef": 2
     },
     {
         "id": "bio",
         "text": "Achetez-vous des produits bio pour vos repas au travail ?",
         "type": "select",
-        "options": ["Oui", "Non"],
-        "showIf": null
+        "options": [
+            { "label": "Oui", "score": 10 },
+            { "label": "Non", "score": 0 }
+        ],
+        "coef": 1
     },
     {
         "id": "produits_emballes",
         "text": "Consommez-vous des produits emballés individuellement ?",
         "type": "select",
-        "options": ["Oui", "Non", "Parfois"],
-        "showIf": { "id": "bio", "value": "Non" }
+        "options": [
+            { "label": "Oui", "score": 0 },
+            { "label": "Non", "score": 10 },
+            { "label": "Parfois", "score": 5 }
+        ],
+        "showIf": { "id": "bio", "value": "Non" },
+        "coef": 1
     },
     {
         "id": "local",
         "text": "Consommez-vous des produits locaux au travail ?",
         "type": "select",
-        "options": ["Oui", "Non", "Parfois"],
-        "showIf": null
+        "options": [
+            { "label": "Oui", "score": 10 },
+            { "label": "Non", "score": 0 },
+            { "label": "Parfois", "score": 5 }
+        ],
+        "coef": 1
     },
     {
         "id": "dechets",
         "text": "Triez-vous vos déchets au bureau ?",
         "type": "select",
-        "options": ["Oui", "Non"],
-        "showIf": null
+        "options": [
+            { "label": "Oui", "score": 10 },
+            { "label": "Non", "score": 0 }
+        ],
+        "coef": 2
     },
     {
         "id": "dechets_type",
         "text": "Quels types de déchets triez-vous ?",
         "type": "select",
-        "options": ["Papier", "Plastique", "Canettes", "Biodéchets"],
-        "showIf": { "id": "dechets", "value": "Oui" }
+        "options": [
+            { "label": "Papier", "score": 5 },
+            { "label": "Plastique", "score": 5 },
+            { "label": "Canettes", "score": 5 },
+            { "label": "Biodéchets", "score": 10 }
+        ],
+        "showIf": { "id": "dechets", "value": "Oui" },
+        "coef": 1
     },
     {
         "id": "papier",
         "text": "Utilisez-vous du papier recyclé ?",
         "type": "select",
-        "options": ["Oui", "Non"],
-        "showIf": null
+        "options": [
+            { "label": "Oui", "score": 10 },
+            { "label": "Non", "score": 0 }
+        ],
+        "coef": 1
     },
     {
         "id": "impression",
-        "text": "Imprimez-vous régulièrement des documents ?",
+        "text": "Limitez-vous vos impressions papier ?",
         "type": "select",
-        "options": ["Oui", "Non", "Rarement"],
-        "showIf": null
+        "options": [
+            { "label": "Oui", "score": 10 },
+            { "label": "Non", "score": 0 }
+        ],
+        "coef": 1
     },
     {
-        "id": "impression_couleur",
-        "text": "Imprimez-vous en couleur ou en noir et blanc ?",
+        "id": "materiel",
+        "text": "Utilisez-vous du matériel informatique économe en énergie ?",
         "type": "select",
-        "options": ["Couleur", "Noir et blanc"],
-        "showIf": { "id": "impression", "value": "Oui" }
-    },
-    {
-        "id": "appareils",
-        "text": "Éteignez-vous les appareils électroniques en quittant votre poste ?",
-        "type": "select",
-        "options": ["Toujours", "Parfois", "Jamais"],
-        "showIf": null
+        "options": [
+            { "label": "Oui", "score": 10 },
+            { "label": "Non", "score": 0 }
+        ],
+        "coef": 1
     },
     {
         "id": "veille",
-        "text": "Utilisez-vous le mode veille de votre ordinateur ?",
+        "text": "Éteignez-vous vos appareils en quittant votre poste ?",
         "type": "select",
-        "options": ["Oui", "Non"],
-        "showIf": { "id": "appareils", "value": "Parfois" }
-    },
-    {
-        "id": "lumieres",
-        "text": "Éteignez-vous les lumières inutiles ?",
-        "type": "select",
-        "options": ["Toujours", "Parfois", "Jamais"],
-        "showIf": null
-    },
-    {
-        "id": "gobelets",
-        "text": "Utilisez-vous des gobelets réutilisables ?",
-        "type": "select",
-        "options": ["Oui", "Non"],
-        "showIf": null
-    },
-    {
-        "id": "initiatives",
-        "text": "Participez-vous à des initiatives écologiques dans l'entreprise ?",
-        "type": "select",
-        "options": ["Oui", "Non", "Je ne sais pas"],
-        "showIf": null
+        "options": [
+            { "label": "Oui", "score": 10 },
+            { "label": "Non", "score": 0 }
+        ],
+        "coef": 1
     }
 ]
