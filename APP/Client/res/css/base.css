@@ -1,0 +1,44 @@
+:root {
+    --navbar-height: 80px;     /* Hauteur de votre barre du haut */
+    --sidebar-width: 250px;    /* Largeur de votre sidebar */
+  }
+  
+  /* 1) La navbar */
+  .navbar {
+    height: var(--navbar-height);
+    line-height: var(--navbar-height);  /* pour centrer verticalement les liens */
+    padding: 0 2rem;                    /* n’ajoutez pas de padding vertical */
+    border-bottom: 2px solid #28a745;
+    background: #fff;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+  }
+  
+  /* 2) La sidebar */
+  .sidebar {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--navbar-height));
+    background: #fff;
+    border-right: 3px solid #28a745;
+    padding-top: 1rem;
+  }
+  
+  /* 3) Le contenu principal */
+  main {
+    margin-top: var(--navbar-height);
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    min-height: calc(100vh - var(--navbar-height)); /* pour que le footer reste en bas */
+  }
+  
+  /* 4) Le footer */
+  .footer {
+    margin-left: var(--sidebar-width);
+    /* si vous utilisez flex sur body (min-vh-100 + d-flex flex-column), 
+       il restera collé en bas sans autre réglage */
+  }
+  
