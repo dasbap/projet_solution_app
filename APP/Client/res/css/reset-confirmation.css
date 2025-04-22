@@ -1,0 +1,84 @@
+/* Corps de page */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Navbar (fixée) */
+  .navbar {
+    z-index: 1000;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    top: 80px; /* hauteur de la navbar */
+    left: 0;
+    position: fixed;
+    width: 250px;
+    height: calc(100vh - 80px);
+    background-color: #fff;
+    border-right: 3px solid #28a745;
+    padding-top: 1rem;
+  }
+  
+  .sidebar div {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    color: #000;
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .sidebar div:hover {
+    background-color: #e8f5e9;
+    color: #28a745;
+  }
+  
+  /* Contenu principal */
+  main {
+    margin-top: 80px;
+    margin-left: 250px;
+    padding: 2rem;
+  }
+  
+  /* Carte de confirmation */
+  .confirmation-card {
+    max-width: 480px;
+    width: 100%;
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .confirmation-card .card-body {
+    padding: 2rem;
+  }
+  
+  .confirmation-card .card-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+  }
+  
+  /* Footer collé en bas */
+  .footer {
+    margin-top: auto;
+  }
+  
+  /* Responsive: masquer sidebar */
+  @media(max-width: 768px) {
+    .sidebar {
+      display: none;
+    }
+    main {
+      margin-left: 0;
+      padding: 1rem;
+    }
+  }
+  

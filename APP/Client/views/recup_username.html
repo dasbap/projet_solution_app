@@ -2,29 +2,26 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mot de passe oublié – EcoTrack</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reset Username – EcoTrack</title>
 
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@700&display=swap"
-    rel="stylesheet"
-  />
+    rel="stylesheet"/>
 
   <!-- Bootstrap & FontAwesome -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
+    rel="stylesheet"/>
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    rel="stylesheet"
-  />
+    rel="stylesheet"/>
 
   <!-- Styles spécifiques -->
-  <link rel="stylesheet" href="../res/css/motdepasse.css" />
+  <link rel="stylesheet" href="../res/css/reset-confirmation.css"/>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -41,8 +38,7 @@
         data-bs-target="#mainNav"
         aria-controls="mainNav"
         aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="mainNav">
@@ -76,43 +72,30 @@
     </div>
   </aside>
 
-  <!-- Main Content -->
-  <main class="flex-fill">
-    <div class="container">
-      <div class="card reset-card mx-auto">
-        <div class="card-body">
-          <h1 class="card-title text-center mb-3">Mot de passe oublié</h1>
-          <p class="text-center mb-4">
-            Veuillez entrer votre adresse email pour réinitialiser votre mot de passe :
-          </p>
-          <form action="../../Serveur/reset_password.php" method="POST" novalidate>
-            <div class="mb-3">
-              <label for="email" class="form-label">Adresse email :</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="form-control"
-                placeholder="votre.email@exemple.com"
-                required
-              />
-            </div>
-            <div class="d-flex gap-2">
-              <button type="submit" class="btn btn-success flex-fill">
-                Envoyer le lien
-              </button>
-              <a href="connexion.html" class="btn btn-outline-secondary flex-fill">
-                Retour à la connexion
-              </a>
-            </div>
-          </form>
+  <!-- Main -->
+  <main class="flex-fill d-flex align-items-center justify-content-center">
+    <div class="card confirmation-card text-center">
+      <div class="card-body">
+        <i class="fas fa-envelope-open-text fa-3x text-success mb-3"></i>
+        <h1 class="card-title mb-2">Reset Username</h1>
+        <p class="card-text mb-4">
+          Merci !<br/>
+          Veuillez consulter votre boîte mail<br/>
+          pour plus d’informations.
+        </p>
+        <p class="small text-muted mb-4">
+          Vous n’avez pas reçu l’e‑mail de réinitialisation ?
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+          <button class="btn btn-dark px-4">Renvoyer</button>
+          <a href="connexion.html" class="btn btn-outline-secondary px-4">Annuler</a>
         </div>
       </div>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="footer bg-dark text-white text-center py-3">
+  <footer class="footer bg-dark text-white text-center py-3 mt-auto">
     &copy; 2025 EcoTrack | Tous droits réservés
   </footer>
 

@@ -1,47 +1,29 @@
-/* -------------------- */
-/* 🌐 Fontes & Variables */
-/* -------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-:root {
-    --couleur-primaire: #5E2BFF;
-    --couleur-secondaire: #06A77D;
-    --couleur-tertiaire: #FFFC31;
-    --blanc: #F7F9F5;
-    --noir: #080808;
-
-    --font-principale: 'Manrope', sans-serif;
-    --font-secondaire: 'Inter', sans-serif;
-}
-
-/* -------------------- */
-/* 🌍 Base générale      */
-/* -------------------- */
-/* Global Styles */
+/* --------------------- */
+/* Base & reset          */
+/* --------------------- */
 body {
-  font-family: 'Inter', sans-serif;
   margin: 0;
+  font-family: 'Inter', sans-serif;
   background-color: #f4f4f4;
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Pour occuper toute la hauteur de la fenêtre */
+  min-height: 100vh;
 }
 
-
-h1 {
-    color: #5E2BFF;
-    text-align: center;
-    font-family: var(--font-secondaire);
-    font-weight: 700;
-    font-size: 2rem;
+/* --------------------- */
+/* Navbar (déjà stylée)  */
+/* --------------------- */
+.navbar {
+  z-index: 1000;
 }
 
-/* Sidebar */
+/* --------------------- */
+/* Sidebar               */
+/* --------------------- */
 .sidebar {
-  position: fixed;
-  top: 80px;
+  top: 80px;              /* hauteur de la navbar */
   left: 0;
+  position: fixed;
   width: 250px;
   height: calc(100vh - 80px);
   background-color: #fff;
@@ -50,132 +32,74 @@ h1 {
 }
 
 .sidebar div {
-  padding: .75rem 1rem;
+  padding: 0.75rem 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  font-weight: 500;
+  font-weight: 400;
+  color: #000;
+  transition: background 0.2s, color 0.2s;
 }
 
 .sidebar div:hover {
-  background: #e8f5e9;
+  background-color: #e8f5e9;
   color: #28a745;
 }
 
-/* Navbar */
-.navbar {
-  background-color: #fff;
-  padding: 1rem;
-  border-bottom: 2px solid #28a745;
-}
-
-.navbar .navbar-nav .nav-item .nav-link {
-  color: #000000;
-}
-
-.container {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  max-width: 420px;
-  width: 100%;
-  text-align: center;
-}
-
-h1 {
-  color: var(--couleur-primaire);
-  margin-bottom: 1rem;
-}
-
-p {
-  margin-bottom: 2rem;
-  font-size: 1rem;
-}
-
-.form-group {
-  text-align: left;
-  margin-bottom: 1.5rem;
-}
-
-label {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-input[type="email"] {
-  width: 100%;
-  padding: 0.6rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-a.btn-primary,
-a.btn-secondary {
-  display: inline-block;
-  text-align: center;
+/* --------------------- */
+/* Contenu principal     */
+/* --------------------- */
+main {
+  margin-top: 80px;
+  margin-left: 250px;
+  padding: 2rem 0;
   flex: 1;
-  padding: 0.8rem 0;
-  border-radius: 8px;
-  font-weight: bold;
-  text-decoration: none;
-  transition: 0.2s ease;
 }
 
-a.btn-primary {
-  background-color: var(--couleur-primaire);
-  color: var(--blanc);
+/* --------------------- */
+/* Carte « reset »       */
+/* --------------------- */
+.reset-card {
+  max-width: 600px;
+  margin-top: 2rem;
+  border: none;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-a.btn-primary:hover {
-  background-color: #4a21d6;
+.reset-card .card-body {
+  padding: 2rem;
 }
 
-a.btn-secondary {
-  background-color: var(--couleur-secondaire);
-  color: var(--blanc);
+.reset-card .card-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
 }
 
-a.btn-secondary:hover {
-  background-color: #059e73;
+.reset-card .form-label {
+  font-weight: 600;
 }
 
-/* Media Queries for Responsiveness */
-@media (max-width: 1221px) {
+/* --------------------- */
+/* Footer                */
+/* --------------------- */
+.footer {
+  margin-top: auto;
+}
+
+/* --------------------- */
+/* Responsive            */
+/* --------------------- */
+@media(max-width: 768px) {
   .sidebar {
-    position: absolute;
-    top: 80px;
-    left: -250px;
-    width: 250px;
-    transition: left 0.3s ease;
+    display: none; /* ou ajouter un bouton pour l'ouvrir */
   }
-
-  .sidebar.active {
-    left: 0;
-  }
-
-  .login-container {
+  main {
     margin-left: 0;
     padding: 1rem;
   }
-}
-
- /* Style pour le logo */
- .logo-container {
-  text-align: center; /* Centrer le logo */
-  margin-bottom: 2rem; /* Espacement entre le logo et le titre */
-}
-
-.logo {
-  width: 150px; /* Ajuste la taille du logo selon tes besoins */
-  height: auto; /* Maintenir le ratio d'aspect */
+  .reset-card {
+    margin: 1rem;
+  }
 }
