@@ -1,4 +1,3 @@
-// Fonction de validation du formulaire
 function validateForm() {
     var email = document.getElementById("email_user").value;
     var password = document.getElementById("user_password").value;

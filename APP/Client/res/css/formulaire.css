@@ -59,17 +59,6 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Chaque bloc de question */
-.question {
-    display: none;
-    margin-bottom: 1.5rem;
-}
-
-/* Affichage conditionnel */
-.question.active {
-    display: block;
-}
-
 /* -------------------- */
 /* 🏷️ Champs & libellés */
 /* -------------------- */

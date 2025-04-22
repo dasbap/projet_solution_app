@@ -17,7 +17,7 @@ function genererFormulaire() {
         div.id = `q_${q.id}`;
 
         const label = document.createElement("label");
-        label.textContent = q.text;
+        label.textContent = q.question_text;
         div.appendChild(label);
         div.appendChild(document.createElement("br"));
 
@@ -27,7 +27,7 @@ function genererFormulaire() {
             input.innerHTML = `<option value="">-- Choisissez --</option>`;
             q.options.forEach(opt => {
                 const option = document.createElement("option");
-                option.value = opt.value;
+                option.value = opt.label;
                 option.textContent = opt.label;
                 input.appendChild(option);
             });
@@ -45,11 +45,12 @@ function genererFormulaire() {
 
     const submitBtn = document.createElement("button");
     submitBtn.textContent = "Envoyer";
-    submitBtn.style.display = "none";
+    submitBtn.style.display = "none"; // Bouton caché jusqu'à ce que toutes les réponses soient remplies
     submitBtn.type = "submit";
     submitBtn.id = "submitBtn";
     form.appendChild(submitBtn);
 
+    // Soumission du formulaire
     form.addEventListener("submit", function (e) {
         e.preventDefault();
 
@@ -69,50 +70,36 @@ function genererFormulaire() {
             return;
         }
 
-        fetch("../../Serveur/formulaire.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(reponses),
-        })
-        .then(res => res.text())
-        .then(msg => {
-            alert("Formulaire envoyé avec succès !");
-            console.log("Réponse du serveur :", msg);
-            form.reset();
-            Object.keys(reponses).forEach(key => delete reponses[key]);
-            updateQuestions();
-        })
-        .catch(err => {
-            console.error("Erreur lors de l'envoi :", err);
-            alert("Une erreur est survenue lors de l'envoi.");
+        // Envoie des données au serveur PHP avec XMLHttpRequest
+        const formData = new FormData();
+        questions.forEach(q => {
+            const input = document.getElementById(q.id);
+            if (input && input.value) {
+                formData.append(q.id, input.value);
+            }
         });
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "../../Serveur/formulaire.php", true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log("Réponse du serveur :", xhr.responseText);
+                form.reset();
+                Object.keys(reponses).forEach(key => delete reponses[key]);
+                updateQuestions();
+            } else {
+                console.error("Erreur lors de l'envoi :", xhr.statusText);
+                alert("Une erreur est survenue lors de l'envoi.");
+            }
+        };
+        xhr.send(formData);
     });
 }
 
 function handleChange(e) {
     const id = e.target.id;
     const value = e.target.value;
-    const question = questions.find(q => q.id === id);
-
-    if (!question) return;
-
-    let score = 0;
-
-    if (question.type === "select") {
-        const selected = question.options.find(o => o.value === value);
-        score = selected ? selected.score : 0;
-    } else if (question.type === "number") {
-        const numericValue = parseFloat(value);
-        score = isNaN(numericValue) ? 0 : (question.coef || 1) * numericValue;
-    }
-
-    reponses[id] = {
-        value: value,
-        score: score
-    };
-
+    reponses[id] = value;
     updateQuestions();
 }
 
@@ -133,7 +120,7 @@ function updateQuestions() {
         if (!condition) {
             doitAfficher = true;
         } else {
-            const val = reponses[condition.id]?.value;
+            const val = reponses[condition.id];
             if (val && (Array.isArray(condition.value) ? condition.value.includes(val) : val === condition.value)) {
                 doitAfficher = true;
             }
@@ -150,5 +137,9 @@ function updateQuestions() {
     });
 
     const submitBtn = document.getElementById("submitBtn");
-    submitBtn.style.display = (totalQuestionsActives > 0 && totalQuestionsActives === totalQuestionsRemplies) ? "inline-block" : "none";
+    if (totalQuestionsActives > 0 && totalQuestionsActives === totalQuestionsRemplies) {
+        submitBtn.style.display = "inline-block"; 
+    } else {
+        submitBtn.style.display = "none";
+    }
 }

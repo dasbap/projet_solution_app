@@ -1,7 +1,7 @@
 [
     {
         "id": "travail",
-        "text": "Travaillez-vous sur site ou en télétravail ?",
+        "question_text": "Travaillez-vous sur site ou en télétravail ?",
         "type": "select",
         "options": [
             { "label": "Sur site", "score": 0 },
@@ -11,7 +11,7 @@
     },
     {
         "id": "transport",
-        "text": "Quel est votre mode de transport principal ?",
+        "question_text": "Quel est votre mode de transport principal ?",
         "type": "select",
         "options": [
             { "label": "Voiture", "score": 0 },
@@ -25,7 +25,7 @@
     },
     {
         "id": "distance",
-        "text": "Quelle est la distance moyenne parcourue chaque jour ? (en km)",
+        "question_text": "Quelle est la distance moyenne parcourue chaque jour ? (en km)",
         "type": "number",
         "scorePerKm": 1,
         "showIf": { "id": "transport", "value": ["Voiture", "Transports publics", "Covoiturage"] },
@@ -33,7 +33,7 @@
     },
     {
         "id": "carburant",
-        "text": "Quel type de carburant utilisez-vous ?",
+        "question_text": "Quel type de carburant utilisez-vous ?",
         "type": "select",
         "options": [
             { "label": "Essence", "score": 0 },
@@ -46,7 +46,7 @@
     },
     {
         "id": "frequence_voiture",
-        "text": "Combien de jours par semaine utilisez-vous votre voiture ?",
+        "question_text": "Combien de jours par semaine utilisez-vous votre voiture ?",
         "type": "number",
         "scorePerDay": -2,
         "showIf": { "id": "transport", "value": "Voiture" },
@@ -54,7 +54,7 @@
     },
     {
         "id": "stationnement",
-        "text": "Disposez-vous d'une place de stationnement réservée ?",
+        "question_text": "Disposez-vous d'une place de stationnement réservée ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 0 },
@@ -65,14 +65,14 @@
     },
     {
         "id": "repas",
-        "text": "Combien de repas à base de viande consommez-vous par semaine ?",
+        "question_text": "Combien de repas à base de viande consommez-vous par semaine ?",
         "type": "number",
         "scorePerMeal": -1,
         "coef": 2
     },
     {
         "id": "bio",
-        "text": "Achetez-vous des produits bio pour vos repas au travail ?",
+        "question_text": "Achetez-vous des produits bio pour vos repas au travail ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 10 },
@@ -82,7 +82,7 @@
     },
     {
         "id": "produits_emballes",
-        "text": "Consommez-vous des produits emballés individuellement ?",
+        "question_text": "Consommez-vous des produits emballés individuellement ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 0 },
@@ -94,7 +94,7 @@
     },
     {
         "id": "local",
-        "text": "Consommez-vous des produits locaux au travail ?",
+        "question_text": "Consommez-vous des produits locaux au travail ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 10 },
@@ -105,7 +105,7 @@
     },
     {
         "id": "dechets",
-        "text": "Triez-vous vos déchets au bureau ?",
+        "question_text": "Triez-vous vos déchets au bureau ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 10 },
@@ -115,7 +115,7 @@
     },
     {
         "id": "dechets_type",
-        "text": "Quels types de déchets triez-vous ?",
+        "question_text": "Quels types de déchets triez-vous ?",
         "type": "select",
         "options": [
             { "label": "Papier", "score": 5 },
@@ -128,7 +128,7 @@
     },
     {
         "id": "papier",
-        "text": "Utilisez-vous du papier recyclé ?",
+        "question_text": "Utilisez-vous du papier recyclé ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 10 },
@@ -138,7 +138,7 @@
     },
     {
         "id": "impression",
-        "text": "Limitez-vous vos impressions papier ?",
+        "question_text": "Limitez-vous vos impressions papier ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 10 },
@@ -148,7 +148,7 @@
     },
     {
         "id": "materiel",
-        "text": "Utilisez-vous du matériel informatique économe en énergie ?",
+        "question_text": "Utilisez-vous du matériel informatique économe en énergie ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 10 },
@@ -158,7 +158,7 @@
     },
     {
         "id": "veille",
-        "text": "Éteignez-vous vos appareils en quittant votre poste ?",
+        "question_text": "Éteignez-vous vos appareils en quittant votre poste ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 10 },
