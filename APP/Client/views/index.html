@@ -19,57 +19,56 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="../res/css/index.css">
+  <link rel="stylesheet" href="../res/css/base.css"/>
 </head>
 <body>
 
-<!-- NAVBAR FIXE EN HAUT -->
+<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="#">
-        <i class="fas fa-leaf text-success me-2"></i>EcoTrack
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainNav"
-        aria-controls="mainNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="connexion.html">
-              <i class="fas fa-user-circle me-1"></i>Mon Compte
-            </a>
-          </li>
-        </ul>
-      </div>
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">
+      <i class="fas fa-leaf text-success me-2"></i>EcoTrack
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNav"
+      aria-controls="mainNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="connexion.html">
+            <i class="fas fa-user-circle me-1"></i>Mon Compte
+          </a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
-
-  <!-- SIDEBAR GAUCHE -->
-  <aside class="sidebar">
-    <div onclick="window.location.href='stat_perso.html'">
-      <i class="fas fa-user-circle me-2"> Stat Perso</i>
-    </div>
-    <div onclick="window.location.href='stat_entreprise.html'">
-      <i class="fas fa-building me-2"> Stat Entreprise</i>
-    </div>
-    <div onclick="window.location.href='actualites.html'">
-      <i class="fas fa-globe me-2"> Actualités ECO</i>
-    </div>
-    <div onclick="window.location.href='recompenses.html'">
-      <i class="fas fa-trophy me-2"> Récompenses</i>
-    </div>
-  </aside> 
-
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div onclick="location.href='#stat-perso'">
+    <i class="fas fa-user-circle me-2"></i>Stat Perso
+  </div>
+  <div onclick="location.href='#stat-entreprise'">
+    <i class="fas fa-building me-2"></i>Stat Entreprise
+  </div>
+  <div onclick="location.href='#actus'">
+    <i class="fas fa-globe me-2"></i>Actualités ECO
+  </div>
+  <div onclick="location.href='#recompenses'">
+    <i class="fas fa-trophy me-2"></i>Récompenses
+  </div>
+</aside>
 
 <!-- CONTENU PRINCIPAL -->
 <main>

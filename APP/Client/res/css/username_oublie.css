@@ -1,0 +1,82 @@
+/* Corps global */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+  }
+  
+  /* Navbar fixée */
+  .navbar {
+    z-index: 1000;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    top: 80px;
+    left: 0;
+    position: fixed;
+    width: 250px;
+    height: calc(100vh - 80px);
+    background: #fff;
+    border-right: 3px solid #28a745;
+    padding-top: 1rem;
+  }
+  .sidebar div {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    color: #000;
+    transition: background 0.2s, color 0.2s;
+  }
+  .sidebar div:hover {
+    background: #e8f5e9;
+    color: #28a745;
+  }
+  
+  /* Contenu principal */
+  main {
+    padding: 2rem;
+  }
+  
+  /* Carte de formulaire */
+  .card {
+    border: none;
+    border-radius: 0.75rem;
+    background: #fff;
+  }
+  .card-body {
+    padding: 2rem;
+  }
+  
+  /* Titres et textes */
+  .card-title {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+  }
+  .card p {
+    color: #555;
+    font-size: 1rem;
+  }
+  
+  /* Footer collé en bas */
+  .footer {
+    margin-top: auto;
+  }
+  
+  /* Responsive – masquer la sidebar sous 768px */
+  @media (max-width: 768px) {
+    .sidebar {
+      display: none;
+    }
+    main {
+      margin-left: 0 !important;
+      padding: 1rem;
+    }
+    .footer {
+      margin-left: 0 !important;
+    }
+  }
+  
