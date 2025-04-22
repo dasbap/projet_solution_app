@@ -5,14 +5,6 @@ const reponses = {};
 
 // Charge les questions depuis le JSON
 fetch("../res/data/questions.json")
-<<<<<<< HEAD
-    .then(res => res.json())
-    .then(data => {
-        questions = data;
-        genererFormulaire();
-        updateQuestions();
-    });
-=======
   .then(res => res.json())
   .then(data => {
     questions = data;
@@ -20,95 +12,9 @@ fetch("../res/data/questions.json")
     updateQuestions();
   })
   .catch(err => console.error("Erreur de chargement des questions :", err));
->>>>>>> d2fa79e6b13b2f8c7d480cee0fc0ab071bd4a0f0
 
 // Génère dynamiquement le formulaire
 function genererFormulaire() {
-<<<<<<< HEAD
-    questions.forEach(q => {
-        const div = document.createElement("div");
-        div.classList.add("question");
-        div.id = `q_${q.id}`;
-
-        const label = document.createElement("label");
-        label.textContent = q.question_text;
-        div.appendChild(label);
-        div.appendChild(document.createElement("br"));
-
-        let input;
-        if (q.type === "select") {
-            input = document.createElement("select");
-            input.innerHTML = `<option value="">-- Choisissez --</option>`;
-            q.options.forEach(opt => {
-                const option = document.createElement("option");
-                option.value = opt.label;
-                option.textContent = opt.label;
-                input.appendChild(option);
-            });
-        } else if (q.type === "number") {
-            input = document.createElement("input");
-            input.type = "number";
-            input.min = "0";
-        }
-
-        input.id = q.id;
-        input.addEventListener("change", handleChange);
-        div.appendChild(input);
-        form.appendChild(div);
-    });
-
-    const submitBtn = document.createElement("button");
-    submitBtn.textContent = "Envoyer";
-    submitBtn.style.display = "none"; // Bouton caché jusqu'à ce que toutes les réponses soient remplies
-    submitBtn.type = "submit";
-    submitBtn.id = "submitBtn";
-    form.appendChild(submitBtn);
-
-    // Soumission du formulaire
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        let valide = true;
-
-        questions.forEach(q => {
-            const div = document.getElementById(`q_${q.id}`);
-            const input = document.getElementById(q.id);
-
-            if (div.classList.contains("active") && (!input.value || input.value.trim() === "")) {
-                valide = false;
-            }
-        });
-
-        if (!valide) {
-            alert("Veuillez remplir toutes les questions affichées avant de soumettre.");
-            return;
-        }
-
-        // Envoie des données au serveur PHP avec XMLHttpRequest
-        const formData = new FormData();
-        questions.forEach(q => {
-            const input = document.getElementById(q.id);
-            if (input && input.value) {
-                formData.append(q.id, input.value);
-            }
-        });
-
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "../../Serveur/formulaire.php", true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                console.log("Réponse du serveur :", xhr.responseText);
-                form.reset();
-                Object.keys(reponses).forEach(key => delete reponses[key]);
-                updateQuestions();
-            } else {
-                console.error("Erreur lors de l'envoi :", xhr.statusText);
-                alert("Une erreur est survenue lors de l'envoi.");
-            }
-        };
-        xhr.send(formData);
-    });
-=======
   questions.forEach(q => {
     const container = document.createElement("div");
     container.className = "question";
@@ -154,7 +60,6 @@ function genererFormulaire() {
 
   // Écoute de la soumission
   form.addEventListener("submit", onSubmit);
->>>>>>> d2fa79e6b13b2f8c7d480cee0fc0ab071bd4a0f0
 }
 
 // Gestion du clic sur Envoyer
@@ -218,40 +123,10 @@ function updateQuestions() {
             : val === cond.value;
         })();
 
-<<<<<<< HEAD
-        const condition = q.showIf;
-
-        let doitAfficher = false;
-        if (!condition) {
-            doitAfficher = true;
-        } else {
-            const val = reponses[condition.id];
-            if (val && (Array.isArray(condition.value) ? condition.value.includes(val) : val === condition.value)) {
-                doitAfficher = true;
-            }
-        }
-
-        if (doitAfficher) {
-            div.classList.add("active");
-            totalQuestionsActives++;
-
-            if (input.value !== "") {
-                totalQuestionsRemplies++;
-            }
-        }
-    });
-
-    const submitBtn = document.getElementById("submitBtn");
-    if (totalQuestionsActives > 0 && totalQuestionsActives === totalQuestionsRemplies) {
-        submitBtn.style.display = "inline-block"; 
-    } else {
-        submitBtn.style.display = "none";
-=======
     if (doitAfficher) {
       div.classList.add("active");
       actives++;
       if (input.value.trim() !== "") remplies++;
->>>>>>> d2fa79e6b13b2f8c7d480cee0fc0ab071bd4a0f0
     }
   });
 

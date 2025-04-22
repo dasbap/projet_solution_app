@@ -8,6 +8,9 @@
   --bg-light: #f4f4f4;
   --font-base: 'Inter', sans-serif;
   --font-heading: 'Manrope', sans-serif;
+  --blanc: #ffffff;
+  --noir: #000000;
+  --couleur-secondaire: #059e73; /* Couleur secondaire utilisée pour le bouton */
 }
 
 /* ----------------------- */
@@ -23,106 +26,78 @@ body {
   background-color: var(--bg-light);
 }
 
-<<<<<<< HEAD
-
 h1 {
-    color: #5E2BFF;
-    text-align: center;
-    font-family: var(--font-secondaire);
-    font-weight: 700;
-    font-size: 2rem;
+  color: #5E2BFF;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 2rem;
 }
 
 /* -------------------- */
 /* 📝 Formulaire        */
 /* -------------------- */
 form {
-    max-width: 700px;
-    margin: 2rem auto;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin: 2rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* -------------------- */
 /* 🏷️ Champs & libellés */
 /* -------------------- */
 label {
-    font-weight: 600;
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--noir);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--noir);
 }
 
 input[type="number"],
 select {
-    width: 100%;
-    padding: 0.6rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: var(--blanc);
-    font-family: var(--font-secondaire);
-    box-sizing: border-box;
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: var(--blanc);
+  font-family: var(--font-base);
+  box-sizing: border-box;
 }
 
 select:focus,
 input[type="number"]:focus {
-    border-color: var(--couleur-primaire);
-    outline: none;
+  border-color: var(--primary);
+  outline: none;
 }
 
 /* -------------------- */
 /* 🚀 Bouton Envoi      */
 /* -------------------- */
 #submitBtn {
-    background-color: var(--couleur-secondaire);
-    color: var(--blanc);
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    display: inline-block;
-    margin-top: 1rem;
-    transition: background-color 0.3s;
+  background-color: var(--couleur-secondaire);
+  color: var(--blanc);
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
 }
 
 #submitBtn:hover {
-    background-color: #059e73;
+  background-color: #059e73;
 }
-/* Sidebar */
-.sidebar {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    width: 250px;
-    height: calc(100vh - 80px);
-    background-color: #fff;
-    border-right: 3px solid #28a745;
-    padding-top: 1rem;
-  }
-  
-  .sidebar div {
-    padding: .75rem 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-weight: 500;
-  }
-  
-  .sidebar div:hover {
-    background: #e8f5e9;
-    color: #28a745;
-  }
-  /* Navbar */
-=======
+
 /* ----------------------- */
 /* 🏙 Navbar                */
 /* ----------------------- */
->>>>>>> d2fa79e6b13b2f8c7d480cee0fc0ab071bd4a0f0
 .navbar {
   padding: 1rem;
 }
@@ -137,7 +112,9 @@ input[type="number"]:focus {
 /* ----------------------- */
 .sidebar {
   position: fixed;
-  top: 0; bottom: 0; left: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
   width: 250px;
   padding-top: 4.5rem; /* hauteur navbar */
   background: #fff;
@@ -159,7 +136,7 @@ input[type="number"]:focus {
   color: var(--primary);
 }
 
-/* cachée sur mobile hors active */
+/* Cachée sur mobile hors active */
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
@@ -182,12 +159,6 @@ main {
   main {
     margin-left: 0;
   }
-}
-
-/* Logo */
-.logo {
-  width: 140px;
-  height: auto;
 }
 
 /* ----------------------- */
