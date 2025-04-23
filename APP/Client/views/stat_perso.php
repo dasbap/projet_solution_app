@@ -32,7 +32,6 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-<<<<<<< Updated upstream:APP/Client/views/stat_perso.php
   <!-- HEADER / NAVBAR -->
   <header>
     <nav class="navbar navbar-expand-lg">
@@ -62,33 +61,10 @@
             </li>
           </ul>
         </div>
-=======
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg bg-white border-bottom border-success fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="index.html">
-        <i class="fas fa-leaf text-success me-2"></i>EcoTrack
-      </a>
-      <button class="navbar-toggler" id="burgerBtn" type="button" aria-label="Toggle menu">
-        <i class="fas fa-bars fa-lg"></i>
-      </button>
-      <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="mainNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="connexion.html">
-              <i class="fas fa-user-circle me-1"></i>Mon Compte
-            </a>
-          </li>
-        </ul>
->>>>>>> Stashed changes:APP/Client/views/stat_perso.html
       </div>
     </div>
   </nav>
 
-<<<<<<< Updated upstream:APP/Client/views/stat_perso.php
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
     <div onclick="location.href='stat_perso.php'">
@@ -103,32 +79,21 @@
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
-=======
-  <!-- SIDEBAR desktop -->
-  <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
-    <nav class="nav flex-column pt-4">
-      <a class="nav-link" href="stat_perso.html"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
-      <a class="nav-link" href="stat_entreprise.html"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
-      <a class="nav-link" href="actualites.html"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
-      <a class="nav-link" href="recompenses.html"><i class="fas fa-trophy me-2"></i>Récompenses</a>
-      <a class="nav-link" href="classement.html"><i class="fas fa-list-ol me-2"></i>Classement</a>
-    </nav>
->>>>>>> Stashed changes:APP/Client/views/stat_perso.html
   </aside>
 
   <!-- MENU MOBILE overlay -->
   <div class="mobile-menu d-lg-none" id="mobileMenu">
     <nav class="nav flex-column text-center pt-4">
-      <a class="nav-link py-2" href="index.html">Accueil</a>
-      <a class="nav-link py-2" href="formulaire.html">Quizz</a>
+      <a class="nav-link py-2" href="index.php">Accueil</a>
+      <a class="nav-link py-2" href="formulaire.php">Quizz</a>
       <a class="nav-link py-2" href="contact.html">Contact</a>
       <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
       <hr/>
-      <a class="nav-link py-2" href="stat_perso.html">Stat Perso</a>
-      <a class="nav-link py-2" href="stat_entreprise.html">Stat Entreprise</a>
-      <a class="nav-link py-2" href="actualites.html">Actualités ECO</a>
-      <a class="nav-link py-2" href="recompenses.html">Récompenses</a>
-      <a class="nav-link py-2" href="classement.html">Classement</a>
+      <a class="nav-link py-2" href="stat_perso.php">Stat Perso</a>
+      <a class="nav-link py-2" href="stat_entreprise.php">Stat Entreprise</a>
+      <a class="nav-link py-2" href="actualites.php">Actualités ECO</a>
+      <a class="nav-link py-2" href="recompenses.php">Récompenses</a>
+      <a class="nav-link py-2" href="classement.php">Classement</a>
     </nav>
   </div>
 

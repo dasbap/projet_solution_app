@@ -29,7 +29,6 @@
   <!-- CSS spécifique Récompenses -->
   <link rel="stylesheet" href="../res/css/recompenses.css"/>
 </head>
-<<<<<<< Updated upstream:APP/Client/views/recompenses.php
 <body>
   
   <!-- SIDEBAR -->
@@ -47,14 +46,11 @@
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
   </aside>
-=======
-<body class="d-flex flex-column min-vh-100">
->>>>>>> Stashed changes:APP/Client/views/recompenses.html
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-white border-bottom border-success fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="index.html">
+      <a class="navbar-brand fw-bold" href="index.php">
         <i class="fas fa-leaf text-success me-2"></i>EcoTrack
       </a>
       <button class="navbar-toggler" id="burgerBtn" type="button" aria-label="Toggle menu">
@@ -66,9 +62,9 @@
           <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
 =======
-          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
->>>>>>> Stashed changes:APP/Client/views/recompenses.html
+          <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
+>>>>>>> Stashed changes:APP/Client/views/recompenses.php
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">
@@ -83,28 +79,28 @@
   <!-- SIDEBAR desktop -->
   <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
     <nav class="nav flex-column pt-4">
-      <a class="nav-link" href="index.html"><i class="fas fa-home me-2"></i>Accueil</a>
-      <a class="nav-link" href="stat_perso.html"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
-      <a class="nav-link" href="stat_entreprise.html"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
-      <a class="nav-link" href="actualites.html"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
-      <a class="nav-link active" href="recompenses.html"><i class="fas fa-trophy me-2"></i>Récompenses</a>
-      <a class="nav-link" href="classement.html"><i class="fas fa-list-ol me-2"></i>Classement</a>
+      <a class="nav-link" href="index.php"><i class="fas fa-home me-2"></i>Accueil</a>
+      <a class="nav-link" href="stat_perso.php"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
+      <a class="nav-link" href="stat_entreprise.php"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
+      <a class="nav-link" href="actualites.php"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
+      <a class="nav-link active" href="recompenses.php"><i class="fas fa-trophy me-2"></i>Récompenses</a>
+      <a class="nav-link" href="classement.php"><i class="fas fa-list-ol me-2"></i>Classement</a>
     </nav>
   </aside>
 
   <!-- MENU MOBILE overlay -->
   <div class="mobile-menu d-lg-none" id="mobileMenu">
     <nav class="nav flex-column text-center pt-4">
-      <a class="nav-link py-2" href="index.html">Accueil</a>
-      <a class="nav-link py-2" href="formulaire.html">Quizz</a>
+      <a class="nav-link py-2" href="index.php">Accueil</a>
+      <a class="nav-link py-2" href="formulaire.php">Quizz</a>
       <a class="nav-link py-2" href="contact.html">Contact</a>
       <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
       <hr/>
-      <a class="nav-link py-2" href="stat_perso.html">Stat Perso</a>
-      <a class="nav-link py-2" href="stat_entreprise.html">Stat Entreprise</a>
-      <a class="nav-link py-2" href="actualites.html">Actualités ECO</a>
-      <a class="nav-link py-2 active" href="recompenses.html">Récompenses</a>
-      <a class="nav-link py-2" href="classement.html">Classement</a>
+      <a class="nav-link py-2" href="stat_perso.php">Stat Perso</a>
+      <a class="nav-link py-2" href="stat_entreprise.php">Stat Entreprise</a>
+      <a class="nav-link py-2" href="actualites.php">Actualités ECO</a>
+      <a class="nav-link py-2 active" href="recompenses.php">Récompenses</a>
+      <a class="nav-link py-2" href="classement.php">Classement</a>
     </nav>
   </div>
 

@@ -55,7 +55,6 @@
     </div>
   </nav>
 
-<<<<<<< Updated upstream:APP/Client/views/classement.php
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
     <div onclick="location.href='stat_perso.php'">
@@ -70,33 +69,21 @@
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
-=======
-  <!-- SIDEBAR desktop -->
-  <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
-    <nav class="nav flex-column pt-4">
-      <a class="nav-link" href="index.html"><i class="fas fa-home me-2"></i>Accueil</a>
-      <a class="nav-link" href="stat_perso.html"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
-      <a class="nav-link" href="stat_entreprise.html"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
-      <a class="nav-link" href="actualites.html"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
-      <a class="nav-link" href="recompenses.html"><i class="fas fa-trophy me-2"></i>Récompenses</a>
-      <a class="nav-link active" href="classement.html"><i class="fas fa-list-ol me-2"></i>Classement</a>
-    </nav>
->>>>>>> Stashed changes:APP/Client/views/classement.html
   </aside>
 
   <!-- MENU MOBILE overlay -->
   <div class="mobile-menu d-lg-none" id="mobileMenu">
     <nav class="nav flex-column text-center pt-4">
-      <a class="nav-link py-2" href="index.html">Accueil</a>
-      <a class="nav-link py-2" href="formulaire.html">Quizz</a>
+      <a class="nav-link py-2" href="index.php">Accueil</a>
+      <a class="nav-link py-2" href="formulaire.php">Quizz</a>
       <a class="nav-link py-2" href="contact.html">Contact</a>
       <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
       <hr/>
-      <a class="nav-link py-2" href="stat_perso.html">Stat Perso</a>
-      <a class="nav-link py-2" href="stat_entreprise.html">Stat Entreprise</a>
-      <a class="nav-link py-2" href="actualites.html">Actualités ECO</a>
-      <a class="nav-link py-2" href="recompenses.html">Récompenses</a>
-      <a class="nav-link py-2 active" href="classement.html">Classement</a>
+      <a class="nav-link py-2" href="stat_perso.php">Stat Perso</a>
+      <a class="nav-link py-2" href="stat_entreprise.php">Stat Entreprise</a>
+      <a class="nav-link py-2" href="actualites.php">Actualités ECO</a>
+      <a class="nav-link py-2" href="recompenses.php">Récompenses</a>
+      <a class="nav-link py-2 active" href="classement.php">Classement</a>
     </nav>
   </div>
 
