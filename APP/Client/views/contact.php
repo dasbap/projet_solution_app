@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<?php require_once("../../Serveur/profil.php"); ?>
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8">

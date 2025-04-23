@@ -1,8 +1,5 @@
+<?php require_once __DIR__ . '/../../Serveur/profil.php'; ?>
 <!DOCTYPE html>
-
-<?php require_once("../../Serveur/profil.php"); ?>
-
-
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
@@ -24,15 +21,16 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"/>
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Chart.js (pour les graphiques) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
-  <!-- CSS spécifique -->
+  <!-- Votre CSS global unifié -->
+  <link rel="stylesheet" href="../res/css/global.css"/>
   <link rel="stylesheet" href="../res/css/statperso.css"/>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-  <!-- HEADER / NAVBAR -->
+  <!-- NAVBAR -->
   <header>
       <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-white border-bottom border-success fixed-top">
@@ -55,23 +53,28 @@
           </li>
         </ul>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </header>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar bg-white border-end border-success">
-    <div onclick="location.href='stat_perso.php'">
-      <i class="fas fa-user-circle me-2"></i>Stat Perso
-    </div>
-    <div onclick="location.href='stat_entreprise.php'">
-      <i class="fas fa-building me-2"></i>Stat Entreprise
-    </div>
-    <div onclick="location.href='actualites.php'">
-      <i class="fas fa-globe me-2"></i>Actualités ECO
-    </div>
-    <div onclick="location.href='recompenses.php'">
-      <i class="fas fa-trophy me-2"></i>Récompenses
-    </div>
+  <!-- SIDEBAR desktop -->
+  <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
+    <nav class="nav flex-column pt-4">
+      <a class="nav-link active" href="stat_perso.php">
+        <i class="fas fa-user-circle me-2"></i>Stat Perso
+      </a>
+      <a class="nav-link" href="stat_entreprise.php">
+        <i class="fas fa-building me-2"></i>Stat Entreprise
+      </a>
+      <a class="nav-link" href="actualites.php">
+        <i class="fas fa-globe me-2"></i>Actualités ECO
+      </a>
+      <a class="nav-link" href="recompenses.php">
+        <i class="fas fa-trophy me-2"></i>Récompenses
+      </a>
+      <a class="nav-link" href="classement.php">
+        <i class="fas fa-list-ol me-2"></i>Classement
+      </a>
+    </nav>
   </aside>
 
   <!-- MENU MOBILE overlay -->
@@ -80,7 +83,7 @@
       <a class="nav-link py-2" href="index.php">Accueil</a>
       <a class="nav-link py-2" href="formulaire.php">Quizz</a>
       <a class="nav-link py-2" href="contact.html">Contact</a>
-      <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
+      <a class="nav-link py-2" href="connexion.php">Mon Compte</a>
       <hr/>
       <a class="nav-link py-2" href="stat_perso.php">Stat Perso</a>
       <a class="nav-link py-2" href="stat_entreprise.php">Stat Entreprise</a>
@@ -124,7 +127,7 @@
     &copy; 2025 EcoTrack | Tous droits réservés
   </footer>
 
-  <!-- Bootstrap JS + burger script + Chart init -->
+  <!-- Bootstrap JS, burger & mobile-menu script, Chart.js init -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
   document.addEventListener('DOMContentLoaded', async () => {
