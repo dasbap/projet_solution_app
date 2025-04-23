@@ -1,6 +1,4 @@
 <?php
-// Activer l'affichage des erreurs pour le débogage
-error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Démarrer la session

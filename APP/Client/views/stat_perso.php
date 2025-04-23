@@ -34,33 +34,26 @@
 
   <!-- HEADER / NAVBAR -->
   <header>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#">
-          <i class="fas fa-leaf text-success me-2"></i>EcoTrack
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNav"
-          aria-controls="mainNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-          <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
-            <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
-            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            <li class="nav-item">
-              <a class="nav-link" href="connexion.html">
-                <i class="fas fa-user-circle me-1"></i>Mon Compte
-              </a>
-            </li>
-          </ul>
-        </div>
+      <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom border-success fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.php">
+        <i class="fas fa-leaf text-success me-2"></i>EcoTrack
+      </a>
+      <button class="navbar-toggler" id="burgerBtn" type="button" aria-label="Toggle menu">
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+      <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="mainNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="connexion.html">
+              <i class="fas fa-user-circle me-1"></i>Mon Compte
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
@@ -134,47 +127,102 @@
   <!-- Bootstrap JS + burger script + Chart init -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // burger toggle
-      const burgerBtn  = document.getElementById('burgerBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-      mobileMenu.addEventListener('click', e => {
-        if (e.target === mobileMenu) mobileMenu.classList.remove('open');
-      });
+  document.addEventListener('DOMContentLoaded', async () => {
+  // burger
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('open'));
+  mobileMenu?.addEventListener('click', e => { if (e.target === mobileMenu) mobileMenu.classList.remove('open'); });
 
-      // simulate count
-      document.getElementById('count').textContent = 6;
+  try {
+    const res = await fetch('../../Serveur/getformdata.php');
+    const data = await res.json();
 
-      // charts
-      new Chart(document.getElementById('chartLine'), {
-        type: 'line',
-        data: {
-          labels: ['S1','S2','S3','S4','S5','S6'],
-          datasets: [{ label: 'kg CO₂', data:[12,15,14,10,8,11],
-            backgroundColor:'rgba(40,167,69,0.2)', borderColor:'#28a745',
-            borderWidth:2, fill:true }]
-        },
-        options:{ responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true } } }
-      });
-      new Chart(document.getElementById('chartBar'), {
-        type: 'bar',
-        data:{
-          labels:['Transport','Alimentation','Énergie','Déchets','Autres'],
-          datasets:[{ label:'kg CO₂', data:[8,5,3,2,1], backgroundColor:'#28a745' }]
-        },
-        options:{ responsive:true, maintainAspectRatio:false, scales:{ y:{ beginAtZero:true } } }
-      });
-      new Chart(document.getElementById('chartPie'), {
-        type:'pie',
-        data:{
-          labels:['France','Europe','Monde','Autres'],
-          datasets:[{ data:[40,30,20,10],
-            backgroundColor:['#28a745','#6cc57a','#a2d5a0','#d8f3dc'] }]
-        },
-        options:{ responsive:true, maintainAspectRatio:false }
-      });
+    // remplir le formulaire
+    if (data.form) {
+      for (const [key, value] of Object.entries(data.form)) {
+        const input = document.querySelector(`[name="${key}"]`);
+        if (input) {
+          if (input.type === 'radio' || input.type === 'checkbox') {
+            const checkboxes = document.querySelectorAll(`[name="${key}"]`);
+            checkboxes.forEach(box => {
+              if (Array.isArray(value)) {
+                box.checked = value.includes(box.value);
+              } else {
+                box.checked = (box.value === value);
+              }
+            });
+          } else {
+            input.value = value;
+          }
+        }
+      }
+    }
+
+    // count (simulé ici avec le nombre de réponses)
+    document.getElementById('count').textContent = Object.keys(data.form || {}).length;
+
+    // chartLine
+    new Chart(document.getElementById('chartLine'), {
+      type: 'line',
+      data: {
+        labels: data.line.labels,
+        datasets: [{
+          label: 'kg CO₂',
+          data: data.line.data,
+          backgroundColor: 'rgba(40,167,69,0.2)',
+          borderColor: '#28a745',
+          borderWidth: 2,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: { y: { beginAtZero: true } }
+      }
     });
-  </script>
+
+    // chartBar
+    new Chart(document.getElementById('chartBar'), {
+      type: 'bar',
+      data: {
+        labels: data.bar.labels,
+        datasets: [{
+          label: 'kg CO₂',
+          data: data.bar.data,
+          backgroundColor: '#28a745'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    // chartPie
+    new Chart(document.getElementById('chartPie'), {
+      type: 'pie',
+      data: {
+        labels: data.pie.labels,
+        datasets: [{
+          data: data.pie.data,
+          backgroundColor: ['#28a745', '#6cc57a', '#a2d5a0', '#d8f3dc']
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    });
+
+  } catch (error) {
+    console.error("Erreur lors du chargement des données :", error);
+  }
+});
+
+</script>
+
 </body>
 </html>
