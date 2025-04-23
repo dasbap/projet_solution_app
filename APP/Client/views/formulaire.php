@@ -17,41 +17,40 @@
 
   <!-- Styles spécifiques -->
   <link rel="stylesheet" href="../res/css/formulaire.css">
-  
+  <link rel="stylesheet" href="../res/css/index.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom border-success">
-    <div class="container-fluid">
-      <button class="btn btn-outline-success d-lg-none me-2" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-      </button>
-
-      <a class="navbar-brand fw-bold" href="index.php">
-        <i class="fas fa-leaf text-success me-2"></i>EcoTrack
-      </a>
-      <button class="navbar-toggler" type="button"
-              data-bs-toggle="collapse" data-bs-target="#mainNav"
-              aria-controls="mainNav" aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link active" href="formulaire.php">Quizz</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item">
-            <a class="nav-link" href="connexion.html">
-              <i class="fas fa-user-circle me-1"></i>Mon Compte
-            </a>
-          </li>
-        </ul>
-      </div>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="index.php">
+      <i class="fas fa-leaf text-success me-2"></i>EcoTrack
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNav"
+      aria-controls="mainNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
+        <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="connexion.html">
+            <i class="fas fa-user-circle me-1"></i>Mon Compte
+          </a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
