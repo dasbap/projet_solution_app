@@ -58,13 +58,8 @@
       </button>
       <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="mainNav">
         <ul class="navbar-nav">
-<<<<<<< Updated upstream:APP/Client/views/recompenses.php
-          <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
-=======
           <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
->>>>>>> Stashed changes:APP/Client/views/recompenses.php
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">

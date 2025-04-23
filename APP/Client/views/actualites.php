@@ -70,6 +70,7 @@
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
+    </aside>
   <!-- SIDEBAR desktop -->
   <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
     <nav class="nav flex-column pt-4">
