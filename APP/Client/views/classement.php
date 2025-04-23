@@ -58,22 +58,19 @@
     </div>
   </nav>
 
-  <!-- Sidebar -->
-  <aside class="sidebar position-fixed top-0 start-0 pt-5">
+  <!-- SIDEBAR -->
+  <aside class="sidebar bg-white border-end border-success">
     <div onclick="location.href='stat_perso.php'">
-      <i class="fas fa-user-circle me-2"></i>Stat Perso
+      <i class="fas fa-user-circle me-2"></i>Stat Perso
     </div>
     <div onclick="location.href='stat_entreprise.php'">
-      <i class="fas fa-building me-2"></i>Stat Entreprise
+      <i class="fas fa-building me-2"></i>Stat Entreprise
     </div>
     <div onclick="location.href='actualites.php'">
-      <i class="fas fa-globe me-2"></i>Actualités ECO
+      <i class="fas fa-globe me-2"></i>Actualités ECO
     </div>
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
-    </div>
-    <div class="active bg-light">
-      <i class="fas fa-list-ol me-2"></i>Classement
     </div>
   </aside>
 

@@ -68,21 +68,19 @@
   </header>
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <nav class="nav flex-column">
-      <a class="nav-link" href="#stat-perso">
-        <i class="fas fa-star me-2"></i>Stat Perso
-      </a>
-      <a class="nav-link" href="#stat-entreprise">
-        <i class="fas fa-building me-2"></i>Stat Entreprise
-      </a>
-      <a class="nav-link" href="#actus">
-        <i class="fas fa-globe me-2"></i>Actualités ECO
-      </a>
-      <a class="nav-link" href="#recompenses">
-        <i class="fas fa-trophy me-2"></i>Récompenses
-      </a>
-    </nav>
+  <aside class="sidebar bg-white border-end border-success">
+    <div onclick="location.href='stat_perso.php'">
+      <i class="fas fa-user-circle me-2"></i>Stat Perso
+    </div>
+    <div onclick="location.href='stat_entreprise.php'">
+      <i class="fas fa-building me-2"></i>Stat Entreprise
+    </div>
+    <div onclick="location.href='actualites.php'">
+      <i class="fas fa-globe me-2"></i>Actualités ECO
+    </div>
+    <div onclick="location.href='recompenses.php'">
+      <i class="fas fa-trophy me-2"></i>Récompenses
+    </div>
   </aside>
 
   <!-- CONTENU PRINCIPAL -->

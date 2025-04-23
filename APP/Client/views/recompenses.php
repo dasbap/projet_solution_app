@@ -23,16 +23,17 @@
    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar">
+  
+  <!-- SIDEBAR -->
+  <aside class="sidebar bg-white border-end border-success">
     <div onclick="location.href='stat_perso.php'">
-      <i class="fas fa-user-circle me-2"></i>Stat Perso
+      <i class="fas fa-user-circle me-2"></i>Stat Perso
     </div>
-    <div onclick="location.href='#'">
-      <i class="fas fa-building me-2"></i>Stat Entreprise
+    <div onclick="location.href='stat_entreprise.php'">
+      <i class="fas fa-building me-2"></i>Stat Entreprise
     </div>
-    <div onclick="location.href='#'">
-      <i class="fas fa-globe me-2"></i>Actualités ECO
+    <div onclick="location.href='actualites.php'">
+      <i class="fas fa-globe me-2"></i>Actualités ECO
     </div>
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
