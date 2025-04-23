@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+<?php require_once("../../Serveur/profil.php"); ?>
+
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
@@ -44,8 +48,8 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="mainNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">
@@ -59,10 +63,10 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div onclick="location.href='stat_perso.html'">
+    <div onclick="location.href='stat_perso.php'">
       <i class="fas fa-user-circle me-2"></i>Stat Perso
     </div>
-    <div onclick="location.href='stat_entreprise.html'">
+    <div onclick="location.href='stat_entreprise.php'">
       <i class="fas fa-building me-2"></i>Stat Entreprise
     </div>
     <div onclick="location.href='#actus'">

@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+<?php require_once("../../Serveur/profil.php"); ?>
+
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -21,7 +25,7 @@
 <body>
   <!-- Sidebar -->
   <aside class="sidebar">
-    <div onclick="location.href='stat_perso.html'">
+    <div onclick="location.href='stat_perso.php'">
       <i class="fas fa-user-circle me-2"></i>Stat Perso
     </div>
     <div onclick="location.href='#'">
@@ -30,7 +34,7 @@
     <div onclick="location.href='#'">
       <i class="fas fa-globe me-2"></i>Actualités ECO
     </div>
-    <div onclick="location.href='recompenses.html'">
+    <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
   </aside>
@@ -53,8 +57,8 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="mainNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
+          <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">

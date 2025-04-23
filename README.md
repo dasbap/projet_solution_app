@@ -88,7 +88,7 @@ Connexion PDO à la base MySQL via les variables du fichier `.env`.
 
 ## 🎨 Côté Client (`APP/Client/`)
 
-- `formulaire.html` : formulaire dynamique basé sur `questions.json`
+- `formulaire.php` : formulaire dynamique basé sur `questions.json`
 - `inscription.html` / `connexion.html` : formulaire de création de compte et d’accès
 - `formulaire.js` : script pour gérer l’affichage dynamique des questions selon l’entreprise
 - `style.css` / `formulaire.css` : styles

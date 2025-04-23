@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+
+<?php require_once("../../Serveur/profil.php"); ?>
+
+
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -29,7 +33,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom border-success">
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="index.html">
+      <a class="navbar-brand fw-bold" href="index.php">
         <i class="fas fa-leaf text-success me-2"></i>EcoTrack
       </a>
       <button
@@ -41,8 +45,8 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="mainNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">
@@ -56,16 +60,16 @@
 
   <!-- Sidebar -->
   <aside class="sidebar position-fixed top-0 start-0 pt-5">
-    <div onclick="location.href='stat_perso.html'">
+    <div onclick="location.href='stat_perso.php'">
       <i class="fas fa-user-circle me-2"></i>Stat Perso
     </div>
-    <div onclick="location.href='stat_entreprise.html'">
+    <div onclick="location.href='stat_entreprise.php'">
       <i class="fas fa-building me-2"></i>Stat Entreprise
     </div>
-    <div onclick="location.href='actualites.html'">
+    <div onclick="location.href='actualites.php'">
       <i class="fas fa-globe me-2"></i>Actualités ECO
     </div>
-    <div onclick="location.href='recompenses.html'">
+    <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
     <div class="active bg-light">

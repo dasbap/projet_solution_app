@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php require_once("../../Serveur/profil.php"); ?>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -8,17 +9,11 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@700&display=swap" rel="stylesheet">
 
   <!-- Bootstrap & FontAwesome -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet">
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
   <!-- Styles spécifiques -->
   <link rel="stylesheet" href="../res/css/formulaire.css">
@@ -29,12 +24,11 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom border-success">
     <div class="container-fluid">
-      <!-- bouton toggle sidebar mobile -->
       <button class="btn btn-outline-success d-lg-none me-2" id="sidebarToggle">
         <i class="fas fa-bars"></i>
       </button>
 
-      <a class="navbar-brand fw-bold" href="index.html">
+      <a class="navbar-brand fw-bold" href="index.php">
         <i class="fas fa-leaf text-success me-2"></i>EcoTrack
       </a>
       <button class="navbar-toggler" type="button"
@@ -46,8 +40,8 @@
 
       <div class="collapse navbar-collapse justify-content-end" id="mainNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link active" href="formulaire.html">Quizz</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link active" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">
@@ -59,26 +53,21 @@
     </div>
   </nav>
 
-<<<<<<< HEAD
-    <h1>Formulaire d'Impact Carbone</h1>
-    <form id="carboneForm" action="../../Serveur/formulaire.php" method="POST"></form>
-=======
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
-    <div onclick="location.href='stat_perso.html'">
+    <div onclick="location.href='stat_perso.php'">
       <i class="fas fa-user-circle me-2"></i>Stat Perso
     </div>
-    <div onclick="location.href='stat_entreprise.html'">
+    <div onclick="location.href='stat_entreprise.php'">
       <i class="fas fa-building me-2"></i>Stat Entreprise
     </div>
-    <div onclick="location.href='actualites.html'">
+    <div onclick="location.href='actualites.php'">
       <i class="fas fa-globe me-2"></i>Actualités ECO
     </div>
-    <div onclick="location.href='recompenses.html'">
+    <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
   </aside>
->>>>>>> d2fa79e6b13b2f8c7d480cee0fc0ab071bd4a0f0
 
   <!-- CONTENU PRINCIPAL -->
   <main class="flex-fill" id="mainContent">
@@ -86,13 +75,13 @@
       <!-- Logo centré -->
       <div class="text-center mb-4">
         <img src="../res/images/Logo-EcoTrack.svg"
-             alt="Logo EcoTrack"
-             class="logo">
+              alt="Logo EcoTrack"
+              class="logo">
       </div>
 
       <h1 class="text-center mb-4">Formulaire d’Impact Carbone</h1>
 
-      <form id="carboneForm" novalidate>
+      <form id="carboneForm" action="../../Serveur/formulaire.php" method="POST" novalidate>
         <!-- Les questions sont injectées ici par formulaire.js -->
       </form>
     </div>
