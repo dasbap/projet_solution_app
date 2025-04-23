@@ -34,7 +34,7 @@
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
-          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.php">Contact</a></li>
           <li class="nav-item"><a class="nav-link" href="connexion.html"><i class="fas fa-user-circle me-1"></i>Mon Compte</a></li>
         </ul>
       </div>

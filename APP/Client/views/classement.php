@@ -44,7 +44,7 @@
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">
               <i class="fas fa-user-circle me-1"></i>Mon Compte
@@ -81,7 +81,7 @@
     <nav class="nav flex-column text-center pt-4">
       <a class="nav-link py-2" href="index.php">Accueil</a>
       <a class="nav-link py-2" href="formulaire.php">Quizz</a>
-      <a class="nav-link py-2" href="contact.html">Contact</a>
+      <a class="nav-link py-2" href="contact.php">Contact</a>
       <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
       <hr/>
       <a class="nav-link py-2" href="stat_perso.php">Stat Perso</a>
