@@ -29,6 +29,7 @@
 
   <!-- CSS spécifique Stat Entreprise -->
   <link rel="stylesheet" href="../res/css/statentreprise.css"/>
+  <link rel="stylesheet" href="../res/css/global.css">
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -43,8 +44,6 @@
       </button>
       <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="mainNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -60,29 +59,46 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
-    <div onclick="location.href='stat_perso.php'">
-      <i class="fas fa-user-circle me-2"></i>Stat Perso
-    </div>
-    <div onclick="location.href='stat_entreprise.php'">
-      <i class="fas fa-building me-2"></i>Stat Entreprise
-    </div>
-    <div onclick="location.href='actualites.php'">
-      <i class="fas fa-globe me-2"></i>Actualités ECO
-    </div>
-    <div onclick="location.href='recompenses.php'">
+  <nav class="nav flex-column pt-4">
+    <a class="nav-link" href="stat_perso.php">
+      <i class="fas fa-user-circle me-2"></i>Stat Perso
+    </a>
+    <a class="nav-link" href="stat_entreprise.php">
+      <i class="fas fa-building me-2"></i>Stat Entreprise
+    </a>
+    <a class="nav-link" href="actualites.php">
+      <i class="fas fa-globe me-2"></i>Actualités ECO
+    </a>
+    <a class="nav-link" href="recompenses.php">
       <i class="fas fa-trophy me-2"></i>Récompenses
-    </div>
-    </aside>
+    </a>
+    <a class="nav-link" href="classement.php">
+      <i class="fas fa-list-ol me-2"></i>Classement
+    </a>
+  </nav>
+</aside>
+
   <!-- SIDEBAR desktop -->
-  <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
-    <nav class="nav flex-column pt-4">
-      <a class="nav-link" href="stat_perso.php"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
-      <a class="nav-link active" href="stat_entreprise.php"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
-      <a class="nav-link" href="actualites.php"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
-      <a class="nav-link" href="recompenses.php"><i class="fas fa-trophy me-2"></i>Récompenses</a>
-      <a class="nav-link" href="classement.php"><i class="fas fa-list-ol me-2"></i>Classement</a>
-    </nav>
-  </aside>
+  <aside class="sidebar bg-white border-end border-success">
+  <nav class="nav flex-column pt-4">
+    <a class="nav-link" href="stat_perso.php">
+      <i class="fas fa-user-circle me-2"></i>Stat Perso
+    </a>
+    <a class="nav-link" href="stat_entreprise.php">
+      <i class="fas fa-building me-2"></i>Stat Entreprise
+    </a>
+    <a class="nav-link" href="actualites.php">
+      <i class="fas fa-globe me-2"></i>Actualités ECO
+    </a>
+    <a class="nav-link" href="recompenses.php">
+      <i class="fas fa-trophy me-2"></i>Récompenses
+    </a>
+    <a class="nav-link" href="classement.php">
+      <i class="fas fa-list-ol me-2"></i>Classement
+    </a>
+  </nav>
+</aside>
+
 
   <!-- MENU MOBILE overlay -->
   <div class="mobile-menu d-lg-none" id="mobileMenu">
@@ -93,8 +109,8 @@
       <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
       <hr/>
       <a class="nav-link py-2" href="stat_perso.php">Stat Perso</a>
-      <a class="nav-link py-2 active" href="stat_entreprise.php">Stat Entreprise</a>
-      <a class="nav-link py-2" href="actualites.php">Actualités ECO</a>
+      <a class="nav-link py-2" href="stat_entreprise.php">Stat Entreprise</a>
+      <a class="nav-link py-2 active" href="actualites.php">Actualités ECO</a>
       <a class="nav-link py-2" href="recompenses.php">Récompenses</a>
       <a class="nav-link py-2" href="classement.php">Classement</a>
     </nav>
@@ -183,5 +199,6 @@
       });
     });
   </script>
+  
 </body>
 </html>

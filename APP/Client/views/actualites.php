@@ -107,7 +107,7 @@
     </section>
 
     <!-- Carousel Actualités -->
-    <<div id="carouselIndex" class="carousel slide my-5" data-bs-ride="carousel">
+    <div id="carouselIndex" class="carousel slide my-5" data-bs-ride="carousel">
       <div class="carousel-inner">
     
         <div class="carousel-item active">
