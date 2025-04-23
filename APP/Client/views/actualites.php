@@ -26,12 +26,9 @@
   <!-- CSS spécifique Actualités -->
   <link rel="stylesheet" href="../res/css/global.css"/>
 </head>
-<<<<<<< Updated upstream:APP/Client/views/actualites.php
 
 <body>
-=======
 <body class="d-flex flex-column min-vh-100">
->>>>>>> Stashed changes:APP/Client/views/actualites.html
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-white border-bottom border-success fixed-top">
@@ -44,13 +41,10 @@
       </button>
       <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="mainNav">
         <ul class="navbar-nav">
-<<<<<<< Updated upstream:APP/Client/views/actualites.php
           <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
-=======
           <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
->>>>>>> Stashed changes:APP/Client/views/actualites.html
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">
@@ -62,7 +56,6 @@
     </div>
   </nav>
 
-<<<<<<< Updated upstream:APP/Client/views/actualites.php
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
     <div onclick="location.href='stat_perso.php'">
@@ -77,7 +70,6 @@
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
-=======
   <!-- SIDEBAR desktop -->
   <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
     <nav class="nav flex-column pt-4">
@@ -88,7 +80,6 @@
       <a class="nav-link" href="recompenses.html"><i class="fas fa-trophy me-2"></i>Récompenses</a>
       <a class="nav-link" href="classement.html"><i class="fas fa-list-ol me-2"></i>Classement</a>
     </nav>
->>>>>>> Stashed changes:APP/Client/views/actualites.html
   </aside>
 
   <!-- MENU MOBILE overlay -->
