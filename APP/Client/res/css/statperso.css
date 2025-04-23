@@ -1,185 +1,174 @@
-/* -- statentreprise.css -- */
-
-/* Corps de la page */
-body {
+:root {
+    --navbar-height: 80px;
+    --sidebar-width: 250px;
+    --color-main: #28a745;
+    --sidebar-bg: #fff;
+    --sidebar-border: var(--color-main);
+    --sidebar-hover-bg: #e8f5e9;
+  }
+  
+  /* Reset & Box sizing */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    background-color: #f4f4f4;
+    background: #f4f4f4;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-}
-
-/* Main content */
-main {
-    margin-top: 80px;
-    margin-left: 250px;
-    padding: 2rem;
-    flex-grow: 1; /* Cette propriété permet au contenu principal d'occuper l'espace restant */
-    transition: margin-left 0.3s ease;
-}
-
-/* Footer */
-footer {
-    background-color: #343a40;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    margin-top: 2rem; /* Assurez-vous que le footer ne se chevauche pas avec le contenu */
-}
-
-/* Navbar */
-.navbar {
-    background-color: #fff;
-    padding: 1rem 2rem;
-    border-bottom: 2px solid #28a745;
+    min-height: 100vh;
+  }
+  
+  /* Navbar */
+  .navbar {
+    height: var(--navbar-height);
+    line-height: var(--navbar-height);
+    padding: 0 1.5rem;
+    border-bottom: 2px solid var(--sidebar-border);
+    background: #fff;
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
-}
-
-/* Sidebar */
-.sidebar {
+    z-index: 1000;
+  }
+  #burgerBtn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+  }
+  
+  /* Sidebar desktop */
+  .sidebar {
     position: fixed;
-    top: 80px;
+    top: var(--navbar-height);
     left: 0;
-    width: 250px;
-    height: calc(100vh - 80px);
-    background-color: #fff;
-    border-right: 3px solid #28a745;
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--navbar-height));
+    background: var(--sidebar-bg);
+    border-right: 3px solid var(--sidebar-border);
     padding-top: 1rem;
-    color: black;
-}
-
-/* Style des éléments de la sidebar */
-.sidebar div {
+    z-index: 900;
+  }
+  .sidebar .nav-link {
     padding: .75rem 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+    color: #000;
     font-weight: 500;
-    color: black;
-}
-
-/* Hover sur les éléments de la sidebar */
-.sidebar div:hover {
-    background: #e8f5e9;
-    color: #28a745;
-}
-
-/* Liens dans la sidebar */
-.sidebar a {
-    color: black;
-    text-decoration: none;
-}
-
-/* Hover sur les liens de la sidebar */
-.sidebar a:hover {
-    color: #28a745;
-    background: #e8f5e9;
-}
-
-/* Dashboard cards */
-.dash-row {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+  }
+  .sidebar .nav-link:hover {
+    background: var(--sidebar-hover-bg);
+    color: var(--sidebar-border);
+  }
+  
+  /* Mobile menu overlay */
+  .mobile-menu {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    width: var(--sidebar-width);
+    height: calc(100vh - var(--navbar-height));
+    background: var(--sidebar-bg);
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+    z-index: 1001;
+  }
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+  .mobile-menu .nav-link {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* Main content */
+  main {
+    flex: 1;
+    margin-top: var(--navbar-height);
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    min-height: calc(100vh - var(--navbar-height));
+  }
+  .page-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2rem;
+    margin-bottom: .5rem;
+  }
+  .page-subtitle {
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  .question-count {
+    font-weight: 500;
     margin-bottom: 2rem;
-}
-
-.dash-card {
+  }
+  
+  /* Dashboards */
+  .dash-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .dash-card {
     background: #fff;
     border-radius: .5rem;
     box-shadow: 0 2px 6px rgba(0,0,0,.1);
-    flex: 1 1 32%;
-    padding: 1rem;
+    flex: 1 1 30%;
     display: flex;
     flex-direction: column;
-}
-
-.dash-card h2 {
+    padding: 1rem;
+  }
+  .dash-card h2 {
     font-family: 'Manrope', sans-serif;
     font-weight: 700;
     margin-bottom: 1rem;
     text-align: center;
-}
-
-/* Fixe la hauteur des graphiques */
-.dash-card canvas {
-    flex: 1 1 auto;
+  }
+  .dash-card canvas {
     width: 100% !important;
     height: 250px !important;
-}
-
-/* Synthèse */
-.summary-card {
+    flex: 1 1 auto;
+  }
+  
+  /* Résumé */
+  .summary-card {
     background: #fff;
     border-radius: .5rem;
     box-shadow: 0 2px 6px rgba(0,0,0,.1);
     padding: 2rem;
     text-align: center;
-}
-
-.summary-card i {
+  }
+  .summary-card i {
     font-size: 2rem;
-    color: #28a745;
+    color: var(--color-main);
     margin-bottom: 1rem;
-}
-
-.summary-card p {
-    font-size: 1.1rem;
+  }
+  .summary-card p {
     margin: 0;
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 200px;
-    }
-
+    font-size: 1.1rem;
+  }
+  
+  /* Footer */
+  .footer {
+    background: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    width: 100%;
+  }
+  
+  /* Responsive */
+  @media (max-width: 992px) {
+    #burgerBtn { display: block; }
+    .navbar-collapse { display: none !important; }
+    .sidebar { left: -var(--sidebar-width); }
+    .sidebar.active { left: 0; }
     main {
-        margin-left: 200px;
+      margin-left: 0;
+      padding: 1rem;
     }
-}
-
-@media (max-width: 768px) {
-    /* Sidebar */
-    .sidebar {
-        width: 0;
-        display: none;
+    .footer {
+      margin-left: 0;
     }
-
-    /* Affichage du menu mobile */
-    .navbar-toggler {
-        display: block;
-    }
-
-    main {
-        margin-left: 0;
-        padding: 1rem;
-    }
-
-    /* Cards */
-    .dash-card {
-        flex: 1 1 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Sidebar - Afficher en mobile */
-    .sidebar {
-        width: 0;
-        display: none;
-    }
-
-    main {
-        padding: 0.5rem;
-    }
-
-    .dash-card {
-        flex: 1 1 100%;
-    }
-}
+  }
+  

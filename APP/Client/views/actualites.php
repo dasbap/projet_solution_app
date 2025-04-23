@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>EcoTrack - Actualités ECO</title>
+  <title>EcoTrack – Actualités Écologiques</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -23,33 +23,34 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"/>
 
-  <!-- Styles spécifiques Actualités ECO -->
-  <link rel="stylesheet" href="../res/css/actualites.css"/>
-  <link rel="stylesheet" href="../res/css/base.css"/>
+  <!-- CSS spécifique Actualités -->
+  <link rel="stylesheet" href="../res/css/global.css"/>
 </head>
+<<<<<<< Updated upstream:APP/Client/views/actualites.php
 
 <body>
+=======
+<body class="d-flex flex-column min-vh-100">
+>>>>>>> Stashed changes:APP/Client/views/actualites.html
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg bg-white border-bottom border-success fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="#">
+      <a class="navbar-brand fw-bold" href="index.html">
         <i class="fas fa-leaf text-success me-2"></i>EcoTrack
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainNav"
-        aria-controls="mainNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" id="burgerBtn" type="button" aria-label="Toggle menu">
+        <i class="fas fa-bars fa-lg"></i>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="mainNav">
         <ul class="navbar-nav">
+<<<<<<< Updated upstream:APP/Client/views/actualites.php
           <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
+=======
+          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
+>>>>>>> Stashed changes:APP/Client/views/actualites.html
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">
@@ -61,6 +62,7 @@
     </div>
   </nav>
 
+<<<<<<< Updated upstream:APP/Client/views/actualites.php
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
     <div onclick="location.href='stat_perso.php'">
@@ -75,74 +77,120 @@
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
+=======
+  <!-- SIDEBAR desktop -->
+  <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
+    <nav class="nav flex-column pt-4">
+      <a class="nav-link" href="index.html"><i class="fas fa-home me-2"></i>Accueil</a>
+      <a class="nav-link" href="stat_perso.html"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
+      <a class="nav-link" href="stat_entreprise.html"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
+      <a class="nav-link active" href="actualites.html"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
+      <a class="nav-link" href="recompenses.html"><i class="fas fa-trophy me-2"></i>Récompenses</a>
+      <a class="nav-link" href="classement.html"><i class="fas fa-list-ol me-2"></i>Classement</a>
+    </nav>
+>>>>>>> Stashed changes:APP/Client/views/actualites.html
   </aside>
 
-  <!-- MAIN CONTENT -->
-  <main>
-    <h1 class="page-title">Actualités Écologiques</h1>
-    <p class="page-subtitle">Restez informé des dernières actualités concernant l'environnement et les actions écologiques.</p>
+  <!-- MENU MOBILE overlay -->
+  <div class="mobile-menu d-lg-none" id="mobileMenu">
+    <nav class="nav flex-column text-center pt-4">
+      <a class="nav-link py-2" href="index.html">Accueil</a>
+      <a class="nav-link py-2" href="formulaire.html">Quizz</a>
+      <a class="nav-link py-2" href="contact.html">Contact</a>
+      <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
+      <hr/>
+      <a class="nav-link py-2" href="stat_perso.html">Stat Perso</a>
+      <a class="nav-link py-2" href="stat_entreprise.html">Stat Entreprise</a>
+      <a class="nav-link py-2 active" href="actualites.html">Actualités ECO</a>
+      <a class="nav-link py-2" href="recompenses.html">Récompenses</a>
+      <a class="nav-link py-2" href="classement.html">Classement</a>
+    </nav>
+  </div>
 
-    <!-- Carousel -->
-    <div id="carouselEcoTrack" class="carousel slide my-5" data-bs-ride="carousel">
+  <!-- CONTENU PRINCIPAL -->
+  <main class="flex-fill">
+    <section class="intro mb-4">
+      <h1 class="page-title">Actualités Écologiques</h1>
+      <p class="page-subtitle">Restez informé des dernières avancées et initiatives pour la planète.</p>
+    </section>
+
+    <!-- Carousel Actualités -->
+    <<div id="carouselIndex" class="carousel slide my-5" data-bs-ride="carousel">
       <div class="carousel-inner">
+    
         <div class="carousel-item active">
-          <div class="d-flex align-items-center">
-            <!-- Left Description -->
-            <div class="carousel-text-left" style="width: 40%;">
-              <h3>Action climatique mondiale</h3>
-              <p>Les dernières initiatives mondiales pour lutter contre le changement climatique.</p>
+          <div class="carousel-item-content d-flex align-items-center justify-content-center flex-wrap">
+    
+            <!-- Texte à gauche -->
+            <div class="carousel-text-left text-center text-md-start mb-3 mb-md-0 me-md-4">
+              <h5>Agissez pour la planète</h5>
+              <p>Découvrez comment chaque geste compte au quotidien.</p>
             </div>
-            <!-- Image -->
-            <img src="DALL·E 2025-04-17 18.05.03 - A beautiful eco-friendly landscape featuring lush green forests, a peaceful river flowing through the scene, and distant mountains under a clear blue .webp" class="d-block w-50" alt="Actualité 1">
-            <!-- Right Description -->
-            <div class="carousel-text-right" style="width: 40%;">
-              <h3>Les accords de Paris</h3>
-              <p>Les pays signataires renforcent leurs engagements pour atteindre les objectifs climatiques.</p>
+    
+            <!-- Image au centre -->
+            <div class="carousel-item-img-container mx-4">
+              <img 
+                src="../res/images/Firefly image 1.jpg" 
+                alt="Paysage écologique" 
+                class="d-block carousel-img" />
             </div>
+    
+            <!-- Texte à droite -->
+            <div class="carousel-text-right text-center text-md-end mt-3 mt-md-0 ms-md-4">
+              <h5>Partagez vos progrès</h5>
+              <p>Rejoignez une communauté engagée et inspirez vos proches.</p>
+            </div>
+    
           </div>
         </div>
+    
+        <!-- Répétez la même structure pour les autres slides -->
         <div class="carousel-item">
-          <div class="d-flex align-items-center">
-            <div class="carousel-text-left" style="width: 40%;">
-              <h3>Énergies renouvelables en croissance</h3>
-              <p>Les énergies renouvelables sont désormais une priorité mondiale pour un avenir durable.</p>
+          <div class="carousel-item-content d-flex align-items-center justify-content-center flex-wrap">
+            <div class="carousel-text-left text-center text-md-start mb-3 mb-md-0 me-md-4">
+              <h5>Titre 2 à gauche</h5>
+              <p>Description 2 …</p>
             </div>
-            <img src="DALL·E 2025-04-17 23.06.44 - A customizable avatar with a modern, clean style. The avatar should feature a simple and sleek design with a friendly, approachable face. It should be.webp" class="d-block w-50" alt="Actualité 2">
-            <div class="carousel-text-right" style="width: 40%;">
-              <h3>Investissements dans l'éolien et le solaire</h3>
-              <p>Les nouvelles technologies rendent les énergies renouvelables plus accessibles et rentables.</p>
+    
+            <div class="carousel-item-img-container mx-4">
+              <img src="../res/images/Firefly image 2.jpg" alt="" class="d-block carousel-img" />
             </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="d-flex align-items-center">
-            <div class="carousel-text-left" style="width: 40%;">
-              <h3>Réduction des déchets plastiques</h3>
-              <p>Comment le monde se bat pour réduire l'utilisation de plastique et préserver nos océans.</p>
-            </div>
-            <img src="DALL·E 2025-04-17 18.43.13 - A beautiful eco-friendly landscape featuring a calm river flowing through a lush green forest with tall trees, rolling hills in the background, and a .webp" class="d-block w-50" alt="Actualité 3">
-            <div class="carousel-text-right" style="width: 40%;">
-              <h3>Solutions alternatives au plastique</h3>
-              <p>Les nouvelles initiatives visant à réduire la production de plastique à usage unique.</p>
+    
+            <div class="carousel-text-right text-center text-md-end mt-3 mt-md-0 ms-md-4">
+              <h5>Titre 2 à droite</h5>
+              <p>Description 2 …</p>
             </div>
           </div>
         </div>
+    
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselEcoTrack" data-bs-slide="prev">
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndex" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselEcoTrack" data-bs-slide="next">
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselIndex" data-bs-slide="next">
         <span class="carousel-control-next-icon"></span>
       </button>
     </div>
+    
+    
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 EcoTrack | Tous droits réservés</p>
+  <!-- FOOTER -->
+  <footer class="footer bg-dark text-white text-center py-3">
+    &copy; 2025 EcoTrack | Tous droits réservés
   </footer>
 
-  <!-- Bootstrap JS -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burgerBtn  = document.getElementById('burgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      burgerBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
+      mobileMenu.addEventListener('click', e => {
+        if(e.target===mobileMenu) mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
 </body>
 </html>

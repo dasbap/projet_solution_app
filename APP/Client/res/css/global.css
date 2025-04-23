@@ -6,7 +6,11 @@
   }
   
   /* Reset & box-sizing */
-  *, *::before, *::after { box-sizing: border-box; }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
   body {
     margin: 0;
     font-family: 'Inter', sans-serif;
@@ -23,7 +27,8 @@
     padding: 0 1.5rem;
     background: #fff;
     border-bottom: 2px solid var(--brand-color);
-    position: fixed; top: 0; left: 0; right: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
     z-index: 1000;
   }
   #burgerBtn {
@@ -48,6 +53,9 @@
   .sidebar .nav-link {
     padding: .75rem 1rem;
     color: #000;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
   }
   .sidebar .nav-link.active,
   .sidebar .nav-link:hover {
@@ -73,9 +81,11 @@
   .mobile-menu .nav-link {
     padding: 1rem;
     border-bottom: 1px solid #eee;
+    color: #000;
+    text-decoration: none;
   }
   
-  /* Main */
+  /* Main content */
   main {
     flex: 1;
     margin-top: var(--navbar-height);
@@ -83,6 +93,8 @@
     padding: 2rem;
     min-height: calc(100vh - var(--navbar-height));
   }
+  
+  /* Page titles & subtitles */
   .page-title {
     font-family: 'Manrope', sans-serif;
     font-size: 2rem;
@@ -93,15 +105,46 @@
     margin-bottom: 1.5rem;
   }
   
-  /* Carousel news */
+  /* Hero (uniquement sur index) */
+  .hero {
+    background: #fff;
+    padding: 60px 20px;
+    border-bottom: 3px solid var(--brand-color);
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 2.5rem;
+    color: var(--brand-color);
+    margin-bottom: 1rem;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+  .cta-btn {
+    padding: .8rem 2rem;
+  }
+  
+  /* Carousel générique */
+  .carousel-item-img-container,
   .carousel-inner .d-flex {
+    text-align: center;
     gap: 1rem;
     flex-wrap: wrap;
   }
+  .carousel-item-img-container img,
   .news-img {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;    /* ou 400px pour actualités */
+    height: auto;
     border-radius: .5rem;
+  }
+  .carousel-item-text,
+  .carousel-inner .d-flex {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
   }
   .carousel-text-left,
   .carousel-text-right {
@@ -139,8 +182,71 @@
     .footer {
       margin-left: 0;
     }
-    .carousel-inner .d-flex { flex-direction: column; align-items: center; }
+    .carousel-item-text,
+    .carousel-inner .d-flex {
+      flex-direction: column;
+      align-items: center;
+    }
     .carousel-text-left,
-    .carousel-text-right { width: 100%; text-align: center; }
+    .carousel-text-right {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  /* Spécifique aux carousels */
+.carousel-item-img-container {
+    text-align: center; /* centre le conteneur si vous récupérez plusieurs éléments */
+  }
+  
+  .carousel-img {
+    display: block;      /* pour que margin auto fonctionne */
+    margin: 0 auto;      /* centre l’image horizontalement */
+    width: 100%;         /* occupe 100% du conteneur */
+    max-width: 600px;    /* largeur max raisonnable */
+    height: auto;        /* conserve le ratio */
+    border-radius: .5rem;/* coins arrondis */
+  }
+  /* Conteneur horizontal de chaque slide */
+.carousel-item-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* pour passer en colonne sur petit écran */
+  }
+  
+  /* Bloc de texte gauche / droite */
+  .carousel-text-left,
+  .carousel-text-right {
+    flex: 0 0 auto;
+    max-width: 200px;   /* largeur max des textes */
+  }
+  
+  /* Conserve le centrage des blocs texte sur mobile */
+  @media (max-width: 768px) {
+    .carousel-text-left,
+    .carousel-text-right {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+  }
+  
+  /* Conteneur et style de l’image */
+  .carousel-item-img-container {
+    flex: 0 0 auto;
+  }
+  .carousel-img {
+    display: block;
+    width: 100%;
+    max-width: 600px;   /* ajustez selon besoin */
+    height: auto;
+    border-radius: .5rem;
+  }
+  
+  /* Petite marge verticale sur mobile */
+  @media (max-width: 576px) {
+    .carousel-item-content > * {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
   }
   

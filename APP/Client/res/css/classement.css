@@ -1,100 +1,38 @@
-/* Corps de page */
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background-color: #f4f4f4;
+/* Grille responsive 2 colonnes */
+.classement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Style commun aux cartes */
+.classement-card {
+  background: #fff;
+  border-radius: .5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+  overflow: hidden;
+}
+
+/* Ajustements internes */
+.classement-card .card-header {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.classement-card .list-group-item {
+  font-size: .95rem;
+}
+
+.classement-card .card-footer {
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Bouton centré déjà géré par text-center */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .classement-grid {
+    grid-template-columns: 1fr;
   }
-  
-  /* Navbar */
-  .navbar {
-    background: #fff;
-    border-bottom: 2px solid #28a745;
-    z-index: 1000;
-  }
-  
-  /* Sidebar */
-  .sidebar {
-    position: fixed;
-    top: 56px;       /* hauteur de la navbar */
-    left: 0;
-    width: 250px;
-    height: calc(100vh - 56px);
-    background: #fff;
-    border-right: 3px solid #28a745;
-    padding-top: 1rem;
-    z-index: 999;
-  }
-  .sidebar div {
-    padding: .75rem 1rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: #000;
-  }
-  .sidebar div.active,
-  .sidebar div:hover {
-    background: #e8f5e9;
-    color: #28a745;
-  }
-  
-  /* Décalage du main */
-  main {
-    margin-top: 56px;
-    margin-left: 250px;
-    padding: 2rem;
-  }
-  
-  /* Titres */
-  .page-title {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-  }
-  .page-subtitle {
-    color: #555;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Classement */
-  .classement-row {
-    gap: 1rem;
-  }
-  .classement-card {
-    box-shadow: 0 2px 6px rgba(0,0,0,.1);
-    border-radius: .5rem;
-  }
-  .classement-card .card-header {
-    background: #fff;
-    border-bottom: none;
-  }
-  .classement-card .list-group-item {
-    font-size: .95rem;
-  }
-  .classement-card .card-footer {
-    background: #fff;
-    border-top: none;
-  }
-  
-  /* Footer */
-  .footer {
-    position: fixed;
-    bottom: 0;
-    left: 250px;
-    right: 0;
-  }
-  
-  /* Responsive */
-  @media (max-width: 992px) {
-    .sidebar {
-      left: -250px;
-      transition: left .3s;
-    }
-    .sidebar.active { left: 0; }
-    main {
-      margin-left: 0;
-    }
-    .footer {
-      left: 0;
-    }
-  }
-  
+}

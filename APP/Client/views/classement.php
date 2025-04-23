@@ -5,45 +5,42 @@
 
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Classement – EcoTrack</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoTrack – Classement</title>
 
   <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Manrope:wght@700&display=swap"
-    rel="stylesheet">
+    rel="stylesheet"/>
 
   <!-- Bootstrap & FontAwesome -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet">
+    rel="stylesheet"/>
   <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    rel="stylesheet">
+    rel="stylesheet"/>
 
-  <!-- Styles spécifiques -->
-  <link rel="stylesheet" href="../res/css/classement.css">
-  <link rel="stylesheet" href="../res/css/base.css"/>
+  <!-- CSS global -->
+  <link rel="stylesheet" href="../res/css/global.css"/>
+  <!-- CSS spécifique Classement -->
+  <link rel="stylesheet" href="../res/css/classement.css"/>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom border-success">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom border-success fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold" href="index.php">
         <i class="fas fa-leaf text-success me-2"></i>EcoTrack
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainNav">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" id="burgerBtn" type="button" aria-label="Toggle menu">
+        <i class="fas fa-bars fa-lg"></i>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="mainNav">
         <ul class="navbar-nav">
           <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
@@ -58,6 +55,7 @@
     </div>
   </nav>
 
+<<<<<<< Updated upstream:APP/Client/views/classement.php
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
     <div onclick="location.href='stat_perso.php'">
@@ -72,59 +70,96 @@
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
+=======
+  <!-- SIDEBAR desktop -->
+  <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
+    <nav class="nav flex-column pt-4">
+      <a class="nav-link" href="index.html"><i class="fas fa-home me-2"></i>Accueil</a>
+      <a class="nav-link" href="stat_perso.html"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
+      <a class="nav-link" href="stat_entreprise.html"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
+      <a class="nav-link" href="actualites.html"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
+      <a class="nav-link" href="recompenses.html"><i class="fas fa-trophy me-2"></i>Récompenses</a>
+      <a class="nav-link active" href="classement.html"><i class="fas fa-list-ol me-2"></i>Classement</a>
+    </nav>
+>>>>>>> Stashed changes:APP/Client/views/classement.html
   </aside>
 
-  <!-- Main Content -->
-  <main class="flex-fill pt-5" style="margin-left:250px;">
-    <div class="container-fluid mt-4">
+  <!-- MENU MOBILE overlay -->
+  <div class="mobile-menu d-lg-none" id="mobileMenu">
+    <nav class="nav flex-column text-center pt-4">
+      <a class="nav-link py-2" href="index.html">Accueil</a>
+      <a class="nav-link py-2" href="formulaire.html">Quizz</a>
+      <a class="nav-link py-2" href="contact.html">Contact</a>
+      <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
+      <hr/>
+      <a class="nav-link py-2" href="stat_perso.html">Stat Perso</a>
+      <a class="nav-link py-2" href="stat_entreprise.html">Stat Entreprise</a>
+      <a class="nav-link py-2" href="actualites.html">Actualités ECO</a>
+      <a class="nav-link py-2" href="recompenses.html">Récompenses</a>
+      <a class="nav-link py-2 active" href="classement.html">Classement</a>
+    </nav>
+  </div>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="flex-fill">
+    <section class="intro mb-4">
       <h1 class="page-title">Classement</h1>
       <p class="page-subtitle">Découvrez votre position et celle des entreprises</p>
-  
-      <div class="row">
-        <!-- Classement Personnel -->
-        <div class="col-md-6 mb-4">
-          <div class="card classement-card">
-            <div class="card-header text-center">
-              <h5>Classement Personnel</h5>
-            </div>
-            <ul id="personal-list" class="list-group list-group-flush">
-              <!-- inséré par JS -->
-            </ul>
-            <div class="card-footer text-center">
-              <button id="btn-personal" class="btn btn-success">
-                Voir mon rang
-              </button>
-            </div>
-          </div>
+    </section>
+
+    <section class="classement-grid mb-5">
+      <!-- Classement Personnel -->
+      <div class="classement-card">
+        <div class="card-header text-center">
+          <h5>Classement Personnel</h5>
         </div>
-  
-        <!-- Classement Entreprises -->
-        <div class="col-md-6 mb-4">
-          <div class="card classement-card">
-            <div class="card-header text-center">
-              <h5>Classement Entreprises</h5>
-            </div>
-            <ul id="company-list" class="list-group list-group-flush">
-              <!-- inséré par JS -->
-            </ul>
-            <div class="card-footer text-center">
-              <button id="btn-company" class="btn btn-success">
-                Voir mon entreprise
-              </button>
-            </div>
-          </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">1. Alice – 320 pts</li>
+          <li class="list-group-item">2. Bob – 295 pts</li>
+          <li class="list-group-item">3. Vous – 280 pts</li>
+          <li class="list-group-item">4. Diane – 265 pts</li>
+          <li class="list-group-item">5. Éric – 250 pts</li>
+        </ul>
+        <div class="card-footer text-center">
+          <button class="btn btn-success">Voir mon rang</button>
         </div>
       </div>
-    </div>
+
+      <!-- Classement Entreprises -->
+      <div class="classement-card">
+        <div class="card-header text-center">
+          <h5>Classement Entreprises</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">1. GreenCorp – 25 000 kg CO₂ économisés</li>
+          <li class="list-group-item">2. EcoSolutions – 22 500 kg CO₂ économisés</li>
+          <li class="list-group-item">3. Vous (Entreprise X) – 20 000 kg CO₂ économisés</li>
+          <li class="list-group-item">4. NatureFirst – 18 750 kg CO₂ économisés</li>
+          <li class="list-group-item">5. BioTech – 17 000 kg CO₂ économisés</li>
+        </ul>
+        <div class="card-footer text-center">
+          <button class="btn btn-success">Voir mon entreprise</button>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer mt-auto bg-dark text-white text-center py-3">
-    &copy; 2025 EcoTrack | Tous droits réservés
+  <!-- FOOTER -->
+  <footer class="footer bg-dark text-white text-center py-3">
+    &copy; 2025 EcoTrack | Tous droits réservés
   </footer>
 
-  <!-- Scripts -->
+  <!-- Bootstrap JS + hamburger script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../res/js/classement.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burgerBtn  = document.getElementById('burgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      burgerBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
+      mobileMenu.addEventListener('click', e => {
+        if (e.target === mobileMenu) mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
 </body>
 </html>

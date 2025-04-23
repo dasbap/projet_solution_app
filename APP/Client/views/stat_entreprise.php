@@ -24,32 +24,32 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"/>
 
-  <!-- Styles spécifiques Stat Entreprise -->
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- CSS spécifique Stat Entreprise -->
   <link rel="stylesheet" href="../res/css/statentreprise.css"/>
-  <link rel="stylesheet" href="../res/css/base.css"/>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg bg-white border-bottom border-success fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold" href="#">
+      <a class="navbar-brand fw-bold" href="index.html">
         <i class="fas fa-leaf text-success me-2"></i>EcoTrack
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainNav"
-        aria-controls="mainNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" id="burgerBtn" type="button" aria-label="Toggle menu">
+        <i class="fas fa-bars fa-lg"></i>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="mainNav">
         <ul class="navbar-nav">
+<<<<<<< Updated upstream:APP/Client/views/stat_entreprise.php
           <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
+=======
+          <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link" href="formulaire.html">Quizz</a></li>
+>>>>>>> Stashed changes:APP/Client/views/stat_entreprise.html
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
           <li class="nav-item">
             <a class="nav-link" href="connexion.html">
@@ -61,6 +61,7 @@
     </div>
   </nav>
 
+<<<<<<< Updated upstream:APP/Client/views/stat_entreprise.php
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
     <div onclick="location.href='stat_perso.php'">
@@ -75,49 +76,117 @@
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
     </div>
+=======
+  <!-- SIDEBAR desktop -->
+  <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
+    <nav class="nav flex-column pt-4">
+      <a class="nav-link" href="stat_perso.html"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
+      <a class="nav-link active" href="stat_entreprise.html"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
+      <a class="nav-link" href="actualites.html"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
+      <a class="nav-link" href="recompenses.html"><i class="fas fa-trophy me-2"></i>Récompenses</a>
+      <a class="nav-link" href="classement.html"><i class="fas fa-list-ol me-2"></i>Classement</a>
+    </nav>
+>>>>>>> Stashed changes:APP/Client/views/stat_entreprise.html
   </aside>
 
-  <!-- MAIN CONTENT -->
-  <main>
-    <h1 class="page-title">Statistiques des Entreprises</h1>
-    <p class="page-subtitle">Suivi des résultats des entreprises ayant participé au quizz.</p>
+  <!-- MENU MOBILE overlay -->
+  <div class="mobile-menu d-lg-none" id="mobileMenu">
+    <nav class="nav flex-column text-center pt-4">
+      <a class="nav-link py-2" href="index.html">Accueil</a>
+      <a class="nav-link py-2" href="formulaire.html">Quizz</a>
+      <a class="nav-link py-2" href="contact.html">Contact</a>
+      <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
+      <hr/>
+      <a class="nav-link py-2" href="stat_perso.html">Stat Perso</a>
+      <a class="nav-link py-2 active" href="stat_entreprise.html">Stat Entreprise</a>
+      <a class="nav-link py-2" href="actualites.html">Actualités ECO</a>
+      <a class="nav-link py-2" href="recompenses.html">Récompenses</a>
+      <a class="nav-link py-2" href="classement.html">Classement</a>
+    </nav>
+  </div>
 
-    <!-- Grille des Entreprises -->
-    <div class="company-stats">
-      <p>Les résultats des entreprises ayant participé au quizz sont affichés ci-dessous. Chaque entreprise peut voir son score en termes d'empreinte carbone.</p>
-    </div>
+  <!-- CONTENU PRINCIPAL -->
+  <main class="flex-fill">
+    <section class="intro mb-4">
+      <h1 class="page-title">Statistiques des Entreprises</h1>
+      <p class="page-subtitle">Suivi des résultats des entreprises ayant participé au Quizz</p>
+    </section>
 
-    <!-- Dashboard des statistiques -->
-    <div class="dash-row">
-      <div class="dash-card">
-        <h5>Évolution Hebdo (kg CO₂)</h5>
+    <section class="dash-row mb-4">
+      <article class="dash-card">
+        <h2>Évolution Hebdo (kg CO₂)</h2>
         <canvas id="chartLine"></canvas>
-      </div>
-      <div class="dash-card">
-        <h5>Répartition par Catégorie</h5>
+      </article>
+      <article class="dash-card">
+        <h2>Répartition par Catégorie</h2>
         <canvas id="chartBar"></canvas>
-      </div>
-      <div class="dash-card">
-        <h5>Totaux Mensuels</h5>
+      </article>
+      <article class="dash-card">
+        <h2>Totaux Mensuels</h2>
         <canvas id="chartPie"></canvas>
-      </div>
-    </div>
+      </article>
+    </section>
 
-    <!-- Synthèse -->
-    <div class="summary-card">
+    <section class="summary-card mb-4">
       <i class="fas fa-building"></i>
-      <p>Entreprise moyenne a économisé <strong>150 kg CO₂</strong> ce mois-ci.</p>
-    </div>
+      <p>L’entreprise moyenne a économisé <strong>150 kg CO₂</strong> ce mois-ci</p>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 EcoTrack | Tous droits réservés</p>
+  <!-- FOOTER -->
+  <footer class="footer bg-dark text-white text-center py-3">
+    &copy; 2025 EcoTrack | Tous droits réservés
   </footer>
 
-  <!-- Bootstrap JS -->
+  <!-- Bootstrap JS + burger + Chart.init -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../res/js/stat_entreprise.js"></script> <!-- Include the JS file -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // burger mobile
+      const burgerBtn  = document.getElementById('burgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+      mobileMenu.addEventListener('click', e => {
+        if (e.target === mobileMenu) mobileMenu.classList.remove('open');
+      });
+
+      // Graphique en ligne
+      new Chart(document.getElementById('chartLine'), {
+        type: 'line',
+        data: {
+          labels: ['S1','S2','S3','S4','S5','S6'],
+          datasets: [{
+            label: 'kg CO₂',
+            data: [20, 22, 19, 23, 21, 24],
+            backgroundColor: 'rgba(40,167,69,0.2)',
+            borderColor: '#28a745',
+            borderWidth: 2,
+            fill: true
+          }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
+      });
+
+      // Graphique à barres
+      new Chart(document.getElementById('chartBar'), {
+        type: 'bar',
+        data: {
+          labels: ['Transport','Alimentation','Énergie','Déchets','Autres'],
+          datasets: [{ label: 'kg CO₂', data: [12, 8, 5, 3, 2], backgroundColor: '#28a745' }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
+      });
+
+      // Camembert
+      new Chart(document.getElementById('chartPie'), {
+        type: 'pie',
+        data: {
+          labels: ['France','Europe','Monde','Autres'],
+          datasets: [{ data: [50, 25, 15, 10], backgroundColor: ['#28a745','#6cc57a','#a2d5a0','#d8f3dc'] }]
+        },
+        options: { responsive: true, maintainAspectRatio: false }
+      });
+    });
+  </script>
 </body>
 </html>

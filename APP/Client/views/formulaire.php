@@ -17,7 +17,7 @@
 
   <!-- Styles spécifiques -->
   <link rel="stylesheet" href="../res/css/formulaire.css">
-  <link rel="stylesheet" href="../res/css/base.css"/>
+  
 </head>
 <body class="d-flex flex-column min-vh-100">
 
