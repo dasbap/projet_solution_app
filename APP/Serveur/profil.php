@@ -9,7 +9,7 @@ require_once 'config.php';
 
 // Vérifier si l'utilisateur est bien connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: connexion.html');
+    header('Location: connexion.php');
     exit;
 }
 

@@ -41,13 +41,11 @@
       </button>
       <div class="collapse navbar-collapse d-none d-lg-flex justify-content-end" id="mainNav">
         <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="index.php">Accueil</a></li>
-          <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="index.php">Accueil</a></li>
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
           <li class="nav-item">
-            <a class="nav-link" href="connexion.html">
+            <a class="nav-link" href="connexion.php">
               <i class="fas fa-user-circle me-1"></i>Mon Compte
             </a>
           </li>
@@ -89,7 +87,7 @@
       <a class="nav-link py-2" href="index.php">Accueil</a>
       <a class="nav-link py-2" href="formulaire.php">Quizz</a>
       <a class="nav-link py-2" href="contact.php">Contact</a>
-      <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
+      <a class="nav-link py-2" href="connexion.php">Mon Compte</a>
       <hr/>
       <a class="nav-link py-2" href="stat_perso.php">Stat Perso</a>
       <a class="nav-link py-2" href="stat_entreprise.php">Stat Entreprise</a>
@@ -107,61 +105,69 @@
     </section>
 
     <!-- Carousel Actualités -->
-    <div id="carouselIndex" class="carousel slide my-5" data-bs-ride="carousel">
-      <div class="carousel-inner">
-    
-        <div class="carousel-item active">
-          <div class="carousel-item-content d-flex align-items-center justify-content-center flex-wrap">
-    
-            <!-- Texte à gauche -->
-            <div class="carousel-text-left text-center text-md-start mb-3 mb-md-0 me-md-4">
-              <h5>Agissez pour la planète</h5>
-              <p>Découvrez comment chaque geste compte au quotidien.</p>
-            </div>
-    
-            <!-- Image au centre -->
-            <div class="carousel-item-img-container mx-4">
-              <img 
-                src="../res/images/Firefly image 1.jpg" 
-                alt="Paysage écologique" 
-                class="d-block carousel-img" />
-            </div>
-    
-            <!-- Texte à droite -->
-            <div class="carousel-text-right text-center text-md-end mt-3 mt-md-0 ms-md-4">
-              <h5>Partagez vos progrès</h5>
-              <p>Rejoignez une communauté engagée et inspirez vos proches.</p>
-            </div>
-    
-          </div>
-        </div>
-    
-        <!-- Répétez la même structure pour les autres slides -->
-        <div class="carousel-item">
-          <div class="carousel-item-content d-flex align-items-center justify-content-center flex-wrap">
-            <div class="carousel-text-left text-center text-md-start mb-3 mb-md-0 me-md-4">
-              <h5>Titre 2 à gauche</h5>
-              <p>Description 2 …</p>
-            </div>
-    
-            <div class="carousel-item-img-container mx-4">
-              <img src="../res/images/Firefly image 2.jpg" alt="" class="d-block carousel-img" />
-            </div>
-    
-            <div class="carousel-text-right text-center text-md-end mt-3 mt-md-0 ms-md-4">
-              <h5>Titre 2 à droite</h5>
-              <p>Description 2 …</p>
+    <div id="carouselIndex" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+              <!-- Texte gauche -->
+              <div class="carousel-text-left text-center text-md-start mb-3 mb-md-0 me-md-4">
+                <h5>Agissez pour la planète</h5>
+                <p>Découvrez comment chaque geste compte au quotidien.</p>
+              </div>
+              <!-- Image -->
+              <div class="carousel-item-img-container mx-4">
+                <img
+                  src=".../res/images/Firefly image 1.jpg"
+                  alt="Paysage écologique"
+                  class="d-block carousel-img"
+                  style="max-width:500px; width:100%; border-radius:.5rem;"
+                />
+              </div>
+              <!-- Texte droite -->
+              <div class="carousel-text-right text-center text-md-end mt-3 mt-md-0 ms-md-4">
+                <h5>Partagez vos progrès</h5>
+                <p>Rejoignez une communauté engagée et inspirez vos proches.</p>
+              </div>
             </div>
           </div>
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+              <div class="carousel-text-left text-center text-md-start mb-3 mb-md-0 me-md-4">
+                <h5>Réduisez votre empreinte</h5>
+                <p>Suivez vos progrès et comparez-vous aux autres.</p>
+              </div>
+              <div class="carousel-item-img-container mx-4">
+                <img
+                  src="/res/images/Firefly image 2.jpg"
+                  alt="Énergie renouvelable"
+                  class="d-block carousel-img"
+                  style="max-width:500px; width:100%; border-radius:.5rem;"
+                />
+              </div>
+              <div class="carousel-text-right text-center text-md-end mt-3 mt-md-0 ms-md-4">
+                <h5>Gagnez des récompenses</h5>
+                <p>Accumulez des points pour obtenir des avantages.</p>
+              </div>
+            </div>
+          </div>
         </div>
-    
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselIndex"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselIndex"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </button>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndex" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselIndex" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
     </div>
     
     

@@ -48,7 +48,7 @@
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
           <li class="nav-item">
-            <a class="nav-link" href="connexion.html">
+            <a class="nav-link" href="connexion.php">
               <i class="fas fa-user-circle me-1"></i>Mon Compte
             </a>
           </li>
@@ -106,7 +106,7 @@
       <a class="nav-link py-2" href="index.php">Accueil</a>
       <a class="nav-link py-2" href="formulaire.php">Quizz</a>
       <a class="nav-link py-2" href="contact.php">Contact</a>
-      <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
+      <a class="nav-link py-2" href="connexion.php">Mon Compte</a>
       <hr/>
       <a class="nav-link py-2" href="stat_perso.php">Stat Perso</a>
       <a class="nav-link py-2" href="stat_entreprise.php">Stat Entreprise</a>

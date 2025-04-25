@@ -61,7 +61,7 @@ Connexion PDO à la base MySQL via les variables du fichier `.env`.
 - Démarre une session avec l’`id_user` et redirige vers `Client/index.php`
 
 ### `logout.php`
-- Détruit la session et redirige vers `connexion.html`
+- Détruit la session et redirige vers `connexion.php`
 
 ---
 
@@ -89,7 +89,7 @@ Connexion PDO à la base MySQL via les variables du fichier `.env`.
 ## 🎨 Côté Client (`APP/Client/`)
 
 - `formulaire.php` : formulaire dynamique basé sur `questions.json`
-- `inscription.html` / `connexion.html` : formulaire de création de compte et d’accès
+- `inscription.html` / `connexion.php` : formulaire de création de compte et d’accès
 - `formulaire.js` : script pour gérer l’affichage dynamique des questions selon l’entreprise
 - `style.css` / `formulaire.css` : styles
 - `questions.json` : base de questions conditionnelles

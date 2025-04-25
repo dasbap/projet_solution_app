@@ -62,7 +62,7 @@
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
           <li class="nav-item">
-            <a class="nav-link" href="connexion.html">
+            <a class="nav-link" href="connexion.php">
               <i class="fas fa-user-circle me-1"></i>Mon Compte
             </a>
           </li>
@@ -89,7 +89,7 @@
       <a class="nav-link py-2" href="index.php">Accueil</a>
       <a class="nav-link py-2" href="formulaire.php">Quizz</a>
       <a class="nav-link py-2" href="contact.php">Contact</a>
-      <a class="nav-link py-2" href="connexion.html">Mon Compte</a>
+      <a class="nav-link py-2" href="connexion.php">Mon Compte</a>
       <hr/>
       <a class="nav-link py-2" href="stat_perso.php">Stat Perso</a>
       <a class="nav-link py-2" href="stat_entreprise.php">Stat Entreprise</a>
@@ -101,30 +101,148 @@
 
   <!-- CONTENU PRINCIPAL -->
   <main class="flex-fill">
-    <section class="intro mb-4">
-      <h1 class="page-title">Récompenses</h1>
-      <p class="page-subtitle">Gagnez des badges en réduisant votre empreinte carbone !</p>
-    </section>
+  <section class="rewards-grid mb-5">
+  <!-- 1 -->
+  <div class="reward-card">
+    <i class="fas fa-seedling fa-2x text-success"></i>
+    <h5>Badge “Green Starter”</h5>
+    <p>Obtenu après 5 réponses au quiz.</p>
+  </div>
 
-    <section class="rewards-grid mb-5">
-      <!-- Exemple de carte de récompense -->
-      <div class="reward-card">
-        <i class="fas fa-seedling fa-2x text-success mb-2"></i>
-        <h5>Badge “Green Starter”</h5>
-        <p>Obtenu après 5 réponses au quiz.</p>
-      </div>
-      <div class="reward-card">
-        <i class="fas fa-leaf fa-2x text-success mb-2"></i>
-        <h5>Badge “Eco Warrior”</h5>
-        <p>Obtenu après 10 réponses correctes.</p>
-      </div>
-      <div class="reward-card">
-        <i class="fas fa-tree fa-2x text-success mb-2"></i>
-        <h5>Badge “Tree Planter”</h5>
-        <p>Obtenu après 20 kg de CO₂ économisés.</p>
-      </div>
-      <!-- … ajoutez autant de cartes que nécessaire -->
-    </section>
+  <!-- 2 -->
+  <div class="reward-card">
+    <i class="fas fa-leaf fa-2x text-success"></i>
+    <h5>Badge “Eco Warrior”</h5>
+    <p>Obtenu après 10 réponses correctes.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="reward-card">
+    <i class="fas fa-tree fa-2x text-success"></i>
+    <h5>Badge “Tree Planter”</h5>
+    <p>Obtenu après 20 kg de CO₂ économisés.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="reward-card">
+    <i class="fas fa-recycle fa-2x text-success"></i>
+    <h5>Badge “Recycler Pro”</h5>
+    <p>Obtenu après 15 objets recyclés.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="reward-card">
+    <i class="fas fa-solar-panel fa-2x text-success"></i>
+    <h5>Badge “Solar Champion”</h5>
+    <p>Obtenu après 30 € d’électricité renouvelable achetée.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="reward-card">
+    <i class="fas fa-tint fa-2x text-success"></i>
+    <h5>Badge “Water Saver”</h5>
+    <p>Obtenu après 10 jours de consommation d’eau réduite.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="reward-card">
+    <i class="fas fa-biking fa-2x text-success"></i>
+    <h5>Badge “Bike Commuter”</h5>
+    <p>Obtenu après 5 trajets à vélo.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="reward-card">
+    <i class="fas fa-shopping-basket fa-2x text-success"></i>
+    <h5>Badge “Zero Waste Shopper”</h5>
+    <p>Obtenu après 7 courses zéro déchet.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="reward-card">
+    <i class="fas fa-fire-alt fa-2x text-success"></i>
+    <h5>Badge “Carbon Cutter”</h5>
+    <p>Obtenu après 25 kg de CO₂ en moins.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="reward-card">
+    <i class="fas fa-trash-restore fa-2x text-success"></i>
+    <h5>Badge “Plastic Buster”</h5>
+    <p>Obtenu après 20 plastiques à usage unique évités.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="reward-card">
+    <i class="fas fa-bolt fa-2x text-success"></i>
+    <h5>Badge “Energy Saver”</h5>
+    <p>Obtenu après 10 % d’économie d’électricité.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="reward-card">
+    <i class="fas fa-seedling fa-2x text-success"></i>
+    <h5>Badge “Composter”</h5>
+    <p>Obtenu après 5 kg de déchets compostés.</p>
+  </div>
+
+  <!-- 13 -->
+  <div class="reward-card">
+    <i class="fas fa-users fa-2x text-success"></i>
+    <h5>Badge “Community Leader”</h5>
+    <p>Obtenu après avoir invité 5 amis.</p>
+  </div>
+
+  <!-- 14 -->
+  <div class="reward-card">
+    <i class="fas fa-tree fa-2x text-success"></i>
+    <h5>Badge “Forest Guardian”</h5>
+    <p>Obtenu après 50 arbres plantés.</p>
+  </div>
+
+  <!-- 15 -->
+  <div class="reward-card">
+    <i class="fas fa-wind fa-2x text-success"></i>
+    <h5>Badge “Clean Air Advocate”</h5>
+    <p>Obtenu après réduction de 30 % du transport en voiture.</p>
+  </div>
+
+  <!-- 16 -->
+  <div class="reward-card">
+    <i class="fas fa-water fa-2x text-success"></i>
+    <h5>Badge “Marine Protector”</h5>
+    <p>Obtenu après nettoyage de 10 m de plage.</p>
+  </div>
+
+  <!-- 17 -->
+  <div class="reward-card">
+    <i class="fas fa-utensils fa-2x text-success"></i>
+    <h5>Badge “Sustainable Chef”</h5>
+    <p>Obtenu après 7 repas végétariens.</p>
+  </div>
+
+  <!-- 18 -->
+  <div class="reward-card">
+    <i class="fas fa-plane-departure fa-2x text-success"></i>
+    <h5>Badge “Eco Traveler”</h5>
+    <p>Obtenu après 3 voyages en train.</p>
+  </div>
+
+  <!-- 19 -->
+  <div class="reward-card">
+    <i class="fas fa-laptop fa-2x text-success"></i>
+    <h5>Badge “Tech Recycler”</h5>
+    <p>Obtenu après recyclage d’un appareil électronique.</p>
+  </div>
+
+  <!-- 20 -->
+  <div class="reward-card">
+    <i class="fas fa-globe fa-2x text-success"></i>
+    <h5>Badge “Earth Ambassador”</h5>
+    <p>Obtenu après avoir partagé 10 actions écologiques.</p>
+  </div>
+</section>
+
 
   </main>
 
