@@ -1,6 +1,7 @@
 [
     {
-        "id": "travail",
+        "id":1,
+        "categorie": "travail",
         "question_text": "Travaillez-vous sur site ou en télétravail ?",
         "type": "select",
         "options": [
@@ -10,7 +11,8 @@
         "coef": 1
     },
     {
-        "id": "transport",
+        "id":2,
+        "categorie": "transport",
         "question_text": "Quel est votre mode de transport principal ?",
         "type": "select",
         "options": [
@@ -20,19 +22,21 @@
             { "label": "Marche", "score": 20 },
             { "label": "Covoiturage", "score": 5 }
         ],
-        "showIf": { "id": "travail", "value": "Sur site" },
+        "showIf": { "categorie": "travail", "value": "Sur site" },
         "coef": 1
     },
     {
-        "id": "distance",
+        "id":3,
+        "categorie": "distance",
         "question_text": "Quelle est la distance moyenne parcourue chaque jour ? (en km)",
         "type": "number",
         "scorePerKm": 1,
-        "showIf": { "id": "transport", "value": ["Voiture", "Transports publics", "Covoiturage"] },
+        "showIf": { "categorie": "transport", "value": ["Voiture", "Transports publics", "Covoiturage"] },
         "coef": 2
     },
     {
-        "id": "carburant",
+        "id":4,
+        "categorie": "carburant",
         "question_text": "Quel type de carburant utilisez-vous ?",
         "type": "select",
         "options": [
@@ -41,37 +45,41 @@
             { "label": "Électrique", "score": 20 },
             { "label": "Hybride", "score": 10 }
         ],
-        "showIf": { "id": "transport", "value": "Voiture" },
+        "showIf": { "categorie": "transport", "value": "Voiture" },
         "coef": 1
     },
     {
-        "id": "frequence_voiture",
+        "id":5,
+        "categorie": "frequence_voiture",
         "question_text": "Combien de jours par semaine utilisez-vous votre voiture ?",
         "type": "number",
         "scorePerDay": -2,
-        "showIf": { "id": "transport", "value": "Voiture" },
+        "showIf": { "categorie": "transport", "value": "Voiture" },
         "coef": 1
     },
     {
-        "id": "stationnement",
+        "id":6,
+        "categorie": "stationnement",
         "question_text": "Disposez-vous d'une place de stationnement réservée ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 0 },
             { "label": "Non", "score": 5 }
         ],
-        "showIf": { "id": "transport", "value": "Voiture" },
+        "showIf": { "categorie": "transport", "value": "Voiture" },
         "coef": 1
     },
     {
-        "id": "repas",
+        "id":7,
+        "categorie": "repas",
         "question_text": "Combien de repas à base de viande consommez-vous par semaine ?",
         "type": "number",
         "scorePerMeal": -1,
         "coef": 2
     },
     {
-        "id": "bio",
+        "id":8,
+        "categorie": "bio",
         "question_text": "Achetez-vous des produits bio pour vos repas au travail ?",
         "type": "select",
         "options": [
@@ -81,7 +89,8 @@
         "coef": 1
     },
     {
-        "id": "produits_emballes",
+        "id":9,
+        "categorie": "produits_emballes",
         "question_text": "Consommez-vous des produits emballés individuellement ?",
         "type": "select",
         "options": [
@@ -89,11 +98,12 @@
             { "label": "Non", "score": 10 },
             { "label": "Parfois", "score": 5 }
         ],
-        "showIf": { "id": "bio", "value": "Non" },
+        "showIf": { "categorie": "bio", "value": "Non" },
         "coef": 1
     },
     {
-        "id": "local",
+        "id":10,
+        "categorie": "local",
         "question_text": "Consommez-vous des produits locaux au travail ?",
         "type": "select",
         "options": [
@@ -104,7 +114,8 @@
         "coef": 1
     },
     {
-        "id": "dechets",
+        "id":11,
+        "categorie": "dechets",
         "question_text": "Triez-vous vos déchets au bureau ?",
         "type": "select",
         "options": [
@@ -114,7 +125,8 @@
         "coef": 2
     },
     {
-        "id": "dechets_type",
+        "id":12,
+        "categorie": "dechets_type",
         "question_text": "Quels types de déchets triez-vous ?",
         "type": "select",
         "options": [
@@ -123,11 +135,12 @@
             { "label": "Canettes", "score": 5 },
             { "label": "Biodéchets", "score": 10 }
         ],
-        "showIf": { "id": "dechets", "value": "Oui" },
+        "showIf": { "categorie": "dechets", "value": "Oui" },
         "coef": 1
     },
     {
-        "id": "papier",
+        "id":13,
+        "categorie": "papier",
         "question_text": "Utilisez-vous du papier recyclé ?",
         "type": "select",
         "options": [
@@ -137,27 +150,30 @@
         "coef": 1
     },
     {
-        "id": "impression",
+        "id":14,
+        "categorie": "impression",
         "question_text": "Limitez-vous vos impressions papier ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 10 },
             { "label": "Non", "score": 0 }
         ],
-        "coef": 1
+        "coef": 15
     },
     {
-        "id": "materiel",
+        "id":16,
+        "categorie": "materiel",
         "question_text": "Utilisez-vous du matériel informatique économe en énergie ?",
         "type": "select",
         "options": [
             { "label": "Oui", "score": 10 },
             { "label": "Non", "score": 0 }
         ],
-        "coef": 1
+        "coef": 17
     },
     {
-        "id": "veille",
+        "id":18,
+        "categorie": "veille",
         "question_text": "Éteignez-vous vos appareils en quittant votre poste ?",
         "type": "select",
         "options": [
