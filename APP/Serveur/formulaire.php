@@ -11,73 +11,113 @@ function logDebug($message) {
 
 if (!isset($_SESSION['user_id'])) {
     http_response_code(401);
-    logDebug("Erreur : utilisateur non authentifié");
+    logDebug("Erreur : utilisateur non authentifie");
     die(json_encode(['error' => 'Authentification requise']));
 }
 
 $userId = $_SESSION['user_id'];
-logDebug("Utilisateur connecté : $userId");
+logDebug("Utilisateur connecte : $userId");
 
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+try {
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$jsonPath = realpath(__DIR__ . '/../Client/res/data/questions.json');
-if (!$jsonPath || !file_exists($jsonPath)) {
-    http_response_code(500);
-    logDebug("Erreur : Fichier JSON introuvable");
-    die(json_encode(['error' => 'Fichier de questions introuvable']));
-}
-
-$questionsJson = file_get_contents($jsonPath);
-$questions = json_decode($questionsJson, true);
-
-if (json_last_error() !== JSON_ERROR_NONE) {
-    http_response_code(500);
-    logDebug("Erreur JSON : " . json_last_error_msg());
-    die(json_encode(['error' => 'Erreur de format JSON']));
-}
-
-$questionMap = array_column($questions, null, 'id');
-logDebug("Questions chargées : " . count($questionMap));
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $data = json_decode(file_get_contents('php://input'), true);
-
-    if (empty($data)) {
-        http_response_code(400);
-        logDebug("Erreur : Aucune donnée reçue");
-        die(json_encode(['error' => 'Aucune donnée reçue']));
+    $jsonPath = realpath(__DIR__ . '/../Client/res/data/questions.json');
+    if (!$jsonPath || !file_exists($jsonPath)) {
+        throw new Exception("Fichier JSON introuvable");
     }
 
-    logDebug("Données POST reçues : " . print_r($data, true));
+    $questionsJson = file_get_contents($jsonPath);
+    $questions = json_decode($questionsJson, true);
 
-    try {
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new Exception("Erreur de format JSON: " . json_last_error_msg());
+    }
+
+    // Creer un mapping des questions par ID et par categorie
+    $questionMap = array_column($questions, null, 'id');
+    $questionsByCategory = [];
+    foreach ($questions as $q) {
+        if (!isset($questionsByCategory[$q['categorie']])) {
+            $questionsByCategory[$q['categorie']] = [];
+        }
+        $questionsByCategory[$q['categorie']][] = $q;
+    }
+
+    logDebug("Questions chargees : " . count($questionMap));
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $data = json_decode(file_get_contents('php://input'), true);
+
+        if (empty($data)) {
+            throw new Exception("Aucune donnee reçue");
+        }
+
+        logDebug("Donnees POST reçues : " . print_r($data, true));
+
         $pdo->beginTransaction();
 
-        foreach ($data as $questionId => $reponse) {
-            if (!isset($questionMap[$questionId])) {
-                logDebug("⚠️ ID non reconnu dans JSON : $questionId");
+        $totalScore = 0;
+        $responses = [];
+
+        // Première passe: sauvegarde des reponses
+        foreach ($data as $response) {
+            if (!isset($response['id']) || !isset($response['reponse'])) {
                 continue;
             }
 
-            logDebug("Sauvegarde réponse : Q=$questionId, R=$reponse");
+            $questionId = $response['id'];
+            $reponse = $response['reponse'];
+
+            // Verifier si la question existe
+            if (!isset($questionMap[$questionId])) {
+                logDebug("Question avec ID $questionId non trouvee, creation...");
+                createQuestion([
+                    'id' => $questionId,
+                    'question_text' => isset($response['question_text']) ? $response['question_text'] : 'Question inconnue',
+                    'categorie' => 'inconnue',
+                    'type_question' => 'texte'
+                ]);
+            }
+
             saveOrUpdateResponse($userId, $questionId, $reponse);
+            $responses[$questionId] = $reponse;
         }
 
+        // Deuxième passe: calcul des scores avec prise en compte des coefficients
+        foreach ($responses as $questionId => $reponse) {
+            if (!isset($questionMap[$questionId])) continue;
+
+            $question = $questionMap[$questionId];
+            $score = calculateQuestionScore($question, $reponse, $responses);
+            $coef = isset($question['coef']) ? (float)$question['coef'] : 1.0;
+            $totalScore += $score * $coef;
+        }
+
+        // Sauvegarde du score final
+        saveScore($userId, $totalScore);
+
         $pdo->commit();
-        logDebug("✅ Transaction validée");
+        logDebug("✅ Transaction validee - Score total: $totalScore");
+        
         header('Content-Type: application/json');
-        echo json_encode(['success' => true]);
-    } catch (Exception $e) {
-        $pdo->rollBack();
-        logDebug("❌ Exception : " . $e->getMessage());
-        http_response_code(500);
-        die(json_encode(['error' => 'Erreur serveur']));
+        echo json_encode([
+            'success' => true,
+            'score' => $totalScore,
+            'message' => 'Reponses enregistrees avec succès'
+        ]);
+    } else {
+        throw new Exception("Methode non supportee: " . $_SERVER['REQUEST_METHOD']);
     }
-} else {
-    logDebug("Méthode non supportée : " . $_SERVER['REQUEST_METHOD']);
-    http_response_code(405);
-    echo json_encode(['error' => 'Méthode non autorisée']);
-    exit;
+} catch (PDOException $e) {
+    if (isset($pdo)) {$pdo->rollBack();}
+
+    logDebug("❌ Erreur PDO : " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode(['error' => 'Erreur de base de donnees']);
+} catch (Exception $e) {
+    logDebug("❌ Exception : " . $e->getMessage());
+    http_response_code(400);
+    echo json_encode(['error' => $e->getMessage()]);
 }
 
 function doesQuestionExist($questionId) {
@@ -89,9 +129,6 @@ function doesQuestionExist($questionId) {
 
 function createQuestion($question) {
     global $pdo;
-    $categorie = isset($question['categorie']) ? $question['categorie'] : 'inconnue';
-    $type = isset($question['type_question']) ? $question['type_question'] : 'texte';
-
     $stmt = $pdo->prepare('
         INSERT INTO Table_questions (id_question, question_text, categorie, type_question) 
         VALUES (:id, :text, :cat, :type)
@@ -99,8 +136,8 @@ function createQuestion($question) {
     $stmt->execute([ 
         ':id' => $question['id'], 
         ':text' => $question['question_text'], 
-        ':cat' => $categorie, 
-        ':type' => $type
+        ':cat' => $question['categorie'], 
+        ':type' => $question['type_question']
     ]);
 }
 
@@ -130,5 +167,53 @@ function saveOrUpdateResponse($userId, $questionId, $reponse) {
         ':qid' => $questionId,
         ':rep' => $reponse
     ]);
+}
+
+function calculateQuestionScore($question, $reponse, $allResponses) {
+    if (!isset($question['type'])) {
+        return 0;
+    }
+
+    switch ($question['type']) {
+        case 'select':
+            foreach ($question['options'] as $option) {
+                if ($option['label'] === $reponse) {
+                    return (int)$option['score'];
+                }
+            }
+            return 0;
+            
+        case 'number':
+            if (isset($question['scorePerKm']) && is_numeric($reponse)) {
+                return (int)$reponse * (int)$question['scorePerKm'];
+            }
+            if (isset($question['scorePerDay']) && is_numeric($reponse)) {
+                return (int)$reponse * (int)$question['scorePerDay'];
+            }
+            if (isset($question['scorePerMeal']) && is_numeric($reponse)) {
+                return (int)$reponse * (int)$question['scorePerMeal'];
+            }
+            return 0;
+            
+        default:
+            return 0;
+    }
+}
+
+function saveScore($userId, $totalScore) {
+    global $pdo;
+    
+    $stmt = $pdo->prepare('
+        INSERT INTO Table_score_carbon (id_user, score, date_assigned) 
+        VALUES (:user, :score, NOW())
+        ON DUPLICATE KEY UPDATE score = VALUES(score), date_assigned = NOW()
+    ');
+    
+    $stmt->execute([
+        ':user' => $userId,
+        ':score' => $totalScore
+    ]);
+    
+    logDebug("Score sauvegarde pour l'utilisateur $userId: $totalScore");
 }
 ?>
