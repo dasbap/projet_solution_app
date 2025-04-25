@@ -1,43 +1,141 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Récupération des données JSON depuis PHP
-    fetch('classement.php')
-      .then(res => res.json())
-      .then(({ users, companies }) => {
-        // Trie décroissant
-        users.sort((a,b) => b.pts - a.pts);
-        companies.sort((a,b) => b.eco - a.eco);
-  
-        // Fonction de rendu
-        function renderList(containerId, items, isUser) {
-          const ul = document.getElementById(containerId);
-          ul.innerHTML = '';
-          items.forEach((it, idx) => {
-            const li = document.createElement('li');
-            li.className = 'list-group-item';
-            li.textContent = isUser
-              ? `${idx+1}. ${it.name} – ${it.pts} pts`
-              : `${idx+1}. ${it.name} – ${it.eco.toLocaleString('fr-FR')} kg CO₂ économisés`;
-            if (it.name.startsWith('Vous')) li.classList.add('table-primary');
-            ul.appendChild(li);
-          });
-        }
-  
-        renderList('personal-list', users, true);
-        renderList('company-list', companies, false);
-  
-        // Boutons “Voir mon rang”
-        document.getElementById('btn-personal')
-          .addEventListener('click', () => {
-            const my = document.querySelector('#personal-list .table-primary');
-            if (my) my.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          });
-  
-        document.getElementById('btn-company')
-          .addEventListener('click', () => {
-            const my = document.querySelector('#company-list .table-primary');
-            if (my) my.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          });
-      })
-      .catch(err => console.error('Erreur fetch classement :', err));
+// Récupère le formulaire et initialise les données
+const form = document.getElementById("carboneForm");
+let questions = [];
+const reponses = {};
+
+// Charge les questions depuis le JSON
+fetch("../res/data/questions.json")
+  .then(res => res.json())
+  .then(data => {
+    questions = data;
+    genererFormulaire();
+    updateQuestions();
+  })
+  .catch(err => console.error("Erreur de chargement des questions :", err));
+
+// Génère dynamiquement le formulaire
+function genererFormulaire() {
+  questions.forEach(q => {
+    const container = document.createElement("div");
+    container.className = "question";
+    container.id = `q_${q.id}`;
+
+    // Label de la question
+    const label = document.createElement("label");
+    label.htmlFor = q.id;
+    label.textContent = q.text;
+    container.append(label);
+
+    // Champ input ou select
+    let input;
+    if (q.type === "select") {
+      input = document.createElement("select");
+      input.innerHTML = `<option value="">-- Choisissez --</option>`;
+      q.options.forEach(opt => {
+        const optEl = document.createElement("option");
+        optEl.value = opt;
+        optEl.textContent = opt;
+        input.append(optEl);
+      });
+    } else if (q.type === "number" || q.type === "text") {
+      input = document.createElement("input");
+      input.type = q.type;
+      if (q.type === "number") {
+        input.min = "0";
+      }
+    }
+
+    input.id = q.id;
+    input.addEventListener("change", handleChange);
+    container.append(input);
+
+    form.append(container);
   });
-  
+
+  // Bouton Envoi (caché par défaut)
+  const submitBtn = document.createElement("button");
+  submitBtn.id = "submitBtn";
+  submitBtn.type = "submit";
+  submitBtn.textContent = "Envoyer";
+  submitBtn.style.display = "none";
+  form.append(submitBtn);
+
+  // Écoute de la soumission du formulaire
+  form.addEventListener("submit", onSubmit);
+}
+
+// Gestion du clic sur "Envoyer"
+function onSubmit(event) {
+  event.preventDefault();
+
+  // Vérifie que tous les champs affichés sont remplis
+  const incomplets = questions.some(q => {
+    const div = document.getElementById(`q_${q.id}`);
+    const val = document.getElementById(q.id).value.trim();
+    return div.classList.contains("active") && !val;
+  });
+
+  if (incomplets) {
+    return alert("Veuillez remplir toutes les questions affichées avant de soumettre.");
+  }
+
+  // Envoi des données au serveur PHP
+  fetch("../../Serveur/formulaire.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(reponses)
+  })
+    .then(res => res.text())
+    .then(msg => {
+      alert("Formulaire envoyé avec succès !");
+      console.log("Réponse serveur :", msg);
+      form.reset();
+      Object.keys(reponses).forEach(k => delete reponses[k]);
+      updateQuestions();
+    })
+    .catch(err => {
+      console.error("Erreur lors de l'envoi :", err);
+      alert("Une erreur est survenue lors de l'envoi.");
+    });
+}
+
+// À chaque changement de champ
+function handleChange(e) {
+  reponses[e.target.id] = e.target.value;
+  updateQuestions();
+}
+
+// Affiche ou masque les questions et le bouton "Envoyer"
+function updateQuestions() {
+  let actives = 0, remplies = 0;
+
+  questions.forEach(q => {
+    const div = document.getElementById(`q_${q.id}`);
+    const input = document.getElementById(q.id);
+    div.classList.remove("active");
+
+    // Condition d’affichage
+    const condition = q.condition;
+
+    let doitAfficher = false;
+    if (!condition) {
+      doitAfficher = true;
+    } else {
+      const [id, value] = condition.split(":");
+      const val = reponses[id];
+      if (val && (Array.isArray(value) ? value.includes(val) : val === val)) {
+        doitAfficher = true;
+      }
+    }
+
+    if (doitAfficher) {
+      div.classList.add("active");
+      actives++;
+      if (input.value.trim() !== "") remplies++;
+    }
+  });
+
+  // Affiche le bouton "Envoyer" si toutes les questions affichées sont remplies
+  document.getElementById("submitBtn").style.display =
+    actives > 0 && actives === remplies ? "inline-block" : "none";
+}

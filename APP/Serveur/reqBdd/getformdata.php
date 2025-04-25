@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'config.php';
+require_once '../config.php';
 
 if (!isset($_SESSION['user_id'])) {
     http_response_code(401);
@@ -30,15 +30,21 @@ try {
     $stmt->execute(['id_user' => $userId, 'last_date' => $lastDate]);
     $responses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Préparer les données pour les graphiques
+    // Préparer les données pour les graphiques et les réponses
     $labels = [];
     $scores = [];
     $categories = [];
+    $userResponses = [];
 
     foreach ($responses as $row) {
         $labels[] = $row['question_text'];
         $scores[] = (int) $row['score_question'];
         $categories[$row['categorie']] = ($categories[$row['categorie']] ?? 0) + (int) $row['score_question'];
+        $userResponses[$row['id_question']] = [
+            'question' => $row['question_text'],
+            'response' => $row['reponse'],
+            'score' => (int) $row['score_question']
+        ];
     }
 
     // Exemple de catégories d'impact environnemental à ajuster
@@ -53,6 +59,7 @@ try {
     // Dynamique des graphiques : ajuster les noms et données
     echo json_encode([
         'form' => array_column($responses, 'reponse', 'id_question'),
+        'user_responses' => $userResponses, // Envoie les réponses de l'utilisateur
         'line' => [
             'labels' => $labels, 
             'data' => $scores
