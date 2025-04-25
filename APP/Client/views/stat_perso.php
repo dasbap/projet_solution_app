@@ -138,10 +138,10 @@
   mobileMenu?.addEventListener('click', e => { if (e.target === mobileMenu) mobileMenu.classList.remove('open'); });
 
   try {
-    const res = await fetch('../../Serveur/getformdata.php');
+    const res = await fetch('../../Serveur/reqBdd/getformdata.php');
     const data = await res.json();
 
-    // remplir le formulaire
+    // Remplir le formulaire avec les données si elles existent
     if (data.form) {
       for (const [key, value] of Object.entries(data.form)) {
         const input = document.querySelector(`[name="${key}"]`);
@@ -162,16 +162,31 @@
       }
     }
 
-    // count (simulé ici avec le nombre de réponses)
+    // count : nombre de réponses (simulé ici)
     document.getElementById('count').textContent = Object.keys(data.form || {}).length;
 
-    // chartLine
+    // Affichage des réponses de l'utilisateur sous chaque graphique
+    const responsesContainer = document.getElementById('user-responses');
+    if (responsesContainer) {
+      Object.entries(data.user_responses || {}).forEach(([questionId, response]) => {
+        const responseElement = document.createElement('div');
+        responseElement.classList.add('response-item');
+        responseElement.innerHTML = `
+          <h4>${response.question}</h4>
+          <p><strong>Réponse:</strong> ${response.response}</p>
+          <p><strong>Score:</strong> ${response.score}</p>
+        `;
+        responsesContainer.appendChild(responseElement);
+      });
+    }
+
+    // Graphique Line : Impact des questions au fil du temps
     new Chart(document.getElementById('chartLine'), {
       type: 'line',
       data: {
         labels: data.line.labels,
         datasets: [{
-          label: 'kg CO₂',
+          label: 'Impact CO₂',
           data: data.line.data,
           backgroundColor: 'rgba(40,167,69,0.2)',
           borderColor: '#28a745',
@@ -186,13 +201,13 @@
       }
     });
 
-    // chartBar
+    // Graphique Bar : Répartition des catégories d'impact environnemental
     new Chart(document.getElementById('chartBar'), {
       type: 'bar',
       data: {
         labels: data.bar.labels,
         datasets: [{
-          label: 'kg CO₂',
+          label: 'Score d\'impact CO₂',
           data: data.bar.data,
           backgroundColor: '#28a745'
         }]
@@ -204,14 +219,14 @@
       }
     });
 
-    // chartPie
+    // Graphique Pie : Répartition des catégories environnementales
     new Chart(document.getElementById('chartPie'), {
       type: 'pie',
       data: {
         labels: data.pie.labels,
         datasets: [{
           data: data.pie.data,
-          backgroundColor: ['#28a745', '#6cc57a', '#a2d5a0', '#d8f3dc']
+          backgroundColor: ['#28a745', '#6cc57a', '#a2d5a0', '#d8f3dc', '#97e3a8']
         }]
       },
       options: {
@@ -224,6 +239,7 @@
     console.error("Erreur lors du chargement des données :", error);
   }
 });
+
 
 </script>
 

@@ -94,46 +94,12 @@
 
   <!-- CONTENU PRINCIPAL -->
   <main class="flex-fill">
-    <section class="intro mb-4">
-      <h1 class="page-title">Classement</h1>
-      <p class="page-subtitle">Découvrez votre position et celle des entreprises</p>
-    </section>
+  <ul id="user-classement"></ul>
+  <ul id="company-classement"></ul>
+  <script src="../res/js/classement.js"></script>
 
-    <section class="classement-grid mb-5">
-      <!-- Classement Personnel -->
-      <div class="classement-card">
-        <div class="card-header text-center">
-          <h5>Classement Personnel</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">1. Alice – 320 pts</li>
-          <li class="list-group-item">2. Bob – 295 pts</li>
-          <li class="list-group-item">3. Vous – 280 pts</li>
-          <li class="list-group-item">4. Diane – 265 pts</li>
-          <li class="list-group-item">5. Éric – 250 pts</li>
-        </ul>
-        <div class="card-footer text-center">
-          <button class="btn btn-success">Voir mon rang</button>
-        </div>
-      </div>
 
-      <!-- Classement Entreprises -->
-      <div class="classement-card">
-        <div class="card-header text-center">
-          <h5>Classement Entreprises</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">1. GreenCorp – 25 000 kg CO₂ économisés</li>
-          <li class="list-group-item">2. EcoSolutions – 22 500 kg CO₂ économisés</li>
-          <li class="list-group-item">3. Vous (Entreprise X) – 20 000 kg CO₂ économisés</li>
-          <li class="list-group-item">4. NatureFirst – 18 750 kg CO₂ économisés</li>
-          <li class="list-group-item">5. BioTech – 17 000 kg CO₂ économisés</li>
-        </ul>
-        <div class="card-footer text-center">
-          <button class="btn btn-success">Voir mon entreprise</button>
-        </div>
-      </div>
-    </section>
+
   </main>
 
   <!-- FOOTER -->
@@ -143,15 +109,7 @@
 
   <!-- Bootstrap JS + hamburger script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const burgerBtn  = document.getElementById('burgerBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      burgerBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
-      mobileMenu.addEventListener('click', e => {
-        if (e.target === mobileMenu) mobileMenu.classList.remove('open');
-      });
-    });
-  </script>
+
+  
 </body>
 </html>

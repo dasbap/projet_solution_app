@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Formulaire d'Impact Carbone – EcoTrack</title>
+  <title>Formulaire d'Impact Carbone – EcoTrack</title>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,13 +56,13 @@
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
     <div onclick="location.href='stat_perso.php'">
-      <i class="fas fa-user-circle me-2"></i>Stat Perso
+      <i class="fas fa-user-circle me-2"></i>Stat Perso
     </div>
     <div onclick="location.href='stat_entreprise.php'">
-      <i class="fas fa-building me-2"></i>Stat Entreprise
+      <i class="fas fa-building me-2"></i>Stat Entreprise
     </div>
     <div onclick="location.href='actualites.php'">
-      <i class="fas fa-globe me-2"></i>Actualités ECO
+      <i class="fas fa-globe me-2"></i>Actualités ECO
     </div>
     <div onclick="location.href='recompenses.php'">
       <i class="fas fa-trophy me-2"></i>Récompenses
@@ -82,14 +82,15 @@
       <h1 class="text-center mb-4">Formulaire d’Impact Carbone</h1>
 
       <form id="carboneForm" action="../../Serveur/formulaire.php" method="POST" novalidate>
-        <!-- Les questions sont injectées ici par formulaire.js -->
+        <div id="formContent"></div> 
       </form>
+
     </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="mt-auto bg-dark text-white text-center py-3">
-    &copy; 2025 EcoTrack | Tous droits réservés
+    &copy; 2025 EcoTrack | Tous droits réservés
   </footer>
 
   <!-- Scripts -->

@@ -11,6 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $company_raw = explode('.', $domain)[0] ?? '';
     $company_name = str_replace(['_', '-'], ' ', $company_raw);
 
+    // Extraire le nom d'utilisateur (partie avant le @)
+    $user_name = $email_parts[0] ?? '';
+
     try {
         // Vérifie si l'email est déjà utilisé
         $checkStmt = $pdo->prepare("SELECT COUNT(*) FROM Table_User WHERE email_user = :email");
@@ -32,14 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $insert = $pdo->prepare("INSERT INTO Table_User (email_user, user_password_hash, role, siret_company) VALUES (:email, :pass, 0, :siret)");
+        // Insérer l'utilisateur avec le user_name
+        $insert = $pdo->prepare("INSERT INTO Table_User (email_user, user_password_hash, role, siret_company, user_name) VALUES (:email, :pass, 0, :siret, :user_name)");
         $insert->execute([
             ':email' => $email,
             ':pass' => $hashed_password,
-            ':siret' => $company['siret_company']
+            ':siret' => $company['siret_company'],
+            ':user_name' => $user_name // Ajouter user_name
         ]);
 
-        echo "Inscription réussie.";
+        echo "Inscription réussie. Bienvenue, " . htmlspecialchars($user_name) . "!";
     } catch (PDOException $e) {
         echo "Erreur : " . $e->getMessage();
     }
