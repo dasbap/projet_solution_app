@@ -143,4 +143,28 @@
     .carousel-text-left,
     .carousel-text-right { width: 100%; text-align: center; }
   }
-  
+  /* ---------------------------------- */
+/* Carousel Actualités (centrage)    */
+/* ---------------------------------- */
+
+/* Conteneur de l’image, centre tout son contenu */
+.carousel-item-img-container {
+  text-align: center;
+}
+
+/* L’image elle-même est un bloc avec margin auto */
+.carousel-item-img-container img,
+.news-img {
+  display: block;
+  margin: 0 auto;      /* centre horizontalement */
+  width: 100%;
+  max-width: 400px;    /* ou ajustez selon besoin */
+  height: auto;
+  border-radius: .5rem;
+}
+
+/* Texte gauche / droite aligné comme avant */
+.carousel-text-left,
+.carousel-text-right {
+  width: 45%;
+}

@@ -47,7 +47,7 @@
           <li class="nav-item"><a class="nav-link" href="formulaire.php">Quizz</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
           <li class="nav-item">
-            <a class="nav-link" href="connexion.html">
+            <a class="nav-link" href="connexion.php">
               <i class="fas fa-user-circle me-1"></i>Mon Compte
             </a>
           </li>

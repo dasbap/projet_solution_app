@@ -6,6 +6,6 @@ const interval = setInterval(() => {
   countdownEl.textContent = seconds;
   if (seconds <= 0) {
     clearInterval(interval);
-    window.location.href = 'connexion.html';
+    window.location.href = 'connexion.php';
   }
 }, 1000);

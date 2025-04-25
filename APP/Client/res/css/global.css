@@ -2,11 +2,11 @@
   --navbar-height: 80px;
   --sidebar-width: 250px;
   --brand-color: #28a745;
-  --hover-bg:   #e8f5e9;
-  --bg-light:   #f4f4f4;
+  --hover-bg: #e8f5e9;
+  --bg-light: #f4f4f8;
 }
 
-/* — Reset de base — */
+/* Reset & base */
 *,
 *::before,
 *::after {
@@ -22,7 +22,7 @@ body {
   min-height: 100vh;
 }
 
-/* — Navbar — */
+/* Navbar */
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -33,8 +33,6 @@ body {
   padding: 0 1.5rem;
   z-index: 1000;
 }
-
-/* Liens de la navbar */
 .navbar .nav-link {
   color: #333 !important;
   transition: color .2s;
@@ -43,19 +41,15 @@ body {
 .navbar .nav-link.active {
   color: var(--brand-color) !important;
 }
-
-/* Bouton burger (mobile) */
-.navbar-toggler {
-  border: none;
-}
+.navbar-toggler,
 #burgerBtn {
-  display: none;
-  font-size: 1.4rem;
-  background: none;
   border: none;
+  background: none;
+  font-size: 1.4rem;
 }
+#burgerBtn { display: none; }
 
-/* — Sidebar desktop — */
+/* Sidebar desktop */
 .sidebar {
   position: fixed;
   top: var(--navbar-height);
@@ -66,32 +60,17 @@ body {
   border-right: 3px solid var(--brand-color);
   padding-top: 1rem;
   z-index: 900;
+  transition: transform .3s;
 }
-
-.sidebar .nav-link {
-  padding: .75rem 1rem;
-  color: #000;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  transition: background .2s, color .2s;
-}
-
-.sidebar .nav-link:hover,
-.sidebar .nav-link.active {
-  background: var(--hover-bg);
-  color: var(--brand-color);
-}
-/* Quand on ferme la sidebar (classe .closed via JS) */
 .sidebar.closed {
-  transform: translateX(-250px);
+  transform: translateX(-100%);
 }
 .sidebar .nav-link {
-  display: flex;
-  align-items: center;
   padding: .75rem 1rem;
   color: #000;
   text-decoration: none;
+  display: flex;
+  align-items: center;
   transition: background .2s, color .2s;
 }
 .sidebar .nav-link:hover,
@@ -100,7 +79,7 @@ body {
   color: var(--brand-color);
 }
 
-/* — Menu overlay mobile — */
+/* Mobile overlay */
 .mobile-menu {
   position: fixed;
   top: var(--navbar-height);
@@ -109,7 +88,7 @@ body {
   height: calc(100vh - var(--navbar-height));
   background: #fff;
   transform: translateX(-100%);
-  transition: transform .3s ease;
+  transition: transform .3s;
   z-index: 1001;
 }
 .mobile-menu.open {
@@ -122,14 +101,18 @@ body {
   color: #000;
   text-decoration: none;
 }
+.mobile-menu .nav-link:hover,
+.mobile-menu .nav-link.active {
+  background: var(--hover-bg);
+  color: var(--brand-color);
+}
 
-/* — Contenu principal & footer — */
+/* Main & footer */
 main {
   flex: 1;
   margin-top: var(--navbar-height);
   margin-left: var(--sidebar-width);
   padding: 2rem;
-  min-height: calc(100vh - var(--navbar-height));
 }
 .footer {
   background: #343a40;
@@ -137,87 +120,17 @@ main {
   text-align: center;
   padding: 1rem 0;
   margin-left: var(--sidebar-width);
+  margin-top: auto;
 }
 
-/* — Carousel (communs) — */
-.carousel-item-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-.carousel-item-img-container,
-.news-img {
-  flex: 0 0 auto;
-  width: 100%;
-  max-width: 600px;
-  text-align: center;
-}
-.carousel-img {
-  display: block;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  border-radius: .5rem;
-}
-.carousel-text-left,
-.carousel-text-right {
-  flex: 0 0 auto;
-  max-width: 200px;
-  font-family: 'Manrope', sans-serif;
-  color: var(--brand-color);
-}
-.carousel-text-left p,
-.carousel-text-right p {
-  color: #333;
-}
-
-/* — Responsivité — */
+/* Responsive */
 @media (max-width: 992px) {
-  /* Affiche burger, cache navbar desktop */
-  .navbar-collapse { display: none !important; }
   #burgerBtn { display: block; }
-
-  /* Cache la sidebar par défaut */
-  .sidebar {
-    transform: translateX(-250px);
-  }
-  /* main & footer pleine largeur */
-  main, .footer {
+  .navbar-collapse { display: none !important; }
+  .sidebar { transform: translateX(-100%); }
+  main,
+  .footer {
     margin-left: 0;
     padding: 1rem;
   }
-
-  /* Adapt carousel en colonne */
-  .carousel-item-content {
-    flex-direction: column;
-  }
-  .carousel-text-left,
-  .carousel-text-right {
-    max-width: 100%;
-    text-align: center;
-  }
-}
- /* Sidebar desktop */
- .sidebar {
-  position: fixed;
-  top: var(--navbar-height);
-  left: 0;
-  width: var(--sidebar-width);
-  height: calc(100vh - var(--navbar-height));
-  background: #fff;
-  border-right: 3px solid var(--brand-color);
-  padding-top: 1rem;
-  z-index: 900;
-}
-.sidebar .nav-link {
-  padding: .75rem 1rem;
-  color: #000;
-}
-.sidebar .nav-link.active,
-.sidebar .nav-link:hover {
-  background: var(--hover-bg);
-  color: var(--brand-color);
 }

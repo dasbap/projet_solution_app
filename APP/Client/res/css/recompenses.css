@@ -30,4 +30,31 @@
     transform: translateY(-4px);
     box-shadow: 0 4px 12px rgba(0,0,0,.15);
   }
+  .rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .reward-card {
+    background: #fff;
+    border-radius: .5rem;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+  
+  .reward-card i {
+    margin-bottom: .75rem;
+  }
+  
+  .reward-card h5 {
+    font-size: 1.1rem;
+    margin-bottom: .5rem;
+  }
+  
+  .reward-card p {
+    font-size: .9rem;
+    color: #555;
+  }
   
