@@ -1,7 +1,4 @@
-<?php
-  // Charge le profil utilisateur si nécessaire
-  require_once __DIR__ . '/../../Serveur/profil.php';
-?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -40,19 +37,19 @@
 
     <form action="../../Serveur/login.php" method="POST" novalidate>
       <div class="mb-3">
-        <label for="email_user" class="form-label">Email :</label>
+        <label for="email" class="form-label">Email :</label>
         <input type="email"
-               id="email_user"
-               name="email_user"
+               id="email"
+               name="email"
                class="form-control"
                placeholder="votre.email@exemple.com"
                required>
       </div>
       <div class="mb-3">
-        <label for="user_password" class="form-label">Mot de passe :</label>
+        <label for="password" class="form-label">Mot de passe :</label>
         <input type="password"
-               id="user_password"
-               name="user_password"
+               id="password"
+               name="password"
                class="form-control"
                placeholder="Votre mot de passe"
                required>
