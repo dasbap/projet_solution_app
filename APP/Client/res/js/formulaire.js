@@ -114,7 +114,6 @@ function getQuestionsWithResponses() {
 }
 
 function handleServerResponse(msg) {
-    alert("Formulaire envoyé avec succès !");
     console.log("Réponse du serveur :", msg);
     form.reset();
     Object.keys(reponses).forEach(key => delete reponses[key]);
@@ -123,7 +122,6 @@ function handleServerResponse(msg) {
 
 function handleError(err) {
     console.error("Erreur lors de l'envoi :", err);
-    alert("Une erreur est survenue lors de l'envoi.");
 }
 
 function handleChange(e) {
