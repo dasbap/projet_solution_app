@@ -1,71 +1,131 @@
+// File: Client/res/js/statperso.js
 document.addEventListener('DOMContentLoaded', () => {
-    // 1) Simulez le nombre de questions (fictif pour l'instant)
-    const questionCount = 6;
-    document.getElementById('count').textContent = questionCount;
-  
-    // 2) Graphique en ligne
-    new Chart(document.getElementById('chartLine'), {
-      type: 'line',
-      data: {
-        labels: ['S1','S2','S3','S4','S5','S6'],
-        datasets: [{
-          label: 'kg CO₂',
-          data: [12, 15, 14, 10, 8, 11],
-          backgroundColor: 'rgba(40,167,69,0.2)',
-          borderColor: '#28a745',
-          borderWidth: 2,
-          fill: true
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: { y: { beginAtZero: true } }
-      }
-    });
-  
-    // 3) Graphique à barres
-    new Chart(document.getElementById('chartBar'), {
-      type: 'bar',
-      data: {
-        labels: ['Transport','Alimentation','Énergie','Déchets','Autres'],
-        datasets: [{
-          label: 'kg CO₂',
-          data: [8, 5, 3, 2, 1],
-          backgroundColor: '#28a745'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: { y: { beginAtZero: true } }
-      }
-    });
-  
-    // 4) Camembert
-    new Chart(document.getElementById('chartPie'), {
-      type: 'pie',
-      data: {
-        labels: ['France','Europe','Monde','Autres'],
-        datasets: [{
-          data: [40, 30, 20, 10],
-          backgroundColor: ['#28a745','#6cc57a','#a2d5a0','#d8f3dc']
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    });
+  // Toggle mobile menu
+  const burgerBtn  = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('open'));
+  mobileMenu?.addEventListener('click', e => {
+    if (e.target === mobileMenu) mobileMenu.classList.remove('open');
   });
-  document.addEventListener('DOMContentLoaded', () => {
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    const sidebar = document.querySelector('.sidebar');
 
-    // Gestion du clic sur le bouton hamburger
-    sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
+  // Palette écologique
+  const palette = {
+    lineBg:    'rgba(30,112,191,0.2)',
+    lineBd:    '#1e70bf',
+    barColor:  '#2a9d8f',
+    pieColors: ['#2a9d8f','#8ab17d','#e9c46a','#f4a261','#d17357']
+  };
+
+  // 1️⃣ On récupère d’abord les données du formulaire pour construire les charts
+  fetch('../../Serveur/reqBdd/getformdata.php', { credentials: 'include' })
+    .then(r => r.json())
+    .then(data => {
+      // Nombre de questions répondues
+      document.getElementById('count').textContent =
+        Object.keys(data.form || {}).length;
+
+      // Short labels Q1, Q2… + infobulles avec la question
+      const fullLabels  = data.line.labels;
+      const shortLabels = fullLabels.map((_,i) => `Q${i+1}`);
+
+      // 1) Evolution par question (Line)
+      new Chart(
+        document.getElementById('chartLine').getContext('2d'),
+        {
+          type: 'line',
+          data: {
+            labels: shortLabels,
+            datasets: [{
+              label: 'Points par question',
+              data: data.line.data,
+              backgroundColor: palette.lineBg,
+              borderColor: palette.lineBd,
+              borderWidth: 2,
+              pointRadius: 4,
+              fill: true
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              x: { title: { display: true, text: 'Question' }, ticks: { autoSkip: false } },
+              y: { title: { display: true, text: 'Points' }, beginAtZero: true }
+            },
+            plugins: {
+              legend: { display: true, position: 'top' },
+              tooltip: {
+                callbacks: {
+                  title: ctx => fullLabels[ctx[0].dataIndex],
+                  label: ctx => `Points : ${ctx.parsed.y}`
+                }
+              }
+            }
+          }
+        }
+      );
+
+      // 2) Répartition par catégorie (Bar)
+      new Chart(
+        document.getElementById('chartBar').getContext('2d'),
+        {
+          type: 'bar',
+          data: {
+            labels: data.bar.labels,
+            datasets: [{
+              label: 'Total points',
+              data: data.bar.data,
+              backgroundColor: palette.barColor,
+              borderColor: palette.barColor,
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              x: { title: { display: true, text: 'Catégorie' }, ticks: { autoSkip: false, maxRotation: 45 } },
+              y: { title: { display: true, text: 'Points' }, beginAtZero: true }
+            },
+            plugins: { legend: { display: true, position: 'top' } }
+          }
+        }
+      );
+
+      // 3) Totaux mensuels (Pie)
+      new Chart(
+        document.getElementById('chartPie').getContext('2d'),
+        {
+          type: 'pie',
+          data: {
+            labels: data.pie.labels,
+            datasets: [{ data: data.pie.data, backgroundColor: palette.pieColors }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: true, position: 'bottom' },
+              tooltip: {
+                callbacks: {
+                  label: ctx => `${ctx.label} : ${ctx.parsed} pts`
+                }
+              }
+            }
+          }
+        }
+      );
+    })
+    .catch(err => console.error('Erreur fetch formdata :', err))
+    .finally(() => {
+      // 2️⃣ Puis on récupère le score total via votre nouvel endpoint
+      fetch('../../Serveur/reqBdd/getlastscore.php', { credentials: 'include' })
+        .then(r => r.json())
+        .then(scoresArr => {
+          // Somme des scores
+          const total = scoresArr.reduce((sum, q) => sum + (q.score||0), 0);
+          document.getElementById('totalPoints').textContent = total;
+        })
+        .catch(err => console.error('Erreur fetch lastscore :', err));
     });
 });
-
-  

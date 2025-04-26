@@ -1,64 +1,200 @@
-/* res/css/statperso.css */
+:root {
+  --navbar-height: 80px;
+  --sidebar-width: 250px;
+  --color-main: #28a745;
+  --sidebar-bg: #fff;
+  --sidebar-border: var(--color-main);
+  --sidebar-hover-bg: #e8f5e9;
+  --bg-light: #f4f4f4;
+}
 
-/* Conteneur des graphiques */
+/* Reset & box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--navbar-height);
+  line-height: var(--navbar-height);
+  padding: 0 1.5rem;
+  background: #fff;
+  border-bottom: 2px solid var(--sidebar-border);
+  z-index: 1000;
+}
+#burgerBtn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+}
+
+/* Sidebar desktop */
+.sidebar {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--navbar-height));
+  background: var(--sidebar-bg);
+  border-right: 3px solid var(--sidebar-border);
+  padding-top: 1rem;
+  z-index: 900;
+}
+.sidebar .nav-link {
+  display: flex;
+  align-items: center;
+  padding: .75rem 1rem;
+  color: inherit;          /* conserve la couleur définie directement sur l’icône/text */
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+  background: var(--sidebar-hover-bg);
+  color: var(--color-main);
+}
+/* (on n’altère pas les icônes via CSS, leur couleur inline reste inchangée) */
+
+/* Mobile menu overlay */
+.mobile-menu {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  width: var(--sidebar-width);
+  height: calc(100vh - var(--navbar-height));
+  background: var(--sidebar-bg);
+  transform: translateX(-100%);
+  transition: transform .3s ease;
+  z-index: 1001;
+}
+.mobile-menu.open {
+  transform: translateX(0);
+}
+.mobile-menu .nav-link {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* Main content */
+main {
+  flex: 1;
+  margin-top: var(--navbar-height);
+  margin-left: var(--sidebar-width);
+  padding: 2rem;
+  min-height: calc(100vh - var(--navbar-height));
+}
+.page-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+.page-subtitle {
+  color: #555;
+  margin-bottom: 1rem;
+}
+.question-count {
+  font-weight: 500;
+  margin-bottom: 2rem;
+}
+
+/* Dashboards */
 .dash-row {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 2rem;
 }
-
-/* Carte de tableau de bord */
 .dash-card {
   background: #fff;
   border-radius: .5rem;
   box-shadow: 0 2px 6px rgba(0,0,0,.1);
-  flex: 1 1 32%;
+  flex: 1 1 30%;
   display: flex;
   flex-direction: column;
   padding: 1rem;
 }
-
-/* Titre des cartes */
 .dash-card h2 {
   font-family: 'Manrope', sans-serif;
-  font-size: 1.25rem;
+  font-weight: 700;
   margin-bottom: 1rem;
   text-align: center;
 }
-
-/* Forcer la taille des canvas pour Chart.js */
 .dash-card canvas {
   width: 100% !important;
-  height: 300px !important;
+  height: 250px !important;
   flex: 1 1 auto;
 }
 
-/* Carte de synthèse */
+/* Résumé */
 .summary-card {
   background: #fff;
   border-radius: .5rem;
   box-shadow: 0 2px 6px rgba(0,0,0,.1);
-  padding: 1.5rem;
+  padding: 2rem;
   text-align: center;
 }
-
-/* Icône cœur */
 .summary-card i {
   font-size: 2rem;
-  color: var(--brand-color);
-  margin-bottom: .5rem;
+  color: var(--color-main);
+  margin-bottom: 1rem;
 }
-
-/* Texte synthèse */
 .summary-card p {
   margin: 0;
   font-size: 1.1rem;
 }
 
-/* Responsivité */
-@media (max-width: 768px) {
+/* Footer */
+.footer {
+  background: #343a40;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  #burgerBtn { display: block; }
+  .navbar-collapse { display: none !important; }
+  .sidebar {
+    transform: translateX(-var(--sidebar-width));
+  }
+  main {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  .footer {
+    margin-left: 0;
+  }
   .dash-card {
     flex: 1 1 100%;
   }
+}
+/* dash-card canvas agrandi */
+.dash-card canvas {
+  width: 100% !important;
+  height: 350px !important;
+}
+
+/* espacement supplémentaire */
+.dash-row {
+  gap: 1.5rem;
+}
+.summary-card {
+  padding: 2rem 1rem;
 }
