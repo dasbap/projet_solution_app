@@ -48,7 +48,8 @@ CREATE TABLE Table_reponses (
     id_reponse INT AUTO_INCREMENT,              
     id_user INT NOT NULL,                       
     id_question INT NOT NULL,                   
-    reponse TEXT NOT NULL,                      
+    reponse TEXT NOT NULL, 
+    score_question int not null,
     date_reponse TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
     PRIMARY KEY (id_reponse),                    
     FOREIGN KEY (id_user) REFERENCES Table_User(id_user) 
