@@ -1,7 +1,3 @@
-<?php
-  // Charge le profil utilisateur si nécessaire
-  require_once __DIR__ . '/../../Serveur/profil.php';
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -33,8 +29,8 @@
     <!-- Logo centré -->
     <div class="text-center mb-3">
       <img src="../res/images/Logo-EcoTrack.svg"
-           alt="Logo EcoTrack"
-           style="max-width: 150px; width: 100%; height: auto;">
+            alt="Logo EcoTrack"
+            style="max-width: 150px; width: 100%; height: auto;">
     </div>
     <h2 class="h5 text-center mb-4">Se connecter</h2>
 
@@ -42,20 +38,20 @@
       <div class="mb-3">
         <label for="email_user" class="form-label">Email :</label>
         <input type="email"
-               id="email_user"
-               name="email_user"
-               class="form-control"
-               placeholder="votre.email@exemple.com"
-               required>
+                id="email"
+                name="email"
+                class="form-control"
+                placeholder="votre.email@exemple.com"
+                required>
       </div>
       <div class="mb-3">
-        <label for="user_password" class="form-label">Mot de passe :</label>
+        <label for="password" class="form-label">Mot de passe :</label>
         <input type="password"
-               id="user_password"
-               name="user_password"
-               class="form-control"
-               placeholder="Votre mot de passe"
-               required>
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="Votre mot de passe"
+                required>
         <a href="motdepasseoublie.php" class="small">Mot de passe oublié ?</a>
       </div>
       <button type="submit" class="btn btn-success w-100">Connexion</button>
