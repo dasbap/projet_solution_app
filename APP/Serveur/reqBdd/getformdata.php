@@ -10,7 +10,6 @@ if (!isset($_SESSION['user_id'])) {
 $userId = $_SESSION['user_id'];
 
 try {
-    // Dernière date de réponse de l'utilisateur
     $stmt = $pdo->prepare("SELECT MAX(date_reponse) AS last_date FROM Table_reponses WHERE id_user = :id_user");
     $stmt->execute(['id_user' => $userId]);
     $lastDate = $stmt->fetchColumn();
@@ -20,7 +19,6 @@ try {
         exit;
     }
 
-    // Récupérer les réponses + questions
     $stmt = $pdo->prepare("
         SELECT q.id_question, q.question_text, q.categorie, r.reponse, r.score_question
         FROM Table_reponses r
@@ -30,7 +28,6 @@ try {
     $stmt->execute(['id_user' => $userId, 'last_date' => $lastDate]);
     $responses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Préparer les données pour les graphiques et les réponses
     $labels = [];
     $scores = [];
     $categories = [];
@@ -47,7 +44,6 @@ try {
         ];
     }
 
-    // Exemple de catégories d'impact environnemental à ajuster
     $impact_categories = [
         'Transport' => 'Emissions liées au transport',
         'Energie' => 'Consommation d\'énergie',
@@ -56,10 +52,9 @@ try {
         'Autres' => 'Autres facteurs'
     ];
 
-    // Dynamique des graphiques : ajuster les noms et données
     echo json_encode([
         'form' => array_column($responses, 'reponse', 'id_question'),
-        'user_responses' => $userResponses, // Envoie les réponses de l'utilisateur
+        'user_responses' => $userResponses, 
         'line' => [
             'labels' => $labels, 
             'data' => $scores
@@ -70,7 +65,7 @@ try {
         ],
         'pie' => [
             'labels' => array_keys($impact_categories),
-            'data' => array_values($categories) // peut être ajusté en fonction des catégories dans les réponses
+            'data' => array_values($categories) 
         ]
     ]);
 

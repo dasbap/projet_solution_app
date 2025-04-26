@@ -118,7 +118,6 @@ function getQuestionsWithResponses() {
 }
 
 function handleServerResponse(msg) {
-    alert("Formulaire envoyé avec succès !");
     console.log("Réponse du serveur :", msg);
     form.reset();
     Object.keys(reponses).forEach(key => delete reponses[key]);

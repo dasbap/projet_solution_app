@@ -4,8 +4,6 @@ require_once 'config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
-    print_r($email);
-    print_r($password);
     try {
         $stmt = $pdo->prepare("SELECT * FROM Table_User WHERE email_user = :email");
         $stmt->execute([':email' => $email]);
