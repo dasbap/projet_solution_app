@@ -1,4 +1,6 @@
 create database score_carbone_db;
+use score_carbone_db;
+
 -- Table des entreprises
 CREATE TABLE Table_company (
     siret_company CHAR(14),
