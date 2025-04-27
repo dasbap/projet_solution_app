@@ -320,7 +320,7 @@ function getScoreWithReponse($question, $reponse) {
 }
 
 /**
- * Enregistre le score total dans table_score_carbon
+ * Enregistre le score total dans table_score_carbone
  * @param int $userId ID de l'utilisateur
  * @param int $totalScore Score total à enregistrer
  * @return bool True si l'insertion a réussi, false sinon
@@ -329,9 +329,9 @@ function saveTotalScore($userId, $totalScore) {
     global $pdo;
     
     try {
-        $stmt = $pdo->prepare('INSERT INTO table_score_carbon 
+        $stmt = $pdo->prepare('INSERT INTO table_score_carbone 
                                 (id_user, score, date_assigned) 
-                                VALUES (:user, :score, CURDATE())');
+                                VALUES (:user, :score, NOW())');
         
         $result = $stmt->execute([
             ':user' => $userId,

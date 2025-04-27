@@ -20,14 +20,14 @@ $userId = $_SESSION['user_id'];
 logMessage('Utilisateur authentifié', ['user_id' => $userId], 'application');
 
 try {
-    // Requête pour récupérer le dernier score à partir de Table_score_carbon
+    // Requête pour récupérer le dernier score à partir de table_score_carbone
     $sql = "
         SELECT score
-        FROM Table_score_carbon
+        FROM table_score_carbone
         WHERE id_user = :user_id
         AND date_assigned = (
             SELECT MAX(date_assigned)
-            FROM Table_score_carbon
+            FROM table_score_carbone
             WHERE id_user = :user_id
         )
         LIMIT 1

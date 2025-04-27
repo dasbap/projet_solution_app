@@ -16,7 +16,7 @@ try {
             COALESCE(SUM(sc.score), 0) AS total_score
         FROM table_company c
         LEFT JOIN table_user u ON c.siret_company = u.siret_company
-        LEFT JOIN table_score_carbon sc ON u.id_user = sc.id_user
+        LEFT JOIN table_score_carbone sc ON u.id_user = sc.id_user
         GROUP BY c.name_company
         ORDER BY total_score DESC
     ";

@@ -23,11 +23,11 @@ CREATE TABLE Table_User (
 );
 
 -- Table des scores de carbone
-CREATE TABLE Table_score_carbon (
+CREATE TABLE Table_score_carbone (
     id_score INT AUTO_INCREMENT, 
     id_user INT NOT NULL,
     score INT NOT NULL,
-    date_assigned DATE NOT NULL,
+    date_assigned TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_score),
     FOREIGN KEY (id_user) REFERENCES Table_User(id_user) 
         ON DELETE CASCADE 
