@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-
 <?php require_once("../../Serveur/profil.php"); ?>
-
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
@@ -23,11 +21,26 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     rel="stylesheet"/>
 
-  <!-- CSS spécifique Actualités -->
+  <!-- CSS global -->
   <link rel="stylesheet" href="../res/css/global.css"/>
+
+  <style>
+    /* Ajustements spécifiques Actualités */
+    .carousel-img {
+      max-width: 600px;
+      width: 100%;
+      border-radius: .5rem;
+    }
+    .carousel-caption-custom {
+      display: inline-block;
+      background: rgba(255,255,255,0.9);
+      padding: .75rem 1rem;
+      border-radius: .5rem;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 
-<body>
 <body class="d-flex flex-column min-vh-100">
 
   <!-- NAVBAR -->
@@ -54,21 +67,6 @@
     </div>
   </nav>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar bg-white border-end border-success">
-    <div onclick="location.href='stat_perso.php'">
-      <i class="fas fa-user-circle me-2"></i>Stat Perso
-    </div>
-    <div onclick="location.href='stat_entreprise.php'">
-      <i class="fas fa-building me-2"></i>Stat Entreprise
-    </div>
-    <div onclick="location.href='actualites.php'">
-      <i class="fas fa-globe me-2"></i>Actualités ECO
-    </div>
-    <div onclick="location.href='recompenses.php'">
-      <i class="fas fa-trophy me-2"></i>Récompenses
-    </div>
-    </aside>
   <!-- SIDEBAR desktop -->
   <aside class="sidebar bg-white border-end border-success d-none d-lg-block">
     <nav class="nav flex-column pt-4">
@@ -104,88 +102,75 @@
     </section>
 
     <!-- Carousel Actualités -->
-    <div id="carouselIndex" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <!-- Slide 1 -->
-          <div class="carousel-item active">
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
-              <!-- Texte gauche -->
-              <div class="carousel-text-left text-center text-md-start mb-3 mb-md-0 me-md-4">
-                <h5>Agissez pour la planète</h5>
-                <p>Découvrez comment chaque geste compte au quotidien.</p>
-              </div>
-              <!-- Image -->
-              <div class="carousel-item-img-container mx-4">
-                <img
-                  src=".../res/images/Firefly image 1.jpg"
-                  alt="Paysage écologique"
-                  class="d-block carousel-img"
-                  style="max-width:500px; width:100%; border-radius:.5rem;"
-                />
-              </div>
-              <!-- Texte droite -->
-              <div class="carousel-text-right text-center text-md-end mt-3 mt-md-0 ms-md-4">
-                <h5>Partagez vos progrès</h5>
-                <p>Rejoignez une communauté engagée et inspirez vos proches.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Slide 2 -->
-          <div class="carousel-item">
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
-              <div class="carousel-text-left text-center text-md-start mb-3 mb-md-0 me-md-4">
-                <h5>Réduisez votre empreinte</h5>
-                <p>Suivez vos progrès et comparez-vous aux autres.</p>
-              </div>
-              <div class="carousel-item-img-container mx-4">
-                <img
-                  src="/res/images/Firefly image 2.jpg"
-                  alt="Énergie renouvelable"
-                  class="d-block carousel-img"
-                  style="max-width:500px; width:100%; border-radius:.5rem;"
-                />
-              </div>
-              <div class="carousel-text-right text-center text-md-end mt-3 mt-md-0 ms-md-4">
-                <h5>Gagnez des récompenses</h5>
-                <p>Accumulez des points pour obtenir des avantages.</p>
-              </div>
-            </div>
+    <div id="carouselActualites" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active text-center">
+          <img
+            src="../res/Images/ACTU1.png"
+            alt="Projet Nogent"
+            class="d-block mx-auto carousel-img"
+          />
+          <div class="carousel-caption-custom">
+            <p>
+              Le projet de restauration écologique “Nogent” du parc national a été sélectionné lauréat du programme Mission Nature 2025.
+              <br>
+              <a href="https://la1ere.francetvinfo.fr/guadeloupe/le-projet-de-restauration-ecologique-nogent-du-parc-national-laureat-du-programme-mission-nature-2025-1581581.html">En savoir plus →</a>
+            </p>
           </div>
         </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselIndex"
-          data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselIndex"
-          data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-        </button>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item text-center">
+          <img
+            src="../res/Images/actu2.webp"
+            alt="Initiative XYZ"
+            class="d-block mx-auto carousel-img"
+          />
+          <div class="carousel-caption-custom">
+            <p>
+              L’initiative XYZ valorise les énergies renouvelables et engage les citoyens dans une transition écologique.
+              <br>
+              <a href="https://www.lyonne.fr/flogny-la-chapelle-89360/actualites/la-riviere-est-le-meilleur-pisciculteur-la-continuite-ecologique-l-autre-mission-de-la-federation-de-peche-de-l-yonne_14676185/">En savoir plus →</a>
+            </p>
+          </div>
+        </div>
+
       </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselActualites"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselActualites"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon"></span>
+      </button>
     </div>
-    
-    
   </main>
 
   <!-- FOOTER -->
-  <footer class="footer bg-dark text-white text-center py-3">
+  <footer class="footer bg-dark text-white text-center py-3 mt-auto">
     &copy; 2025 EcoTrack | Tous droits réservés
   </footer>
 
-  <!-- Scripts -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const burgerBtn  = document.getElementById('burgerBtn');
       const mobileMenu = document.getElementById('mobileMenu');
-      burgerBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
+      burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
       mobileMenu.addEventListener('click', e => {
-        if(e.target===mobileMenu) mobileMenu.classList.remove('open');
+        if (e.target === mobileMenu) mobileMenu.classList.remove('open');
       });
     });
   </script>
