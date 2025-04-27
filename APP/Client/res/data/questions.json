@@ -8,7 +8,7 @@
             { "label": "Sur site", "score": 0 },
             { "label": "Télétravail", "score": 10 }
         ],
-        "coef": 1
+        "coef": 7
     },
     {
         "id":2,
@@ -23,16 +23,16 @@
             { "label": "Covoiturage", "score": 5 }
         ],
         "showIf": { "categorie": "travail", "value": "Sur site" },
-        "coef": 1
+        "coef": 4
     },
     {
         "id":3,
         "categorie": "distance",
         "question_text": "Quelle est la distance moyenne parcourue chaque jour ? (en km)",
         "type": "number",
-        "scorePerKm": 1,
+        "scorePerKm": -1,
         "showIf": { "categorie": "transport", "value": ["Voiture", "Transports publics", "Covoiturage"] },
-        "coef": 2
+        "coef": 1
     },
     {
         "id":4,
@@ -46,14 +46,14 @@
             { "label": "Hybride", "score": 10 }
         ],
         "showIf": { "categorie": "transport", "value": "Voiture" },
-        "coef": 1
+        "coef": 2
     },
     {
         "id":5,
         "categorie": "frequence_voiture",
         "question_text": "Combien de jours par semaine utilisez-vous votre voiture ?",
         "type": "number",
-        "scorePerDay": -2,
+        "scorePerDay": -1,
         "showIf": { "categorie": "transport", "value": "Voiture" },
         "coef": 1
     },
@@ -67,7 +67,7 @@
             { "label": "Non", "score": 5 }
         ],
         "showIf": { "categorie": "transport", "value": "Voiture" },
-        "coef": 1
+        "coef": 2
     },
     {
         "id":7,
@@ -86,7 +86,7 @@
             { "label": "Oui", "score": 10 },
             { "label": "Non", "score": 0 }
         ],
-        "coef": 1
+        "coef": 2
     },
     {
         "id":9,
@@ -99,7 +99,7 @@
             { "label": "Parfois", "score": 5 }
         ],
         "showIf": { "categorie": "bio", "value": "Non" },
-        "coef": 1
+        "coef": 2
     },
     {
         "id":10,
@@ -111,7 +111,7 @@
             { "label": "Non", "score": 0 },
             { "label": "Parfois", "score": 5 }
         ],
-        "coef": 1
+        "coef": 3
     },
     {
         "id":11,
@@ -131,12 +131,12 @@
         "type": "select",
         "options": [
             { "label": "Papier", "score": 5 },
-            { "label": "Plastique", "score": 5 },
-            { "label": "Canettes", "score": 5 },
-            { "label": "Biodéchets", "score": 10 }
+            { "label": "Plastique", "score": 7 },
+            { "label": "Canettes", "score": 6 },
+            { "label": "Biodéchets", "score": 4 }
         ],
         "showIf": { "categorie": "dechets", "value": "Oui" },
-        "coef": 1
+        "coef": 3
     },
     {
         "id":13,
@@ -147,6 +147,7 @@
             { "label": "Oui", "score": 10 },
             { "label": "Non", "score": 0 }
         ],
+        "showIf": { "categorie": "dechets_type", "value": "Papier" },
         "coef": 1
     },
     {
@@ -158,7 +159,7 @@
             { "label": "Oui", "score": 10 },
             { "label": "Non", "score": 0 }
         ],
-        "coef": 15
+        "coef": 2
     },
     {
         "id":16,
@@ -169,7 +170,7 @@
             { "label": "Oui", "score": 10 },
             { "label": "Non", "score": 0 }
         ],
-        "coef": 17
+        "coef": 3
     },
     {
         "id":18,
@@ -180,6 +181,6 @@
             { "label": "Oui", "score": 10 },
             { "label": "Non", "score": 0 }
         ],
-        "coef": 1
+        "coef": 5
     }
 ]

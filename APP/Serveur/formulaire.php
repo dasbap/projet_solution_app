@@ -2,119 +2,79 @@
 session_start();
 require_once 'config.php';
 
-// Configuration du logging
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
-ini_set('error_log', __DIR__ . '/log/serveur_errors.log');
-
-// Définition des fichiers de log
-$destination_log = [
-    'error' => '/log/serveur_errors.log',
-    'detail' => '/log/serveur_detail.log',
-    'application' => '/log/serveur_application.log'
-];
-
-/**
- * Fonction de logging
- * @param string $message Message à logger
- * @param mixed $data Données supplémentaires à logger
- * @param string $type Type de log ('error', 'detail', 'application')
- */
-function logDebug($message, $data = null, $type = 'detail') {
-    global $destination_log;
-    
-    if (!array_key_exists($type, $destination_log)) {
-        $type = 'detail';
-    }
-    
-    $logMessage = date('[Y-m-d H:i:s] ') . $message;
-    if ($data !== null) {
-        $logMessage .= ' | ' . (is_array($data) ? json_encode($data) : $data);
-    }
-    
-    $logFile = __DIR__ . $destination_log[$type];
-    file_put_contents($logFile, $logMessage . PHP_EOL, FILE_APPEND);
-}
-
-if (!isset($_SESSION['user_id'])) {
-    logDebug('ERREUR: Tentative d\'accès non authentifié', $_SERVER, 'error');
-    http_response_code(401);
-    die(json_encode(['error' => 'Authentification requise']));
-}
-
 $userId = $_SESSION['user_id'];
-logDebug('Session démarrée pour utilisateur', ['user_id' => $userId, 'ip' => $_SERVER['REMOTE_ADDR']], 'application');
+logMessage('Session démarrée pour utilisateur', ['user_id' => $userId, 'ip' => $_SERVER['REMOTE_ADDR']], 'application');
 
 try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    logDebug('Connexion PDO établie', ['dsn' => $pdo->getAttribute(PDO::ATTR_CONNECTION_STATUS)], 'detail');
+    logMessage('Connexion PDO établie', ['dsn' => $pdo->getAttribute(PDO::ATTR_CONNECTION_STATUS)], 'detail');
 
     $jsonPath = realpath(__DIR__ . '/../Client/res/data/questions.json');
     if (!$jsonPath) {
-        logDebug('ERREUR: Fichier JSON introuvable', ['path' => __DIR__ . '/../Client/res/data/questions.json'], 'error');
+        logMessage('ERREUR: Fichier JSON introuvable', ['path' => __DIR__ . '/../Client/res/data/questions.json'], 'error');
         throw new Exception("Fichier JSON introuvable");
     }
 
     $questionsJson = file_get_contents($jsonPath);
     if ($questionsJson === false) {
-        logDebug('ERREUR: Impossible de lire le fichier JSON', ['path' => $jsonPath, 'error' => error_get_last()], 'error');
+        logMessage('ERREUR: Impossible de lire le fichier JSON', ['path' => $jsonPath, 'error' => error_get_last()], 'error');
         throw new Exception("Erreur de lecture du fichier JSON");
     }
 
     $questions = json_decode($questionsJson, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
-        logDebug('ERREUR: JSON invalide', ['error' => json_last_error_msg(), 'content_sample' => substr($questionsJson, 0, 100)], 'error');
+        logMessage('ERREUR: JSON invalide', ['error' => json_last_error_msg(), 'content_sample' => substr($questionsJson, 0, 100)], 'error');
         throw new Exception("Erreur de format JSON: " . json_last_error_msg());
     }
 
     $questionMap = array_column($questions, null, 'id');
-    logDebug('Questions chargées', ['count' => count($questionMap), 'sample_ids' => array_slice(array_keys($questionMap), 0, 3)], 'detail');
+    logMessage('Questions chargées', ['count' => count($questionMap), 'sample_ids' => array_slice(array_keys($questionMap), 0, 3)], 'detail');
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $rawInput = file_get_contents('php://input');
-        logDebug('Données POST brutes reçues', ['length' => strlen($rawInput), 'content_type' => $_SERVER['CONTENT_TYPE']], 'application');
+        logMessage('Données POST brutes reçues', ['length' => strlen($rawInput), 'content_type' => $_SERVER['CONTENT_TYPE']], 'application');
 
         $data = json_decode($rawInput, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            logDebug('ERREUR: Données POST JSON invalides', ['error' => json_last_error_msg(), 'input_sample' => substr($rawInput, 0, 100)], 'error');
+            logMessage('ERREUR: Données POST JSON invalides', ['error' => json_last_error_msg(), 'input_sample' => substr($rawInput, 0, 100)], 'error');
             throw new Exception("Données JSON invalides");
         }
 
         if (empty($data)) {
-            logDebug('AVERTISSEMENT: Données POST vides reçues', $_SERVER, 'application');
+            logMessage('AVERTISSEMENT: Données POST vides reçues', $_SERVER, 'application');
             throw new Exception("Aucune donnée reçue");
         }
 
-        logDebug('Traitement des réponses', ['user_id' => $userId, 'response_count' => count($data)], 'detail');
+        logMessage('Traitement des réponses', ['user_id' => $userId, 'response_count' => count($data)], 'detail');
         $pdo->beginTransaction();
-        logDebug('Transaction démarrée', null, 'detail');
+        logMessage('Transaction démarrée', null, 'detail');
 
         $responsesToSave = [];
         $emptyResponses = 0;
 
         foreach ($data as $index => $response) {
             if (!isset($response['id'], $response['reponse'])) {
-                logDebug('AVERTISSEMENT: Format de réponse invalide', ['index' => $index, 'response' => $response], 'application');
+                logMessage('AVERTISSEMENT: Format de réponse invalide', ['index' => $index, 'response' => $response], 'application');
                 continue;
             }
 
             $questionId = $response['id'];
             if (empty($response['reponse'])) {
                 $emptyResponses++;
-                logDebug('Réponse vide détectée', ['question_id' => $questionId], 'detail');
+                logMessage('Réponse vide détectée', ['question_id' => $questionId], 'detail');
             }
 
             if (!isset($questionMap[$questionId])) {
-                logDebug('AVERTISSEMENT: Question ID non trouvée', ['question_id' => $questionId, 'available_ids' => array_keys($questionMap)], 'detail');
+                logMessage('AVERTISSEMENT: Question ID non trouvée', ['question_id' => $questionId, 'available_ids' => array_keys($questionMap)], 'detail');
                 continue;
             }
 
             $questionExists = doesQuestionExist($questionId);
-            logDebug('Vérification existence question', ['question_id' => $questionId, 'exists' => $questionExists], 'detail');
+            logMessage('Vérification existence question', ['question_id' => $questionId, 'exists' => $questionExists], 'detail');
 
             if (!$questionExists) {
                 $creationSuccess = createQuestion($questionMap[$questionId]);
-                logDebug('Création question', ['question_id' => $questionId, 'success' => $creationSuccess], 'detail');
+                logMessage('Création question', ['question_id' => $questionId, 'success' => $creationSuccess], 'detail');
                 
                 if (!$creationSuccess) {
                     throw new Exception("Erreur création question ID $questionId");
@@ -128,7 +88,7 @@ try {
             ];
         }
 
-        logDebug('Résumé des réponses', [
+        logMessage('Résumé des réponses', [
             'total_received' => count($data),
             'valid_responses' => count($responsesToSave),
             'empty_responses' => $emptyResponses,
@@ -152,7 +112,7 @@ try {
                 $totalscore += $score;
             } else {
                 $score = 0;
-                logDebug('Question non trouvée pour calcul du score', [
+                logMessage('Question non trouvée pour calcul du score', [
                     'question_id' => $response['question_id']
                 ], 'detail');
             }
@@ -166,7 +126,7 @@ try {
                     $score
                 );
                 
-                logDebug('Sauvegarde réponse avec score', [
+                logMessage('Sauvegarde réponse avec score', [
                     'user_id' => $response['user_id'],
                     'question_id' => $response['question_id'],
                     'reponse' => substr($response['reponse'], 0, 50) . (strlen($response['reponse']) > 50 ? '...' : ''),
@@ -175,7 +135,7 @@ try {
                     'success' => $saveResult ?? null
                 ], 'detail');
             } else {
-                logDebug('Réponse vide - non sauvegardée', [
+                logMessage('Réponse vide - non sauvegardée', [
                     'user_id' => $response['user_id'],
                     'question_id' => $response['question_id']
                 ], 'detail');
@@ -183,7 +143,7 @@ try {
             }
 
             // 4. Logger les détails
-            logDebug('Sauvegarde réponse avec score', [
+            logMessage('Sauvegarde réponse avec score', [
                 'user_id' => $response['user_id'],
                 'question_id' => $response['question_id'],
                 'reponse' => substr($response['reponse'], 0, 50) . (strlen($response['reponse']) > 50 ? '...' : ''),
@@ -197,19 +157,19 @@ try {
         $saveTotalResult = saveTotalScore($userId, $totalscore);
 
         if ($saveTotalResult) {
-            logDebug('Score carbon total sauvegardé avec succès', [
+            logMessage('Score carbon total sauvegardé avec succès', [
                 'user_id' => $userId,
                 'score' => $totalscore
             ], 'application');
         } else {
-            logDebug('ERREUR: Échec sauvegarde score carbon total', [
+            logMessage('ERREUR: Échec sauvegarde score carbon total', [
                 'user_id' => $userId
             ], 'error');
         }
 
         $pdo->commit();
 
-        logDebug('Transaction confirmée', [
+        logMessage('Transaction confirmée', [
             'responses_saved' => count($responsesToSave),
             'total_score' => $totalscore
         ], 'detail');
@@ -219,20 +179,20 @@ try {
             "score" => $totalscore
         ]);
 
-        logDebug('Réponse envoyée avec succès', [
+        logMessage('Réponse envoyée avec succès', [
             'total_score' => $totalscore,
             'user_id' => $userId
         ], 'application');}
 else {
-        logDebug('ERREUR: Méthode non supportée', ['method' => $_SERVER['REQUEST_METHOD']], 'error');
+        logMessage('ERREUR: Méthode non supportée', ['method' => $_SERVER['REQUEST_METHOD']], 'error');
         throw new Exception("Méthode non supportée: " . $_SERVER['REQUEST_METHOD']);
     }
 } catch (PDOException $e) {
     if (isset($pdo) && $pdo->inTransaction()) {
         $pdo->rollBack();
-        logDebug('ERREUR: Rollback transaction', ['error' => $e->getMessage()], 'error');
+        logMessage('ERREUR: Rollback transaction', ['error' => $e->getMessage()], 'error');
     }
-    logDebug('ERREUR PDO', [
+    logMessage('ERREUR PDO', [
         'message' => $e->getMessage(),
         'code' => $e->getCode(),
         'trace' => $e->getTraceAsString()
@@ -240,7 +200,7 @@ else {
     http_response_code(500);
     echo json_encode(['error' => 'Erreur de base de données']);
 } catch (Exception $e) {
-    logDebug('ERREUR Application', [
+    logMessage('ERREUR Application', [
         'message' => $e->getMessage(),
         'trace' => $e->getTraceAsString()
     ], 'application');
@@ -260,7 +220,7 @@ function doesQuestionExist($questionId) {
         $stmt->execute([':id' => $questionId]);
         return $stmt->fetchColumn() > 0;
     } catch (PDOException $e) {
-        logDebug('ERREUR: Échec vérification question', [
+        logMessage('ERREUR: Échec vérification question', [
             'question_id' => $questionId,
             'error' => $e->getMessage()
         ], 'error');
@@ -284,7 +244,7 @@ function createQuestion($questionData) {
             ':type' => $questionData['type']
         ]);
     } catch (PDOException $e) {
-        logDebug('ERREUR: Échec création question', [
+        logMessage('ERREUR: Échec création question', [
             'question_data' => $questionData,
             'error' => $e->getMessage(),
             'code' => $e->getCode()
@@ -321,7 +281,7 @@ function saveResponse($userId, $questionId, $reponse, $score) {
         ]);
         
     } catch (PDOException $e) {
-        logDebug('ERREUR: Échec insertion réponse', [
+        logMessage('ERREUR: Échec insertion réponse', [
             'user_id' => $userId,
             'question_id' => $questionId,
             'error' => $e->getMessage()
@@ -378,7 +338,7 @@ function saveTotalScore($userId, $totalScore) {
             ':score' => $totalScore
         ]);
         
-        logDebug('Score total enregistré', [
+        logMessage('Score total enregistré', [
             'user_id' => $userId,
             'total_score' => $totalScore,
             'success' => $result,
@@ -388,7 +348,7 @@ function saveTotalScore($userId, $totalScore) {
         return $result;
         
     } catch (PDOException $e) {
-        logDebug('ERREUR: Échec enregistrement score total', [
+        logMessage('ERREUR: Échec enregistrement score total', [
             'user_id' => $userId,
             'error' => $e->getMessage(),
             'error_code' => $e->getCode()
