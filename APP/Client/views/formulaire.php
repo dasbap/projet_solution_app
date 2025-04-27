@@ -74,7 +74,7 @@
     <div class="container py-5">
       <!-- Logo centré -->
       <div class="text-center mb-4">
-        <img src="../res/images/Logo-EcoTrack.svg"
+        <img src="../res/Images/merci.png"
               alt="Logo EcoTrack"
               class="logo">
       </div>

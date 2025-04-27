@@ -115,7 +115,7 @@ require_once __DIR__ . '/../../Serveur/profil.php';
               <!-- Image -->
               <div class="carousel-item-img-container mx-4">
                 <img
-                  src="/res/images/Firefly image 1.jpg"
+                  src="../res/Images/CARROUSSEL1.jpg"
                   alt="Paysage écologique"
                   class="d-block carousel-img"
                   style="max-width:500px; width:100%; border-radius:.5rem;"
@@ -137,7 +137,7 @@ require_once __DIR__ . '/../../Serveur/profil.php';
               </div>
               <div class="carousel-item-img-container mx-4">
                 <img
-                  src="/res/images/Firefly image 2.jpg"
+                  src="../res/Images/carroussel2.jpg"
                   alt="Énergie renouvelable"
                   class="d-block carousel-img"
                   style="max-width:500px; width:100%; border-radius:.5rem;"
