@@ -124,49 +124,6 @@
 
   <!-- Bootstrap JS + hamburger script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Récupération des données de classement des utilisateurs et des entreprises
-      fetch('../../Serveur/reqBdd/getclassement.php', { credentials: 'include' })
-        .then(res => res.json())
-        .then(({ users, companies }) => {
-          // Trie décroissant
-          users.sort((a,b) => b.score - a.score); // Tri des utilisateurs
-          companies.sort((a,b) => b.total_score - a.total_score); // Tri des entreprises
-
-          // Fonction de rendu
-          function renderList(containerId, items, isUser) {
-            const ul = document.getElementById(containerId);
-            ul.innerHTML = '';
-            items.forEach((it, idx) => {
-              const li = document.createElement('li');
-              li.className = 'list-group-item';
-              li.textContent = isUser
-                ? `${idx+1}. ${it.user_name} – ${it.score} pts`
-                : `${idx+1}. ${it.name_company} – ${it.total_score.toLocaleString('fr-FR')} kg CO₂ économisés`;
-              if (it.user_name.startsWith('Vous')) li.classList.add('table-primary');
-              ul.appendChild(li);
-            });
-          }
-
-          renderList('personal-list', users, true);  // Classement des utilisateurs
-          renderList('company-list', companies, false);  // Classement des entreprises
-
-          // Boutons “Voir mon rang”
-          document.getElementById('btn-personal')
-            .addEventListener('click', () => {
-              const my = document.querySelector('#personal-list .table-primary');
-              if (my) my.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
-
-          document.getElementById('btn-company')
-            .addEventListener('click', () => {
-              const my = document.querySelector('#company-list .table-primary');
-              if (my) my.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
-        })
-        .catch(err => console.error('Erreur fetch classement :', err));
-    });
-  </script>
+  <script src="../res/js/classement.js"></script>
 </body>
 </html>
