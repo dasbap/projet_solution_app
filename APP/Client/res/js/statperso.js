@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fetch('../../Serveur/reqBdd/getformdata.php', { credentials: 'include' })
     .then(r => r.json())
     .then(data => {
+      console.log(data)
       // Mise à jour du compteur de questions répondues
       document.getElementById('count').textContent =
         Object.keys(data.form || {}).length;
@@ -108,6 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('../../Serveur/reqBdd/getlastscore.php', { credentials: 'include' })
         .then(r => r.json())
         .then(scoresArr => {
+          
           const total = scoresArr.score || 0;  // Vérification que le score existe
           document.getElementById('totalPoints').textContent = total;
 

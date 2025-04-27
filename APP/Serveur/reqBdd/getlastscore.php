@@ -20,17 +20,17 @@ $userId = $_SESSION['user_id'];
 logMessage('Utilisateur authentifié', ['user_id' => $userId], 'application');
 
 try {
-    // Requête pour calculer le score total
+    // Requête pour récupérer le dernier score à partir de Table_score_carbon
     $sql = "
-        SELECT SUM(score_question) AS total_score
-        FROM Table_reponses r
-        JOIN Table_score_carbon sc ON r.id_user = sc.id_user
-        WHERE r.id_user = :user_id
-        AND r.date_reponse = (
-            SELECT MAX(date_reponse)
-            FROM Table_reponses
+        SELECT score
+        FROM Table_score_carbon
+        WHERE id_user = :user_id
+        AND date_assigned = (
+            SELECT MAX(date_assigned)
+            FROM Table_score_carbon
             WHERE id_user = :user_id
         )
+        LIMIT 1
     ";
 
     // Log avant exécution
@@ -44,8 +44,8 @@ try {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Traitement du résultat
-    if ($result && isset($result['total_score'])) {
-        $score = (int)$result['total_score'];
+    if ($result && isset($result['score'])) {
+        $score = (int)$result['score'];  // Utilisation du score récupéré
         logMessage('Score trouvé pour utilisateur', [
             'user_id' => $userId,
             'score' => $score
@@ -56,7 +56,7 @@ try {
         logMessage('Aucun score trouvé - retour valeur par défaut', [
             'user_id' => $userId
         ], 'application');
-        echo json_encode(['score' => 0]);
+        echo json_encode(['score' => 0]);  // Valeur par défaut en cas d'absence de score
     }
 
     // Log de confirmation
@@ -72,7 +72,7 @@ try {
         'code' => $e->getCode(),
         'fichier' => $e->getFile(),
         'ligne' => $e->getLine(),
-        'trace' => substr($e->getTraceAsString(), 0, 200) // Limité pour éviter des logs trop longs
+        'trace' => substr($e->getTraceAsString(), 0, 200) 
     ], 'error');
 
     // Log pour l'application
