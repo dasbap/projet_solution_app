@@ -32,19 +32,27 @@ try {
     $stmt->execute();
     $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Requête sécurisée pour les entreprises
     $sql_companies = "
-        SELECT 
+                SELECT 
             c.name_company,
-            AVG(sc.score) AS average_score
-        FROM table_score_carbon sc
-        INNER JOIN table_user u ON u.id_user = sc.id_user
-        INNER JOIN table_company c ON c.siret_company = u.siret_company
+            AVG(latest_scores.score) AS average_score,
+            COUNT(DISTINCT latest_scores.id_user) AS user_count
+        FROM table_company c
+        JOIN table_user u ON c.siret_company = u.siret_company
+        JOIN (
+            SELECT 
+                sc.id_user,
+                sc.score,
+                sc.date_assigned,
+                ROW_NUMBER() OVER (PARTITION BY sc.id_user ORDER BY sc.date_assigned DESC) AS rn
+            FROM table_score_carbon sc
+        ) latest_scores ON latest_scores.id_user = u.id_user AND latest_scores.rn = 1
         GROUP BY c.siret_company, c.name_company
-        HAVING AVG(sc.score) > 0
+        HAVING AVG(latest_scores.score) > 0
         ORDER BY average_score DESC
         LIMIT 100;
     ";
+
 
 
     logMessage('Exécution requête entreprises', ['query' => preg_replace('/\s+/', ' ', trim($sql_companies))], 'detail');
