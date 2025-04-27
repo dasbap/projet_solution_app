@@ -61,13 +61,14 @@
       <a class="nav-link" href="stat_entreprise.php"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
       <a class="nav-link" href="actualites.php"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
       <a class="nav-link" href="recompenses.php"><i class="fas fa-trophy me-2"></i>Récompenses</a>
-      <a class="nav-link" href="classement.php"><i class="fas fa-list-ol me-2"></i>Classement</a>
+      <a class="nav-link active" href="classement.php"><i class="fas fa-list-ol me-2"></i>Classement</a>
     </nav>
   </aside>
 
   <!-- MENU MOBILE overlay -->
   <div class="mobile-menu d-lg-none" id="mobileMenu">
     <nav class="nav flex-column text-center pt-4">
+      <a class="nav-link py-2" href="index.php">Accueil</a>
       <a class="nav-link py-2" href="formulaire.php">Quizz</a>
       <a class="nav-link py-2" href="contact.php">Contact</a>
       <a class="nav-link py-2" href="connexion.php">Mon Compte</a>
@@ -93,15 +94,11 @@
         <div class="card-header text-center">
           <h5>Classement Personnel</h5>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">1. Alice – 320 pts</li>
-          <li class="list-group-item">2. Bob – 295 pts</li>
-          <li class="list-group-item">3. Vous – 280 pts</li>
-          <li class="list-group-item">4. Diane – 265 pts</li>
-          <li class="list-group-item">5. Éric – 250 pts</li>
+        <ul class="list-group list-group-flush" id="personal-list">
+          <!-- Classement personnel dynamique -->
         </ul>
         <div class="card-footer text-center">
-          <button class="btn btn-success">Voir mon rang</button>
+          <button class="btn btn-success" id="btn-personal">Voir mon rang</button>
         </div>
       </div>
 
@@ -110,15 +107,11 @@
         <div class="card-header text-center">
           <h5>Classement Entreprises</h5>
         </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">1. GreenCorp – 25 000 kg CO₂ économisés</li>
-          <li class="list-group-item">2. EcoSolutions – 22 500 kg CO₂ économisés</li>
-          <li class="list-group-item">3. Vous (Entreprise X) – 20 000 kg CO₂ économisés</li>
-          <li class="list-group-item">4. NatureFirst – 18 750 kg CO₂ économisés</li>
-          <li class="list-group-item">5. BioTech – 17 000 kg CO₂ économisés</li>
+        <ul class="list-group list-group-flush" id="company-list">
+          <!-- Classement entreprises dynamique -->
         </ul>
         <div class="card-footer text-center">
-          <button class="btn btn-success">Voir mon entreprise</button>
+          <button class="btn btn-success" id="btn-company">Voir mon entreprise</button>
         </div>
       </div>
     </section>
@@ -133,12 +126,46 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const burgerBtn  = document.getElementById('burgerBtn');
-      const mobileMenu = document.getElementById('mobileMenu');
-      burgerBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('open'));
-      mobileMenu.addEventListener('click', e => {
-        if (e.target === mobileMenu) mobileMenu.classList.remove('open');
-      });
+      // Récupération des données de classement des utilisateurs et des entreprises
+      fetch('../../Serveur/reqBdd/getclassement.php', { credentials: 'include' })
+        .then(res => res.json())
+        .then(({ users, companies }) => {
+          // Trie décroissant
+          users.sort((a,b) => b.score - a.score); // Tri des utilisateurs
+          companies.sort((a,b) => b.total_score - a.total_score); // Tri des entreprises
+
+          // Fonction de rendu
+          function renderList(containerId, items, isUser) {
+            const ul = document.getElementById(containerId);
+            ul.innerHTML = '';
+            items.forEach((it, idx) => {
+              const li = document.createElement('li');
+              li.className = 'list-group-item';
+              li.textContent = isUser
+                ? `${idx+1}. ${it.user_name} – ${it.score} pts`
+                : `${idx+1}. ${it.name_company} – ${it.total_score.toLocaleString('fr-FR')} kg CO₂ économisés`;
+              if (it.user_name.startsWith('Vous')) li.classList.add('table-primary');
+              ul.appendChild(li);
+            });
+          }
+
+          renderList('personal-list', users, true);  // Classement des utilisateurs
+          renderList('company-list', companies, false);  // Classement des entreprises
+
+          // Boutons “Voir mon rang”
+          document.getElementById('btn-personal')
+            .addEventListener('click', () => {
+              const my = document.querySelector('#personal-list .table-primary');
+              if (my) my.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+
+          document.getElementById('btn-company')
+            .addEventListener('click', () => {
+              const my = document.querySelector('#company-list .table-primary');
+              if (my) my.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        })
+        .catch(err => console.error('Erreur fetch classement :', err));
     });
   </script>
 </body>

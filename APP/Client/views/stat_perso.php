@@ -106,7 +106,7 @@
 
     <section class="summary-card mb-4">
   <i class="fas fa-heart"></i>
-  <!-- avant c’était : Total de points ce mois-ci : 0 -->
+  <!-- Affichage du score total ce mois-ci -->
   <p>Total de points ce mois-ci : <strong><span id="totalPoints">0</span></strong></p>
 </section>
   </main>

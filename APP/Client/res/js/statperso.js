@@ -1,32 +1,15 @@
-// File: Client/res/js/statperso.js
 document.addEventListener('DOMContentLoaded', () => {
-  // Toggle mobile menu
-  const burgerBtn  = document.getElementById('burgerBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  burgerBtn?.addEventListener('click', () => mobileMenu?.classList.toggle('open'));
-  mobileMenu?.addEventListener('click', e => {
-    if (e.target === mobileMenu) mobileMenu.classList.remove('open');
-  });
-
-  // Palette écologique
-  const palette = {
-    lineBg:    'rgba(30,112,191,0.2)',
-    lineBd:    '#1e70bf',
-    barColor:  '#2a9d8f',
-    pieColors: ['#2a9d8f','#8ab17d','#e9c46a','#f4a261','#d17357']
-  };
-
-  // 1️⃣ On récupère d’abord les données du formulaire pour construire les charts
+  // Récupération des données du formulaire pour construire les graphiques
   fetch('../../Serveur/reqBdd/getformdata.php', { credentials: 'include' })
     .then(r => r.json())
     .then(data => {
-      // Nombre de questions répondues
+      // Mise à jour du compteur de questions répondues
       document.getElementById('count').textContent =
         Object.keys(data.form || {}).length;
 
       // Short labels Q1, Q2… + infobulles avec la question
       const fullLabels  = data.line.labels;
-      const shortLabels = fullLabels.map((_,i) => `Q${i+1}`);
+      const shortLabels = fullLabels.map((_, i) => `Q${i + 1}`);
 
       // 1) Evolution par question (Line)
       new Chart(
@@ -38,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
               label: 'Points par question',
               data: data.line.data,
-              backgroundColor: palette.lineBg,
-              borderColor: palette.lineBd,
+              backgroundColor: 'rgba(30,112,191,0.2)', // couleur bleu
+              borderColor: '#1e70bf', // bordure bleu
               borderWidth: 2,
               pointRadius: 4,
               fill: true
@@ -75,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
               label: 'Total points',
               data: data.bar.data,
-              backgroundColor: palette.barColor,
-              borderColor: palette.barColor,
+              backgroundColor: '#2a9d8f', // couleur vert d’eau
+              borderColor: '#2a9d8f',
               borderWidth: 1
             }]
           },
@@ -99,7 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
           type: 'pie',
           data: {
             labels: data.pie.labels,
-            datasets: [{ data: data.pie.data, backgroundColor: palette.pieColors }]
+            datasets: [{
+              data: data.pie.data,
+              backgroundColor: ['#2a9d8f', '#8ab17d', '#e9c46a', '#f4a261', '#d17357'] // couleurs variées
+            }]
           },
           options: {
             responsive: true,
@@ -122,9 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
       fetch('../../Serveur/reqBdd/getlastscore.php', { credentials: 'include' })
         .then(r => r.json())
         .then(scoresArr => {
-          // Somme des scores
-          const total = scoresArr.reduce((sum, q) => sum + (q.score||0), 0);
+          const total = scoresArr.score || 0;  // Vérification que le score existe
           document.getElementById('totalPoints').textContent = total;
+
+          // Ajout d'un log pour vérifier si tout est bon
+          console.log("Score total:", total);
         })
         .catch(err => console.error('Erreur fetch lastscore :', err));
     });
