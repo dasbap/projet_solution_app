@@ -14,10 +14,16 @@ try {
     // Calculer le score total de l'utilisateur
     $sql = "
         SELECT SUM(score_question) AS total_score
-        FROM Table_reponses r
+            FROM Table_reponses r
         JOIN Table_score_carbon sc ON r.id_user = sc.id_user
-        WHERE r.id_user = :user_id
-    ";
+            WHERE r.id_user = :user_id
+                AND r.date_reponse = (
+                    SELECT MAX(date_reponse)
+                        FROM Table_reponses
+                    WHERE id_user = :user_id
+                )
+            ";
+
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['user_id' => $userId]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
