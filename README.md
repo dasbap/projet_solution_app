@@ -1,123 +1,119 @@
-# 🌿 Projet Solution App
 
-Application web simple de gestion d’utilisateurs, inscription automatique par nom de domaine d’entreprise, et formulaire dynamique selon l’entreprise.  
-Projet structuré pour séparer proprement les couches client, serveur, ressources et administration.
+# 🌱 Carbon Footprint Assessment Platform EcoTrack
 
----
+Plateforme web d'évaluation d'empreinte carbone avec scoring et gestion utilisateurs.
 
-## 📁 Structure du projet
+## ✨ Fonctionnalités principales
 
-C:. ├───ADMIN # (réservé pour outils d’administration de création et de modification direct de la bdd)
-    ├───APP 
-    │    ├───Client # Frontend : HTML, CSS, JS │
-    │    └───Serveur # Backend : scripts PHP 
-    ├───Images # Logos, illustrations
-    ├── .gitignore
-    ├── .gitattributes 
-    ├── README.md 
-    ├── BDD.sql # Dump de la base de données principale 
+### 👤 Utilisateurs
+- Formulaire dynamique d'évaluation carbone
+- Calcul automatique du score personnel
+- Visualisation des résultats (graphiques)
+- Classement comparatif entre utilisateurs
 
-
----
-
-## 🧪 Fonctionnalités principales
-
-- Connexion/inscription sécurisée
-- Association automatique d’un utilisateur à une entreprise via le domaine email
-- Vérification d’existence de l’entreprise en base
-- Formulaire dynamique en fonction de l’entreprise (côté client)
-- Système de session pour gestion d’utilisateur connecté
-- Base de données relationnelle via MySQL
+### 👨‍💼 Administrateurs
+- Interface d'inscription des utilisateurs
+- Association automatique entreprise → domaine email
+- Liste des fichiers HTML disponibles
+- Système de journalisation des activités
 
 ---
 
-## ⚙️ Configuration `.env`
+## 🛠 Architecture
 
-Un fichier `.env` est requis dans `APP/Serveur/` :
-    DB_HOST=localhost 
-    DB_NAME=nom_base 
-    DB_USER=utilisateur 
-    DB_PASS=motdepasse
-
-
-> ⚠️ Ce fichier ne doit **jamais** être versionné (protégé par `.gitignore`)
-
----
-
-## 🖥️ Scripts côté serveur (`APP/Serveur/`)
-
-### `config.php`
-Connexion PDO à la base MySQL via les variables du fichier `.env`.
-
-### `register.php`
-- Vérifie que l’email est unique
-- Récupère automatiquement l’entreprise à partir du domaine email (`@entreprise.com`)
-- Hash le mot de passe avec `password_hash`
-- Ajoute l’utilisateur dans `Table_User`
-
-### `login.php`
-- Vérifie que l’utilisateur existe
-- Vérifie le mot de passe avec `password_verify`
-- Démarre une session avec l’`id_user` et redirige vers `Client/index.php`
-
-### `logout.php`
-- Détruit la session et redirige vers `connexion.php`
+```
+projet_solution_app/
+├── ADMIN/
+│   ├── index.php
+│   ├── register.php
+│   └── style.css
+├── APP/
+│   ├── Client/
+│   └── Serveur/
+├── Images/
+└── BDD.sql
+```
 
 ---
 
-## 🧱 Structure de base de données (simplifiée)
+## 🔐 Sécurité
 
-### `Table_User`
-
-| Champ              | Type         |
-|--------------------|--------------|
-| id_user            | INT PK AI    |
-| email_user         | VARCHAR      |
-| user_password_hash | TEXT         |
-| role               | INT (0=user) |
-| siret_company      | VARCHAR FK   |
-
-### `Table_Company`
-
-| Champ         | Type      |
-|---------------|-----------|
-| siret_company | VARCHAR PK|
-| name_company  | VARCHAR   |
+- Hachage des mots de passe (`bcrypt`)
+- Validation des emails et mots de passe
+- Protection contre les inscriptions doublons
+- Logs d'activités
 
 ---
 
-## 🎨 Côté Client (`APP/Client/`)
+## 🚀 Installation
 
-- `formulaire.php` : formulaire dynamique basé sur `questions.json`
-- `inscription.html` / `connexion.php` : formulaire de création de compte et d’accès
-- `formulaire.js` : script pour gérer l’affichage dynamique des questions selon l’entreprise
-- `style.css` / `formulaire.css` : styles
-- `questions.json` : base de questions conditionnelles
+### 1. Démarrer MySQL
 
----
+- Lancer votre serveur MySQL localement.
+- Importer la base de données :
 
-## 🚀 Pour démarrer (local)
+```bash
+mysql -u votre_utilisateur -p
+```
+Puis dans MySQL :
 
-1. Cloner le projet  
-   `git clone https://github.com/dasbap/projet_solution_app`
-
-2. Importer les fichiers `.sql` dans votre base (ex: via phpMyAdmin ou MySQL CLI)
-
-3. Configurer le fichier `.env` dans `APP/Serveur/`
-
-4. Lancer un serveur PHP local dans `APP/Client/` :  
-   `php -S localhost:8000`
+```sql
+CREATE DATABASE score_carbone_db;
+USE score_carbone_db;
+SOURCE chemin/vers/BDD.sql;
+```
 
 ---
 
-## ✅ À faire
+### 2. Configurer PHP
 
-- Ajout de rôles supplémentaires (admin, RH, etc.)
-- Sauvegarde automatique des réponses des formulaires
-- Création des HTML et css pour le projet
+- Modifier `APP/Serveur/config.php` :
+
+```php
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'votre_utilisateur');
+define('DB_PASSWORD', 'votre_mot_de_passe');
+define('DB_NAME', 'score_carbone_db');
+```
 
 ---
 
-## 📄 Licence
+### 3. Lancer le serveur PHP
 
-Ce projet est réalisé à des fins pédagogiques.
+À la racine du projet :
+
+```bash
+php -S localhost:8000
+```
+
+Accéder ensuite à :  
+👉 http://localhost:8000/
+
+---
+
+### 4. Interface Admin
+
+- Accéder à l'administration :  
+http://localhost:8000/ADMIN/
+
+- Remplir le formulaire d'inscription avec :
+  - Email professionnel (`prenom@entreprise.com`)
+  - Mot de passe sécurisé
+
+---
+
+## 🛠 Technologies
+
+- PHP 8+
+- MySQL / MariaDB
+- HTML5, CSS3, JavaScript
+- Chart.js (visualisation graphique)
+
+---
+
+## 📋 Notes
+
+- Utiliser un environnement local type XAMPP/MAMP pour faciliter le développement.
+- Sécuriser la configuration en production (`.env`, HTTPS, etc.).
+
+---
