@@ -130,7 +130,7 @@
           />
           <div class="carousel-caption-custom">
             <p>
-              L’initiative XYZ valorise les énergies renouvelables et engage les citoyens dans une transition écologique.
+            « La rivière est le meilleur pisciculteur » : la continuité écologique, l'autre mission de la fédération de pêche de l'Yonne
               <br>
               <a href="https://www.lyonne.fr/flogny-la-chapelle-89360/actualites/la-riviere-est-le-meilleur-pisciculteur-la-continuite-ecologique-l-autre-mission-de-la-federation-de-peche-de-l-yonne_14676185/">En savoir plus →</a>
             </p>

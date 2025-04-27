@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
               label: 'Points par question',
               data: data.line.data,
-              backgroundColor: 'rgba(30,112,191,0.2)', // couleur bleu
+              backgroundColor: 'rgba(21, 207, 136, 0.2)', // couleur bleu
               borderColor: '#1e70bf', // bordure bleu
               borderWidth: 2,
               pointRadius: 4,

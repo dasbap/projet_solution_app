@@ -111,5 +111,15 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../res/js/stat_entreprise.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burgerBtn  = document.getElementById('burgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+      mobileMenu.addEventListener('click', e => {
+        if (e.target === mobileMenu) mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
 </body>
 </html>

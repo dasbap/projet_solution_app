@@ -66,7 +66,6 @@ require_once __DIR__ . '/../../Serveur/profil.php';
   <!-- SIDEBAR -->
   <aside id="sidebar" class="sidebar bg-white border-end border-success d-none d-lg-block">
     <nav class="nav flex-column pt-4">
-      <a class="nav-link active" href="index.php"><i class="fas fa-home me-2"></i>Accueil</a>
       <a class="nav-link" href="stat_perso.php"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
       <a class="nav-link" href="stat_entreprise.php"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
       <a class="nav-link" href="actualites.php"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
@@ -137,7 +136,7 @@ require_once __DIR__ . '/../../Serveur/profil.php';
               </div>
               <div class="carousel-item-img-container mx-4">
                 <img
-                  src="../res/Images/carroussel2.jpg"
+                  src="../res/Images/terre.png"
                   alt="Énergie renouvelable"
                   class="d-block carousel-img"
                   style="max-width:500px; width:100%; border-radius:.5rem;"

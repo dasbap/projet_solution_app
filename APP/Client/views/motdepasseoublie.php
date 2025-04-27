@@ -30,7 +30,7 @@
   <div class="card reset-card p-4 shadow-sm" style="max-width: 500px; width: 100%;">
     <!-- Logo centré -->
     <div class="text-center mb-3">
-      <img src="../res/images/Logo-EcoTrack.svg"
+      <img src="../res/Images/merci.png"
            alt="Logo EcoTrack"
            style="max-width: 150px; width: 100%; height: auto;">
     </div>

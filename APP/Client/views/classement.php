@@ -56,7 +56,6 @@
   <!-- SIDEBAR -->
   <aside class="sidebar bg-white border-end border-success">
     <nav class="nav flex-column pt-4">
-      <a class="nav-link active" href="index.php"><i class="fas fa-home me-2"></i>Accueil</a>
       <a class="nav-link" href="stat_perso.php"><i class="fas fa-user-circle me-2"></i>Stat Perso</a>
       <a class="nav-link" href="stat_entreprise.php"><i class="fas fa-building me-2"></i>Stat Entreprise</a>
       <a class="nav-link" href="actualites.php"><i class="fas fa-globe me-2"></i>Actualités ECO</a>
@@ -125,5 +124,15 @@
   <!-- Bootstrap JS + hamburger script -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../res/js/classement.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burgerBtn  = document.getElementById('burgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      burgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+      mobileMenu.addEventListener('click', e => {
+        if (e.target === mobileMenu) mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
 </body>
 </html>

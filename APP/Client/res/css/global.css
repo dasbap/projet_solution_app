@@ -134,3 +134,31 @@ main {
     padding: 1rem;
   }
 }
+/* Titre et sous-titre de la page Actualités */
+.page-title {
+  font-size: 2.5rem;    /* au lieu de 2rem */
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: 1.25rem;   /* au lieu de 1rem environ */
+  line-height: 1.4;
+}
+
+/* Texte des légendes sous les images */
+.carousel-caption-custom p {
+  font-size: 1rem;      /* agrandir le paragraphe */
+}
+
+/* Lien “En savoir plus” un peu plus grand */
+.carousel-caption-custom a {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Si vous voulez agrandir aussi les flèches du carousel */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 2rem;
+  height: 2rem;
+}
